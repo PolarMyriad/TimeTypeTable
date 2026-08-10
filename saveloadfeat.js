@@ -2,7 +2,7 @@ const saveButton = document.getElementById("saveButton");
 const loadButton = document.getElementById("loadButton");
 const fileInput = document.getElementById("fileInput");
 const jsonDisplay = document.getElementById("jsonDisplay");
-let jsonFile = await parseJsonFile(file);
+let jsonFile ;
 
 /*
 const plannerData = {
