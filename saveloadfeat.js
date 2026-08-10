@@ -8,7 +8,7 @@ const plannerData = {
     chronotype: "Morning",
     tasks:{
         week1:{
-            day:1[
+            day1:[
                 {
                     name: "Study Calculus",
                     startTime: "08:00",
@@ -20,7 +20,7 @@ const plannerData = {
                     endTime: "15:00"
                 }
             ],
-            day:2[
+            day2:[
                 {
                     name: "Study Computer Programming",
                     startTime: "09:00",
