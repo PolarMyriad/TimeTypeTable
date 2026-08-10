@@ -75,24 +75,28 @@ async function loadJSON(file) {
     
 
 function saveJSON() {
-    const jsonData = JSON.stringify(
-        jsonFile,
-        null,
-        4
-    );
+    if (jsonFile == null) {
+        alert("JSON File not found. Please upload a file first.");
+    } else {
+        const jsonData = JSON.stringify(
+            jsonFile,
+            null,
+            4
+        );
 
-    const blob = new Blob(
-        [jsonData],
-        {
-            type: "application/json"
-        }
-    );
-    const url = URL.createObjectURL(blob);
-    const link = document.createElement("a");
-    link.href = url;
-    link.download = "file.json";
-    link.click();
-    URL.revokeObjectURL(url);
+        const blob = new Blob(
+            [jsonData],
+            {
+                type: "application/json"
+            }
+        );
+        const url = URL.createObjectURL(blob);
+        const link = document.createElement("a");
+        link.href = url;
+        link.download = "file.json";
+        link.click();
+        URL.revokeObjectURL(url);
+    }
 }
 
 saveButton.addEventListener(
