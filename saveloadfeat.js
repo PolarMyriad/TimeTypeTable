@@ -76,7 +76,7 @@ async function loadJSON(file) {
 
 function saveJSON() {
     const jsonData = JSON.stringify(
-        plannerData,
+        jsonFile,
         null,
         4
     );
@@ -90,7 +90,7 @@ function saveJSON() {
     const url = URL.createObjectURL(blob);
     const link = document.createElement("a");
     link.href = url;
-    link.download = "planner.json";
+    link.download = "file.json";
     link.click();
     URL.revokeObjectURL(url);
 }
