@@ -2,7 +2,9 @@ const saveButton = document.getElementById("saveButton");
 const loadButton = document.getElementById("loadButton");
 const fileInput = document.getElementById("fileInput");
 const jsonDisplay = document.getElementById("jsonDisplay");
+let jsonFile;
 
+/*
 const plannerData = {
     name: "Dylan",
     chronotype: "Morning",
@@ -35,6 +37,11 @@ const plannerData = {
         }
     }
 };
+*/
+
+function loadJSON() {
+
+}
 
 function saveJSON() {
     const jsonData = JSON.stringify(
