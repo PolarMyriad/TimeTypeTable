@@ -2,7 +2,7 @@ const saveButton = document.getElementById("saveButton");
 const loadButton = document.getElementById("loadButton");
 const fileInput = document.getElementById("fileInput");
 const jsonDisplay = document.getElementById("jsonDisplay");
-let jsonFile;
+let jsonFile = await parseJsonFile(file);
 
 /*
 const plannerData = {
@@ -39,9 +39,40 @@ const plannerData = {
 };
 */
 
-function loadJSON() {
+/*
+async function loadJSON(file) {
+    return new Promise((resolve, reject) => {
+        const fileReader = new FileReader();
+        fileReader.onload = event => resolve(JSON.parse(event.target.result));
+        fileReader.onerrpr = error => reject(error);
+        fileReader.readAsText(file);
+    })
+    let jsonFiles = evt.target.files;
+    jsonFile = jsonFiles[0];
 
+    let reader = new FileReader();
+    let display_file = ( e ) => {
+        
+    }
 }
+*/
+
+(function(){
+    function onChange(event) {
+        let reader = new FileReader();
+        reader.onload = onReaderLoad;
+        reader.readAsText(event.target.files[0]);
+    }
+
+    function onReaderLoad(event) {
+        console.log(event.target.result);
+        let obj = JSON.parse(event.target.result);
+        jsonDisplay.innerHTML = obj;
+    }
+
+    document.getElementById('loadFunction').addEventListener('change', onChange);
+}());
+    
 
 function saveJSON() {
     const jsonData = JSON.stringify(
