@@ -2,7 +2,7 @@ const saveButton = document.getElementById("saveButton");
 const loadButton = document.getElementById("loadButton");
 const fileInput = document.getElementById("fileInput");
 const jsonDisplay = document.getElementById("jsonDisplay");
-let jsonFile ;
+let jsonFile;
 
 /*
 const plannerData = {
@@ -67,7 +67,7 @@ async function loadJSON(file) {
     function onReaderLoad(event) {
         console.log(event.target.result);
         let obj = JSON.parse(event.target.result);
-        jsonDisplay.innerHTML = obj;
+        jsonDisplay.innerHTML = event.target.result;
     }
 
     document.getElementById('loadFunction').addEventListener('change', onChange);
