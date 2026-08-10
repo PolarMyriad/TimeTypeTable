@@ -67,7 +67,6 @@ async function loadJSON(file) {
     function onReaderLoad(event) {
         jsonDisplay.innerHTML = event.target.result;
         jsonFile = event.target.result;
-        console.log(jsonFile);
     }
 
     document.getElementById('loadFunction').addEventListener('change', onChange);
