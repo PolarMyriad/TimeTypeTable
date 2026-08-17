@@ -85,19 +85,12 @@ p {
 
 .calendar {
     width: 700px;
-
     margin-top: 40px;
     padding: 25px;
-
     background-color: #ffffff;
-
     border-radius: 20px;
-
     box-shadow: 0 5px 20px rgba(0, 0, 0, 0.12);
 }
-
-
-/* HEADER */
 
 .calendar-header {
     display: flex;
@@ -109,128 +102,131 @@ p {
 
 .calendar-header h2 {
     margin: 0;
-
     font-family: 'Merriweather', serif;
-
     font-size: 24px;
 }
 
 .calendar-header button {
     border: none;
-
     background-color: #f3f3f3;
-
     width: 40px;
     height: 40px;
-
     border-radius: 50%;
-
     font-size: 18px;
-
     cursor: pointer;
 }
-
-
-/* WEEKDAYS */
 
 .weekdays {
     display: grid;
-
     grid-template-columns: repeat(7, 1fr);
-
     text-align: center;
-
     font-family: 'Open Sans', 'Montserrat', sans-serif;
-
     font-weight: bold;
-
     font-size: 13px;
-
     margin-bottom: 5px;
 }
 
-
-/* CALENDAR GRID */
-
 .days {
     display: grid;
-
     grid-template-columns: repeat(7, 1fr);
-
     gap: 5px;
 }
 
-
-/* DATE BOX */
-
 .day,
 .empty {
-
     min-height: 100px;
-
     border: 1px solid #dddddd;
-
     border-radius: 8px;
-
     padding: 8px;
-
     box-sizing: border-box;
 }
 
-
-/* DATE */
-
 .day {
+    height: 120px;
+    overflow: hidden;
     position: relative;
-
     cursor: pointer;
-
     background-color: #ffffff;
+    box-sizing: border-box;
 }
 
 .day:hover {
     background-color: #f8f8f8;
 }
 
-
-/* NUMBER */
-
 .date-number {
-
     display: block;
-
     font-family: 'Open Sans', 'Montserrat', sans-serif;
-
     font-size: 14px;
-
     font-weight: bold;
-
     margin-bottom: 8px;
 }
 
-
-/* TASK DESCRIPTION */
-
 .task {
-
     font-family: 'Open Sans', 'Montserrat', sans-serif;
-
     font-size: 12px;
-
     line-height: 1.4;
-
-    word-wrap: break-word;
-
-    overflow-wrap: break-word;
-
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100%;
+    margin-bottom: 4px;
 }
 
-
-/* TODAY */
-
 .day.today {
-
     border: 2px solid #ade8f4;
-
     background-color: #f5fcff;
+}
+
+.task-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4);
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.task-modal-content {
+    position: relative;
+    background-color: white;
+    width: 400px;
+    max-width: 90%;
+    max-height: 70vh;
+    overflow-y: auto;
+    padding: 25px;
+    border-radius: 10px;
+    box-sizing: border-box;
+}
+
+.close-modal {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    border: none;
+    background: none;
+    font-size: 28px;
+    cursor: pointer;
+}
+
+#modalDate {
+    margin-top: 0;
+    margin-bottom: 20px;
+}
+
+.modal-task {
+    margin-bottom: 15px;
+}
+
+.modal-task-name {
+    font-weight: bold;
+}
+
+.modal-task-time {
+    font-size: 14px;
+    margin-left: 20px;
 }
