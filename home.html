@@ -681,11 +681,10 @@
                 }
 
 
-                plannerData.name =
-                    name;
-
-                plannerData.chronotype =
-                    chronotype;
+                initializePlannerData(
+                    name,
+                    chronotype
+                );
 
 
                 homeHeading.textContent =
@@ -717,62 +716,7 @@
 
             }
         );
-
-
-        /* Show homescreen pag napili na js file*/
-
-        document
-            .getElementById("loadFunction")
-            .addEventListener(
-                "change",
-                function (event) {
-
-                    const file =
-                        event.target.files[0];
-
-
-                    if (!file) {
-                        return;
-                    }
-
-
-                
-
-                    setTimeout(
-                        function () {
-
-                            firstTimeScreen.style.display =
-                                "none";
-
-                            questionnaireScreen.style.display =
-                                "none";
-
-                            homeScreen.style.display =
-                                "flex";
-
-
-                            if (
-                                plannerData.name
-                            ) {
-
-                                homeHeading.textContent =
-                                    `Welcome, ${plannerData.name}!`;
-
-                            }
-
-
-                            renderCalendar();
-
-                        },
-                        100
-                    );
-
-                }
-            );
-
-
     </script>
 
 </body>
-
 </html>
