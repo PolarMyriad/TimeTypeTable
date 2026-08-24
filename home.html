@@ -12,24 +12,139 @@
 
 <body>
 
-    <div class="main-container">
 
-       
-       
+    <div id="firstTimeScreen" class="first-time-screen">
+
+        <div class="welcome-card">
+
+            <img src="temporarylogo.png"
+                 class="welcome-logo"
+                 alt="Chronotype Logo">
+
+            <h1>Welcome to Chronotype!</h1>
+
+            <p class="welcome-text">
+                Get started by answering a few questions
+                or load your existing planner data.
+            </p>
+
+            <div class="welcome-buttons">
+
+                <button
+                    id="proceedButton"
+                    class="proceed-button">
+                    Proceed to Questionnaire
+                </button>
+
+                <button
+                    id="firstLoadButton"
+                    class="first-load-button">
+                    Load JSON
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div id="questionnaireScreen"
+         class="questionnaire-screen"
+         style="display: none;">
+
+        <div class="questionnaire-card">
+
+            <img src="temporarylogo.png"
+                 class="questionnaire-logo"
+                 alt="Chronotype Logo">
+
+            <h1>Let's Get Started!</h1>
+
+            <p class="questionnaire-intro">
+                Tell us a little about yourself.
+            </p>
+
+
+            <form id="questionnaireForm">
+
+                <div class="form-group">
+
+                    <label for="nameInput">
+                        What is your name?
+                    </label>
+
+                    <input
+                        type="text"
+                        id="nameInput"
+                        placeholder="Enter your name"
+                        required>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="chronotypeInput">
+                        What is your chronotype?
+                    </label>
+
+                    <select
+                        id="chronotypeInput"
+                        required>
+
+                        <option value="" disabled selected>
+                            Select your chronotype
+                        </option>
+
+                        <option value="Morning">
+                            Morning
+                        </option>
+
+                        <option value="Evening">
+                            Evening
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <button
+                    type="submit"
+                    class="submit-button">
+                    Submit
+                </button>
+
+            </form>
+
+        </div>
+
+    </div>
+
+
+    <div id="homeScreen"
+         class="main-container"
+         style="display: none;">
 
         <div class="left-content">
 
-            <img src="temporarylogo.png" class="placeholderlogo">
+            <img
+                src="temporarylogo.png"
+                class="placeholderlogo"
+                alt="Chronotype Logo">
 
-            <h1>Heading</h1>
+            <h1 id="homeHeading">
+                Heading
+            </h1>
 
-            <p>
-                Some text. Lorem ipsum di ko kabisado ok na yan pagod na ko
-                di ko mahanap sa google dawg huhuhuhu ok lorem ipsum ule
-                testing ko lang tho ano ilalagay sa ilalim neto?
+            <p id="homeDescription">
+                Some text. Lorem ipsum di ko kabisado ok na yan
+                pagod na ko di ko mahanap sa google dawg huhuhuhu
+                ok lorem ipsum ule testing ko lang tho ano ilalagay
+                sa ilalim neto?
                 If may lalagay kayo edit nalang margin sa css
             </p>
-
 
 
             <div class="buttons">
@@ -41,7 +156,6 @@
                 </button>
 
 
-     
                 <button
                     id="loadButton"
                     class="loadbutton"
@@ -58,7 +172,6 @@
                 >
 
 
-     
                 <input
                     id="fileInput"
                     type="file"
@@ -71,12 +184,9 @@
         </div>
 
 
-    
-
         <div class="right-content">
 
             <div class="calendar">
-
 
                 <div class="calendar-header">
 
@@ -93,7 +203,6 @@
                 </div>
 
 
-
                 <div class="weekdays">
 
                     <div>Sun</div>
@@ -107,12 +216,10 @@
                 </div>
 
 
-
                 <div
                     class="days"
                     id="days">
                 </div>
-
 
             </div>
 
@@ -121,9 +228,12 @@
     </div>
 
     <div id="taskModal" class="task-modal">
+
         <div class="task-modal-content">
 
-            <button id="closeModal" class="close-modal">
+            <button
+                id="closeModal"
+                class="close-modal">
                 &times;
             </button>
 
@@ -133,268 +243,535 @@
 
             <div id="modalTaskList">
             </div>
+
         </div>
+
     </div>
+
 
     <p id="jsonDisplay" hidden></p>
 
+    <script src="saveloadfeat.js"></script>
+
+    <script>
+
+        const monthYear =
+            document.getElementById("monthYear");
+
+        const daysContainer =
+            document.getElementById("days");
+
+        const prevMonth =
+            document.getElementById("prevMonth");
+
+        const nextMonth =
+            document.getElementById("nextMonth");
 
 
-<script>
-    const monthYear = document.getElementById("monthYear");
-    const daysContainer = document.getElementById("days");
-    const prevMonth = document.getElementById("prevMonth");
-    const nextMonth = document.getElementById("nextMonth");
+        let currentDate = new Date();
 
-    let currentDate = new Date();
 
-    function renderCalendar() {
-        const year = currentDate.getFullYear();
-        const month = currentDate.getMonth();
+        function renderCalendar() {
 
-        const firstDay =
-            new Date(
-                year,
-                month,
-                1
-            ).getDay();
+            const year =
+                currentDate.getFullYear();
 
-        const lastDate =
-            new Date(
-                year,
-                month + 1,
-                0
-            ).getDate();
+            const month =
+                currentDate.getMonth();
 
-        const monthName =
-            currentDate.toLocaleString(
-                "default",
-                {
-                    month: "long"
-                }
-            );
 
-        monthYear.textContent =
-            `${monthName} ${year}`;
+            const firstDay =
+                new Date(
+                    year,
+                    month,
+                    1
+                ).getDay();
 
-        daysContainer.innerHTML = "";
 
-        for (
-            let i = 0;
-            i < firstDay;
-            i++
-        ) {
-            const emptyDay =
-                document.createElement("div");
+            const lastDate =
+                new Date(
+                    year,
+                    month + 1,
+                    0
+                ).getDate();
 
-            emptyDay.classList.add("empty");
 
-            daysContainer.appendChild(
-                emptyDay
-            );
-        }
-
-        for (
-            let day = 1;
-            day <= lastDate;
-            day++
-        ) {
-            const dayElement =
-                document.createElement("div");
-
-            dayElement.classList.add("day");
-
-            const monthNumber =
-                String(month + 1)
-                    .padStart(2, "0");
-
-            const dayNumber =
-                String(day)
-                    .padStart(2, "0");
-
-            const dateString =
-                `${year}-${monthNumber}-${dayNumber}`;
-
-            const tasksForThisDay =
-                plannerData.tasks.filter(
-                    function (task) {
-
-                        return task.date === dateString;
-
-                    }
-                );
-            
-            dayElement.addEventListener(
-                "click",
-                function () {
-                    openTaskModal(
-                        dateString,
-                        tasksForThisDay
-                    );
-                }
-            );
-
-            dayElement.innerHTML = `
-                <span class="date-number">
-                    ${day}
-                </span>
-
-                <div class="tasks-container">
-                </div>
-            `;
-
-            const taskContainer =
-                dayElement.querySelector(
-                    ".tasks-container"
-                );
-
-        const MAX_VISIBLE_TASKS = 3;
-
-            tasksForThisDay
-                .slice(0, MAX_VISIBLE_TASKS)
-                .forEach(
-                    function (task, index) {
-                        const taskElement =
-                            document.createElement("div");
-                        
-                        taskElement.classList.add(
-                            "task"
-                        );
-
-                        taskElement.textContent =
-                            `• ${task.name}`;
-
-                        if (
-                            index === MAX_VISIBLE_TASKS - 1 &&
-                            tasksForThisDay.length > MAX_VISIBLE_TASKS
-                        ) {
-                            taskElement.textContent += "...";
-
-                        }
-                        
-                        taskContainer.appendChild(
-                            taskElement
-                        );
-
+            const monthName =
+                currentDate.toLocaleString(
+                    "default",
+                    {
+                        month: "long"
                     }
                 );
 
-            const today = new Date();
 
-            if (
-                day === today.getDate() &&
-                month === today.getMonth() &&
-                year === today.getFullYear()
+            monthYear.textContent =
+                `${monthName} ${year}`;
+
+
+            daysContainer.innerHTML = "";
+
+
+            for (
+                let i = 0;
+                i < firstDay;
+                i++
             ) {
 
-                dayElement.classList.add(
-                    "today"
+                const emptyDay =
+                    document.createElement("div");
+
+                emptyDay.classList.add("empty");
+
+                daysContainer.appendChild(
+                    emptyDay
                 );
+
             }
 
-            daysContainer.appendChild(
-                dayElement
-            );
 
-        }
+            for (
+                let day = 1;
+                day <= lastDate;
+                day++
+            ) {
 
-    }
-
-    prevMonth.addEventListener(
-        "click",
-        function () {
-
-            currentDate.setMonth(
-                currentDate.getMonth() - 1
-            );
-            renderCalendar();
-        }
-    );
-
-    nextMonth.addEventListener(
-        "click",
-        function () {
-
-            currentDate.setMonth(
-                currentDate.getMonth() + 1
-            );
-            renderCalendar();
-        }
-    );
-
-    const taskModal = document.getElementById("taskModal");
-    const modalDate = document.getElementById("modalDate");
-    const modalTaskList = document.getElementById("modalTaskList");
-    const closeModal = document.getElementById("closeModal");
-
-    function openTaskModal(
-        dateString,
-        tasks
-    ){
-        const date = 
-            new Date(
-                dateString + "T00:00:00"
-            );
-        const formattedDate = 
-            date.toLocaleDateString(
-                "default",
-                {
-                    month: "long",
-                    day: "numeric",
-                    year: "numeric"
-                }
-            );
-        modalDate.textContent =
-            `Tasks for ${formattedDate}`;
-        modalTaskList.innerHTML = "";
-
-        if(tasks.length === 0){
-            modalTaskList.innerHTML =
-                "<p>No tasks scheduled.</p>";
-        }
-
-        tasks.forEach(
-            function (task){
-                const taskElement =
+                const dayElement =
                     document.createElement("div");
-                taskElement.classList.add(
-                    "modal-task"
+
+                dayElement.classList.add("day");
+
+
+                const monthNumber =
+                    String(month + 1)
+                        .padStart(2, "0");
+
+
+                const dayNumber =
+                    String(day)
+                        .padStart(2, "0");
+
+
+                const dateString =
+                    `${year}-${monthNumber}-${dayNumber}`;
+
+
+                const tasksForThisDay =
+                    plannerData.tasks.filter(
+                        function (task) {
+
+                            return task.date === dateString;
+
+                        }
+                    );
+
+
+                dayElement.addEventListener(
+                    "click",
+                    function () {
+
+                        openTaskModal(
+                            dateString,
+                            tasksForThisDay
+                        );
+
+                    }
                 );
-                taskElement.innerHTML = `
-                    <div class="modal-task-name">
-                        • ${task.name}
+
+
+                dayElement.innerHTML = `
+
+                    <span class="date-number">
+                        ${day}
+                    </span>
+
+                    <div class="tasks-container">
                     </div>
-                    <div class="modal-task-time">
-                        ${task.startTime} - ${task.endTime}
-                    </div>
+
                 `;
 
-                modalTaskList.appendChild(
-                    taskElement
+
+                const taskContainer =
+                    dayElement.querySelector(
+                        ".tasks-container"
+                    );
+
+
+                const MAX_VISIBLE_TASKS = 3;
+
+
+                tasksForThisDay
+                    .slice(0, MAX_VISIBLE_TASKS)
+                    .forEach(
+                        function (task, index) {
+
+                            const taskElement =
+                                document.createElement("div");
+
+
+                            taskElement.classList.add(
+                                "task"
+                            );
+
+
+                            taskElement.textContent =
+                                `• ${task.name}`;
+
+
+                            if (
+                                index === MAX_VISIBLE_TASKS - 1 &&
+                                tasksForThisDay.length > MAX_VISIBLE_TASKS
+                            ) {
+
+                                taskElement.textContent += "...";
+
+                            }
+
+
+                            taskContainer.appendChild(
+                                taskElement
+                            );
+
+                        }
+                    );
+
+
+                const today = new Date();
+
+
+                if (
+                    day === today.getDate() &&
+                    month === today.getMonth() &&
+                    year === today.getFullYear()
+                ) {
+
+                    dayElement.classList.add(
+                        "today"
+                    );
+
+                }
+
+
+                daysContainer.appendChild(
+                    dayElement
                 );
+
+            }
+
+        }
+
+
+        prevMonth.addEventListener(
+            "click",
+            function () {
+
+                currentDate.setMonth(
+                    currentDate.getMonth() - 1
+                );
+
+                renderCalendar();
+
             }
         );
-        taskModal.style.display = "flex";
-    }
 
-closeModal.addEventListener(
-    "click",
-    function(){
-        taskModal.style.display = "none";
-    }
-);
 
-taskModal.addEventListener(
-    "click",
-    function(event){
-        if(event.target === taskModal){
-            taskModal.style.display = "none";
+        nextMonth.addEventListener(
+            "click",
+            function () {
+
+                currentDate.setMonth(
+                    currentDate.getMonth() + 1
+                );
+
+                renderCalendar();
+
+            }
+        );
+
+
+        /* cal task */
+
+        const taskModal =
+            document.getElementById("taskModal");
+
+        const modalDate =
+            document.getElementById("modalDate");
+
+        const modalTaskList =
+            document.getElementById("modalTaskList");
+
+        const closeModal =
+            document.getElementById("closeModal");
+
+
+        function openTaskModal(
+            dateString,
+            tasks
+        ) {
+
+            const date =
+                new Date(
+                    dateString + "T00:00:00"
+                );
+
+
+            const formattedDate =
+                date.toLocaleDateString(
+                    "default",
+                    {
+                        month: "long",
+                        day: "numeric",
+                        year: "numeric"
+                    }
+                );
+
+
+            modalDate.textContent =
+                `Tasks for ${formattedDate}`;
+
+
+            modalTaskList.innerHTML = "";
+
+
+            if (tasks.length === 0) {
+
+                modalTaskList.innerHTML =
+                    "<p>No tasks scheduled.</p>";
+
+            }
+
+
+            tasks.forEach(
+                function (task) {
+
+                    const taskElement =
+                        document.createElement("div");
+
+
+                    taskElement.classList.add(
+                        "modal-task"
+                    );
+
+
+                    taskElement.innerHTML = `
+
+                        <div class="modal-task-name">
+                            • ${task.name}
+                        </div>
+
+                        <div class="modal-task-time">
+                            ${task.startTime} - ${task.endTime}
+                        </div>
+
+                    `;
+
+
+                    modalTaskList.appendChild(
+                        taskElement
+                    );
+
+                }
+            );
+
+
+            taskModal.style.display = "flex";
+
         }
-    }
-);
 
-</script>
-<script src="saveloadfeat.js"></script>
+
+        closeModal.addEventListener(
+            "click",
+            function () {
+
+                taskModal.style.display = "none";
+
+            }
+        );
+
+
+        taskModal.addEventListener(
+            "click",
+            function (event) {
+
+                if (
+                    event.target === taskModal
+                ) {
+
+                    taskModal.style.display = "none";
+
+                }
+
+            }
+        );
+
+
+        /* first time*/
+
+        const firstTimeScreen =
+            document.getElementById("firstTimeScreen");
+
+        const questionnaireScreen =
+            document.getElementById("questionnaireScreen");
+
+        const homeScreen =
+            document.getElementById("homeScreen");
+
+        const proceedButton =
+            document.getElementById("proceedButton");
+
+        const firstLoadButton =
+            document.getElementById("firstLoadButton");
+
+        const questionnaireForm =
+            document.getElementById("questionnaireForm");
+
+        const nameInput =
+            document.getElementById("nameInput");
+
+        const chronotypeInput =
+            document.getElementById("chronotypeInput");
+
+        const homeHeading =
+            document.getElementById("homeHeading");
+
+
+        /* QS */
+
+        proceedButton.addEventListener(
+            "click",
+            function () {
+
+                firstTimeScreen.style.display =
+                    "none";
+
+                questionnaireScreen.style.display =
+                    "flex";
+
+            }
+        );
+
+
+        /* Submit */
+
+        questionnaireForm.addEventListener(
+            "submit",
+            function (event) {
+
+                event.preventDefault();
+
+
+                const name =
+                    nameInput.value.trim();
+
+                const chronotype =
+                    chronotypeInput.value;
+
+
+                if (
+                    name === "" ||
+                    chronotype === ""
+                ) {
+
+                    alert(
+                        "Please complete the questionnaire."
+                    );
+
+                    return;
+
+                }
+
+
+                plannerData.name =
+                    name;
+
+                plannerData.chronotype =
+                    chronotype;
+
+
+                homeHeading.textContent =
+                    `Welcome, ${name}!`;
+
+
+                questionnaireScreen.style.display =
+                    "none";
+
+                homeScreen.style.display =
+                    "flex";
+
+
+                renderCalendar();
+
+            }
+        );
+
+
+        /* First load */
+
+        firstLoadButton.addEventListener(
+            "click",
+            function () {
+
+                document
+                    .getElementById("loadFunction")
+                    .click();
+
+            }
+        );
+
+
+        /* Show homescreen pag napili na js file*/
+
+        document
+            .getElementById("loadFunction")
+            .addEventListener(
+                "change",
+                function (event) {
+
+                    const file =
+                        event.target.files[0];
+
+
+                    if (!file) {
+                        return;
+                    }
+
+
+                
+
+                    setTimeout(
+                        function () {
+
+                            firstTimeScreen.style.display =
+                                "none";
+
+                            questionnaireScreen.style.display =
+                                "none";
+
+                            homeScreen.style.display =
+                                "flex";
+
+
+                            if (
+                                plannerData.name
+                            ) {
+
+                                homeHeading.textContent =
+                                    `Welcome, ${plannerData.name}!`;
+
+                            }
+
+
+                            renderCalendar();
+
+                        },
+                        100
+                    );
+
+                }
+            );
+
+
+    </script>
 
 </body>
 
