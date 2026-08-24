@@ -1,23 +1,335 @@
+/* general */
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    background-color: #ffffff;
+}
+
+
+/* first time input */
+
+.first-time-screen {
+    width: 100%;
+    min-height: 100vh;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background-color: #fff5f8;
+}
+
+
+.welcome-card {
+    width: 500px;
+    max-width: 90%;
+
+    background-color: #ffffff;
+
+    padding: 50px;
+
+    border-radius: 25px;
+
+    box-shadow:
+        0 8px 30px rgba(0, 0, 0, 0.12);
+
+    text-align: center;
+}
+
+
+.welcome-logo {
+    width: 90px;
+    height: 90px;
+
+    object-fit: contain;
+
+    margin-bottom: 10px;
+}
+
+
+.welcome-card h1 {
+    padding: 0;
+    margin: 10px 0 15px;
+
+    text-align: center;
+
+    font-family: 'Merriweather', serif;
+
+    font-size: 32px;
+}
+
+
+.welcome-text {
+    padding: 0;
+    margin: 0 auto 35px;
+
+    max-width: 400px;
+
+    text-align: center;
+
+    font-family:
+        'Open Sans',
+        'Montserrat',
+        sans-serif;
+
+    line-height: 1.6;
+}
+
+
+.welcome-buttons {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 15px;
+}
+
+
+.proceed-button,
+.first-load-button {
+    width: 100%;
+
+    padding: 14px 20px;
+
+    border: none;
+
+    border-radius: 12px;
+
+    font-family:
+        'Open Sans',
+        'Montserrat',
+        sans-serif;
+
+    font-size: 16px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+}
+
+
+.proceed-button {
+    background-color: #ffb6c1;
+
+    color: #000000;
+}
+
+
+.proceed-button:hover {
+    background-color: #ff9fad;
+
+    transform: translateY(-2px);
+}
+
+
+.first-load-button {
+    background-color: #ade8f4;
+
+    color: #000000;
+}
+
+
+.first-load-button:hover {
+    background-color: #8ddbea;
+
+    transform: translateY(-2px);
+}
+
+
+/* question emee  */
+
+.questionnaire-screen {
+    width: 100%;
+    min-height: 100vh;
+
+    justify-content: center;
+    align-items: center;
+
+    background-color: #fff5f8;
+}
+
+
+.questionnaire-card {
+    width: 500px;
+    max-width: 90%;
+
+    background-color: #ffffff;
+
+    padding: 45px;
+
+    border-radius: 25px;
+
+    box-shadow:
+        0 8px 30px rgba(0, 0, 0, 0.12);
+}
+
+
+.questionnaire-logo {
+    display: block;
+
+    width: 70px;
+    height: 70px;
+
+    object-fit: contain;
+
+    margin: 0 auto 10px;
+}
+
+
+.questionnaire-card h1 {
+    padding: 0;
+    margin: 10px 0;
+
+    text-align: center;
+
+    font-family: 'Merriweather', serif;
+
+    font-size: 28px;
+}
+
+
+.questionnaire-intro {
+    padding: 0;
+    margin: 0 0 30px;
+
+    text-align: center;
+
+    font-family:
+        'Open Sans',
+        'Montserrat',
+        sans-serif;
+}
+
+
+.form-group {
+    margin-bottom: 25px;
+}
+
+
+.form-group label {
+    display: block;
+
+    margin-bottom: 8px;
+
+    font-family:
+        'Open Sans',
+        'Montserrat',
+        sans-serif;
+
+    font-size: 15px;
+
+    font-weight: 600;
+}
+
+
+.form-group input,
+.form-group select {
+    width: 100%;
+
+    padding: 13px 15px;
+
+    border: 1px solid #dddddd;
+
+    border-radius: 10px;
+
+    background-color: #ffffff;
+
+    font-family:
+        'Open Sans',
+        'Montserrat',
+        sans-serif;
+
+    font-size: 15px;
+
+    outline: none;
+}
+
+
+.form-group input:focus,
+.form-group select:focus {
+    border-color: #ffb6c1;
+
+    box-shadow:
+        0 0 0 3px rgba(255, 182, 193, 0.2);
+}
+
+
+.submit-button {
+    width: 100%;
+
+    padding: 14px;
+
+    border: none;
+
+    border-radius: 12px;
+
+    background-color: #ffb6c1;
+
+    color: #000000;
+
+    font-family:
+        'Open Sans',
+        'Montserrat',
+        sans-serif;
+
+    font-size: 16px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+}
+
+
+.submit-button:hover {
+    background-color: #ff9fad;
+
+    transform: translateY(-2px);
+}
+
+
+/* homescreeenn*/
+
 h1 {
     font-family: 'Merriweather', serif;
+
     font-weight: bolder;
+
     text-align: left;
+
     padding-left: 70px;
     padding-right: 70px;
 }
 
+
 p {
-    font-family: 'Open Sans', 'Montserrat', sans-serif;
+    font-family:
+        'Open Sans',
+        'Montserrat',
+        sans-serif;
+
     text-align: justify;
+
     padding-left: 85px;
     padding-right: 70px;
     padding-bottom: 30px;
+
     max-width: 500px;
+
     word-wrap: break-word;
 }
 
+
 .placeholderlogo {
     margin-left: 10px;
+
     width: 60px;
     height: 60px;
 }
@@ -25,21 +337,27 @@ p {
 
 .main-container {
     display: flex;
+
     flex-direction: row;
 
     width: 100%;
+
     min-height: 100vh;
 }
+
 
 .left-content {
     width: 50%;
 }
 
+
 .right-content {
     width: 50%;
 
     display: flex;
+
     justify-content: center;
+
     align-items: flex-start;
 
     transform: translateX(-150px);
@@ -48,185 +366,310 @@ p {
 
 .buttons {
     display: flex;
+
     justify-content: left;
+
     gap: 30px;
 
     margin-top: 300px;
+
     margin-bottom: 50px;
+
     margin-left: 120px;
 }
 
+
 .savebutton {
     background-color: #8bca84;
-    font-family: 'Open Sans', 'Montserrat', sans-serif;
+
+    font-family:
+        'Open Sans',
+        'Montserrat',
+        sans-serif;
+
     color: #000000;
+
     font-size: medium;
+
     font-weight: 600;
+
     text-align: center;
+
     padding: 10px 30px;
+
     border-radius: 10px;
+
     cursor: pointer;
 }
+
 
 .loadbutton {
     background-color: #ade8f4;
-    font-family: 'Open Sans', 'Montserrat', sans-serif;
+
+    font-family:
+        'Open Sans',
+        'Montserrat',
+        sans-serif;
+
     color: #000000;
+
     font-size: medium;
+
     font-weight: 600;
+
     text-align: center;
+
     padding: 10px 30px;
+
     border-radius: 10px;
+
     cursor: pointer;
 }
 
 
-/* eto na ah kalokang calendar  */
+/* calendarrr */
 
 .calendar {
     width: 700px;
+
     margin-top: 40px;
+
     padding: 25px;
+
     background-color: #ffffff;
+
     border-radius: 20px;
-    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.12);
+
+    box-shadow:
+        0 5px 20px rgba(0, 0, 0, 0.12);
 }
+
 
 .calendar-header {
     display: flex;
+
     justify-content: space-between;
+
     align-items: center;
 
     margin-bottom: 20px;
 }
 
+
 .calendar-header h2 {
     margin: 0;
+
     font-family: 'Merriweather', serif;
+
     font-size: 24px;
 }
 
+
 .calendar-header button {
     border: none;
+
     background-color: #f3f3f3;
+
     width: 40px;
+
     height: 40px;
+
     border-radius: 50%;
+
     font-size: 18px;
+
     cursor: pointer;
 }
 
+
 .weekdays {
     display: grid;
-    grid-template-columns: repeat(7, 1fr);
+
+    grid-template-columns:
+        repeat(7, 1fr);
+
     text-align: center;
-    font-family: 'Open Sans', 'Montserrat', sans-serif;
+
+    font-family:
+        'Open Sans',
+        'Montserrat',
+        sans-serif;
+
     font-weight: bold;
+
     font-size: 13px;
+
     margin-bottom: 5px;
 }
 
+
 .days {
     display: grid;
-    grid-template-columns: repeat(7, 1fr);
+
+    grid-template-columns:
+        repeat(7, 1fr);
+
     gap: 5px;
 }
+
 
 .day,
 .empty {
     min-height: 100px;
+
     border: 1px solid #dddddd;
+
     border-radius: 8px;
+
     padding: 8px;
+
     box-sizing: border-box;
 }
 
+
 .day {
     height: 120px;
+
     overflow: hidden;
+
     position: relative;
+
     cursor: pointer;
+
     background-color: #ffffff;
+
     box-sizing: border-box;
 }
+
 
 .day:hover {
     background-color: #f8f8f8;
 }
 
+
 .date-number {
     display: block;
-    font-family: 'Open Sans', 'Montserrat', sans-serif;
+
+    font-family:
+        'Open Sans',
+        'Montserrat',
+        sans-serif;
+
     font-size: 14px;
+
     font-weight: bold;
+
     margin-bottom: 8px;
 }
 
+
 .task {
-    font-family: 'Open Sans', 'Montserrat', sans-serif;
+    font-family:
+        'Open Sans',
+        'Montserrat',
+        sans-serif;
+
     font-size: 12px;
+
     line-height: 1.4;
+
     white-space: nowrap;
+
     overflow: hidden;
+
     text-overflow: ellipsis;
+
     max-width: 100%;
+
     margin-bottom: 4px;
 }
 
+
 .day.today {
     border: 2px solid #ade8f4;
+
     background-color: #f5fcff;
 }
 
+
 .task-modal {
     display: none;
+
     position: fixed;
+
     top: 0;
     left: 0;
+
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.4);
+
+    background-color:
+        rgba(0, 0, 0, 0.4);
+
     justify-content: center;
+
     align-items: center;
+
     z-index: 1000;
 }
 
+
 .task-modal-content {
     position: relative;
+
     background-color: white;
+
     width: 400px;
+
     max-width: 90%;
+
     max-height: 70vh;
+
     overflow-y: auto;
+
     padding: 25px;
+
     border-radius: 10px;
+
     box-sizing: border-box;
 }
 
+
 .close-modal {
     position: absolute;
+
     top: 10px;
     right: 15px;
+
     border: none;
+
     background: none;
+
     font-size: 28px;
+
     cursor: pointer;
 }
 
+
 #modalDate {
     margin-top: 0;
+
     margin-bottom: 20px;
 }
+
 
 .modal-task {
     margin-bottom: 15px;
 }
 
+
 .modal-task-name {
     font-weight: bold;
 }
 
+
 .modal-task-time {
     font-size: 14px;
+
     margin-left: 20px;
 }
