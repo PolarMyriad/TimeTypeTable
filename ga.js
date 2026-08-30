@@ -238,3 +238,11 @@ function Crossover(p1, p2) {
 
     return [child1, child2];
 }
+
+function Mutate(individual) {
+    if (Math.random() < mutationRate) {
+        individual.start = Math.floor(Math.random() * totalSlots);
+        individual.end = Math.floor(Math.min(start + (Math.random() * 6, totalSlots - 1, start + 1)));
+    }
+    return individual;
+}
