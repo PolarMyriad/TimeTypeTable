@@ -132,6 +132,6 @@ for (let i = 1; i <= numberOfTasks; i++) {
     tasks.append(task);
 }
 tasks.sort(function(a, b) {
-    return parseInt(a.deadline) - parseInt(b.deadline);
+    return parseInt(b.deadline) - parseInt(a.deadline);
 });
 
