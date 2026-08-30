@@ -7,7 +7,7 @@ let slotsPerDay = 48
 let days = 30
 let totalSlots = slotsPerDay * days;
 
-let chronotype;
+let chronotype = 0; // placeholder chronotype
 
 // New Functions
 function PrepareSlots(string) {
