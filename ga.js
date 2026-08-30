@@ -7,15 +7,29 @@ let slotsPerDay = 48
 let days = 7
 let totalSlots = slotsPerDay * days;
 
-function trimSpace(string) {
-    return string.trim();
+function prepareSlots(string) {
+    if (string.trim()) {
+        return Number(string.trim());
+    }
+}
+
+function checkSlots(value) {
+    if (value > slotsPerDay || value < 0) {
+
+    }
 }
 
 function GetSlotsFromUser(promptText) {
     while (true) {
         try {
             let slots_str = prompt(promptText);
-            let slots = Number();
+            let slots = slots_str.split(",");
+            slots.forEach(prepareSlots);
+            if (slots.every(checkSlots)) {
+                return slots;
+            } else {
+                console.log("Invalid slot. Please enter numbers between 0 and {SLOTS_PER_DAY - 1}.");
+            }
         } catch (err) {
             console.log("Invalid input. Please enter a comma-separated list of numbers (e.g., 0,1,2,3,44,45,46,47).");
         }
