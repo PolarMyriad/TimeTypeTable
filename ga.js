@@ -121,4 +121,17 @@ for (let i = 1; i <= numberOfTasks; i++) {
             console.log("Invalid input. Please enter a number.");
         }
     }
+
+    let task = {
+        name = name,
+        priority = priority,
+        tedium = tedium,
+        deadline = deadline
+    };
+    
+    tasks.append(task);
 }
+tasks.sort(function(a, b) {
+    return parseInt(a.deadline) - parseInt(b.deadline);
+});
+
