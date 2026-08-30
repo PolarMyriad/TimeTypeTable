@@ -280,3 +280,13 @@ function EvolveTask(task) {
 
     return population.reduce((prev, current) => (prev && prev.fitness > current.fitness) ? prev : current);
 }
+
+// Add timeslots taken by previously finalized tasks; these taken timeslots will become hard constraints
+function AddTakenSlot(slot) {
+    start = slot[0];
+    end = slot[1];
+    for (let i = start; i < end; i++) {
+        takenSlots.push(i);
+    }
+    takenSlots.push(end);
+}
