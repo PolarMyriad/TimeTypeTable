@@ -169,6 +169,7 @@ function CreatePopulation() {
     for (let i = 0; i < population.length; i++) {
         population[i] = CreateIndividual();
     }
+    return population;
 }
 
 // FITNESS FUNCTION
