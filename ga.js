@@ -249,3 +249,30 @@ function Mutate(individual) {
     }
     return individual;
 }
+
+function EvolveTask(task) {
+    population = CreatePopulation();
+
+    for (let x = 0; x < generations; x++) {
+        newPop = [];
+
+        best = population.reduce((prev, current) => (prev && prev.fitness > current.fitness) ? prev : current);
+        newPop.push(best);
+
+        while (newPop.length < populationSize) {
+            let p1 = TournamentSelection(population, task);
+            let p2 = TournamentSelection(population, task);
+            let c1 = Crossover(p1, p2, task)[0];
+            let c2 = Crossover(p1, p2, task)[1];
+            c1 = Mutate(c1);
+            c2 = Mutate(c2);
+
+            newPop.push(c1);
+            if (newPop.length < populationSize) newPop.push(c2);
+        }
+        
+        population = newPop;
+    }
+
+    return population.reduce((prev, current) => (prev && prev.fitness > current.fitness) ? prev : current);
+}
