@@ -62,6 +62,7 @@ sleepSlots.sort();
 let workSlots_set = new Set(workSlots_input);
 let workSlots = [...workSlots_set];
 workSlots.sort();
+let takenSlots = [];
 
 // CHRONOTYPE: higher = more productive
 let favoredTimes = new Array(slotsPerDay);
@@ -148,8 +149,29 @@ function CreateIndividual() {
 
 // Random scheds
 function CreatePopulation() {
-    population = new Array(50);
+    population = new Array(populationSize);
     for (let i = 0; i < population.length; i++) {
         population[i] = CreateIndividual();
+    }
+}
+
+// FITNESS FUNCTION
+function Fitness(individual, task) {
+    let startTime = individual.start;
+    let endTime = individual.end;
+    let duration = end - start;
+
+    if (duration <= 0) return -Infinity;
+
+    let P = task.priority;
+    let T = task.tedium;
+    let D = task.deadline;
+    let score = 0;
+
+    // HARD CONSTRAINTS
+    for (let slot = start; slot < end; slot++) {
+        if (sleepSlots.includes(slot % 48) || workSlots.includes(slot % 48) || takenSlots.includes(slot % 48)) {
+            score -= 20000;
+        }
     }
 }
