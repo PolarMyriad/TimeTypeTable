@@ -18,9 +18,9 @@ function PrepareSlots(string) {
 
 function CheckSlots(value) {
     if (value > slotsPerDay || value < 0) {
-        return true;
-    } else {
         return false;
+    } else {
+        return true;
     }
 }
 
@@ -45,7 +45,7 @@ function GetSlotsFromUser(promptText) {
             if (slots.every(CheckSlots)) {
                 return slots;
             } else {
-                console.log("Invalid slot. Please enter numbers between 0 and " + slotsPerDay + ".");
+                console.log("Invalid slot. Please enter numbers between 0 and " + (slotsPerDay-1) + ".");
             }
         } catch (error) {
             console.log("Invalid input. Please enter a comma-separated list of numbers (e.g., 0,1,2,3,44,45,46,47).");
@@ -55,7 +55,6 @@ function GetSlotsFromUser(promptText) {
 
 // USER INPUT NA HARD CONSTRAINTS (penalty if task is sched here)
 let sleepSlots_input = GetSlotsFromUser("Enter sleep slots (0-" + slotsPerDay + "), e.g., 44,45,46,47 for 10pm-12am): ");
-
 let workSlots_input = GetSlotsFromUser("Enter work slots (0-" + slotsPerDay + "), e.g., 16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31 for 8am-4pm): ");
 
 // FORBIDDEN TIME SLOTS (Hard Constraints)
