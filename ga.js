@@ -172,10 +172,26 @@ function Fitness(individual, task) {
     let D = task.deadline;
     let score = 0;
 
+    let avgEnergy;
     // HARD CONSTRAINTS
     for (let slot = start; slot < end; slot++) {
         if (sleepSlots.includes(slot % 48) || workSlots.includes(slot % 48) || takenSlots.includes(slot % 48)) {
             score -= 20000;
         }
+        
+        // SOFT CONSTRAINT (chronotype)
+        avgEnergy += favoredTimes[slot];
     }
+
+    score += (avgEnergy * 5) / duration;
+
+    // PRIORITY + DEADLINE
+    let urgency = 1 / (D + 1);
+    score += (P * urgency * (1 / (start + 1)));
+
+    // TEDIUM
+    let idealDuration = T / 2;
+    score -= Math.abs(duration - idealDuration);
+
+    return score;
 }
