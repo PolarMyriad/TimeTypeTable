@@ -24,14 +24,6 @@ function CheckSlots(value) {
     }
 }
 
-function DetermineChronotype() {
-    if (chronotype == 0) { // Morning
-        return 0.9;
-    } else if (chronotype == 1) { // Evening
-        return 0.4;
-    }
-}
-
 // USER INPUT
 function GetSlotsFromUser(promptText) {
     while (true) {
@@ -67,7 +59,19 @@ let takenSlots = [];
 // CHRONOTYPE: higher = more productive
 let favoredTimes = new Array(slotsPerDay);
 for (let i = 0; i < favoredTimes.length; i++) {
-    favoredTimes[i] = DetermineChronotype();
+    if ((i / 2) < (slotsPerDay / 2)) {
+        if (chronotype == 0) { // Morning
+            favoredTimes[i] = 0.9;
+        } else { // Evening
+            favoredTimes[i] = 0.4;
+        }
+    } else {
+        if (chronotype == 0) { 
+            favoredTimes[i] = 0.4;
+        } else {
+            favoredTimes[i] = 0.9;
+        }
+    }
 }
 
 // TASKS (USER INPUT)
