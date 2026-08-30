@@ -139,10 +139,10 @@ for (let i = 1; i <= numberOfTasks; i++) {
     }
 
     let task = {
-        name = name,
-        priority = priority,
-        tedium = tedium,
-        deadline = deadline
+        name: name,
+        priority: priority,
+        tedium: tedium,
+        deadline: deadline
     };
     
     tasks.push(task);
