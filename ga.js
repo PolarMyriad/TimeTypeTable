@@ -24,6 +24,17 @@ function CheckSlots(value) {
     }
 }
 
+function Sample(arr, size) {
+    let shuffled = arr.slice(0), min = i - size, i = arr.length, temp, index;
+    while (i-- > min) {
+        index = Math.floor((i + 1) * Math.random());
+        temp = shuffled[index];
+        shuffled[index] = shuffled[i];
+        shuffled[i] = temp;
+    }
+    return shuffled.slice(min);
+}
+
 // USER INPUT
 function GetSlotsFromUser(promptText) {
     while (true) {
@@ -146,7 +157,8 @@ function CreateIndividual() {
     end = Math.floor(Math.min(start + (Math.random() * 6, totalSlots - 1, start + 1)));
     const individual = {
         start: start, 
-        end: end
+        end: end,
+        fitness: 0
     };
     return individual;
 }
@@ -194,4 +206,17 @@ function Fitness(individual, task) {
     score -= Math.abs(duration - idealDuration);
 
     return score;
+}
+
+// Tournament SELECTION
+function TournamentSelection(pop, task) {
+    selected = Sample(pop, tournamentSize);
+    for (let individual of selected) {
+        individual.fitness = Fitness(individual, task);
+    }
+    selected.sort(function(a, b) {
+        return parseInt(b.fitness) - parseInt(a.fitness);
+    });
+    return selected[0];
+    // I am legit not sure if this is the correct logic LOL
 }
