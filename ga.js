@@ -290,3 +290,17 @@ function AddTakenSlot(slot) {
     }
     takenSlots.push(end);
 }
+
+// MAIN PROGRAM LOOP
+function Run() {
+    schedule = [];
+
+    for (let task of tasks) {
+        let best = EvolveTask(task);
+        let element = [task.name, best];
+        schedule.concat([elem]);
+        AddTakenSlot(best);
+    }
+
+    return schedule;
+}
