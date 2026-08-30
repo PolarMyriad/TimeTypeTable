@@ -222,7 +222,7 @@ function TournamentSelection(pop, task) {
     // I am legit not sure if this is the correct logic LOL
 }
 
-function Crossover(p1, p2) {
+function Crossover(p1, p2, task) {
     let s1 = p1.start;
     let e1 = p1.end;
     let s2 = p2.start;
@@ -230,11 +230,13 @@ function Crossover(p1, p2) {
 
     let child1 = {
         start = s1,
-        end = e2
+        end = e2,
+        fitness = Fitness({start: s1, end: e2, fitness: 0}, task)
     };
     let child2 = {
         start = s2, 
-        end = e1
+        end = e1,
+        fitness = Fitness({start: s2, end: e1, fitness: 0}, task)
     }
 
     return [child1, child2];
