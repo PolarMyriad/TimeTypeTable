@@ -304,3 +304,7 @@ function Run() {
 
     return schedule;
 }
+
+function DisplaySchedule(schedule) {
+    console.log(schedule);
+}
