@@ -222,6 +222,7 @@ function TournamentSelection(pop, task) {
     // I am legit not sure if this is the correct logic LOL
 }
 
+// CROSSOVER
 function Crossover(p1, p2, task) {
     let s1 = p1.start;
     let e1 = p1.end;
@@ -242,6 +243,7 @@ function Crossover(p1, p2, task) {
     return [child1, child2];
 }
 
+// MUTATION
 function Mutate(individual) {
     if (Math.random() < mutationRate) {
         individual.start = Math.floor(Math.random() * totalSlots);
@@ -250,12 +252,14 @@ function Mutate(individual) {
     return individual;
 }
 
+// The GA itself per task (column)
 function EvolveTask(task) {
     population = CreatePopulation();
 
     for (let x = 0; x < generations; x++) {
         newPop = [];
 
+        // Elitism to preserve best indivs, before crossover & mutation
         best = population.reduce((prev, current) => (prev && prev.fitness > current.fitness) ? prev : current);
         newPop.push(best);
 
