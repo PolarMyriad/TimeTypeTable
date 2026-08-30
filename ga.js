@@ -230,14 +230,14 @@ function Crossover(p1, p2, task) {
     let e2 = p2.end;
 
     let child1 = {
-        start = s1,
-        end = e2,
-        fitness = Fitness({start: s1, end: e2, fitness: 0}, task)
+        start: s1,
+        end: e2,
+        fitness: Fitness({start: s1, end: e2, fitness: 0}, task)
     };
     let child2 = {
-        start = s2, 
-        end = e1,
-        fitness = Fitness({start: s2, end: e1, fitness: 0}, task)
+        start: s2, 
+        end: e1,
+        fitness: Fitness({start: s2, end: e1, fitness: 0}, task)
     }
 
     return [child1, child2];
