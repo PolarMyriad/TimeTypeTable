@@ -135,3 +135,13 @@ tasks.sort(function(a, b) {
     return parseInt(b.deadline) - parseInt(a.deadline);
 });
 
+// INITIALIZATION
+function CreateIndividual() {
+    start = Math.floor(Math.random() * totalSlots);
+    end = Math.floor(Math.min(start + (Math.random() * 6, totalSlots - 1, start + 1)));
+    const individual = {
+        start: start, 
+        end: end
+    };
+    return individual;
+}
