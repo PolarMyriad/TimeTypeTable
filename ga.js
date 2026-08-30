@@ -308,3 +308,7 @@ function Run() {
 function DisplaySchedule(schedule) {
     console.log(schedule);
 }
+
+document.getElementById("testga").addEventListener("click", function() {
+    Run();
+});

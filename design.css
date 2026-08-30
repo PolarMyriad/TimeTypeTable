@@ -427,6 +427,29 @@ p {
 }
 
 
+.testbutton {
+    background-color: #cccccc;
+
+    font-family:
+        'Open Sans',
+        'Montserrat',
+        sans-serif;
+
+    color: #000000;
+
+    font-size: medium;
+
+    font-weight: 600;
+
+    text-align: center;
+
+    padding: 10px 30px;
+
+    border-radius: 10px;
+
+    cursor: pointer;
+}
+
 /* calendarrr */
 
 .calendar {
