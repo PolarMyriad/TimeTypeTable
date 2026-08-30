@@ -220,3 +220,21 @@ function TournamentSelection(pop, task) {
     return selected[0];
     // I am legit not sure if this is the correct logic LOL
 }
+
+function Crossover(p1, p2) {
+    let s1 = p1.start;
+    let e1 = p1.end;
+    let s2 = p2.start;
+    let e2 = p2.end;
+
+    let child1 = {
+        start = s1,
+        end = e2
+    };
+    let child2 = {
+        start = s2, 
+        end = e1
+    }
+
+    return [child1, child2];
+}
