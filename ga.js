@@ -145,3 +145,11 @@ function CreateIndividual() {
     };
     return individual;
 }
+
+// Random scheds
+function CreatePopulation() {
+    population = new Array(50);
+    for (let i = 0; i < population.length; i++) {
+        population[i] = CreateIndividual();
+    }
+}
