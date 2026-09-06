@@ -1,13 +1,6 @@
-let populationSize = 52;
-let generations = 100;
-let tournamentSize = 4;
-let mutationRate = 0.05;
-
-let slotsPerDay = 48
-let days = 30
-let totalSlots = slotsPerDay * days;
-
-let chronotype = 0; // placeholder chronotype
+document.getElementById("testga").addEventListener("click", function() {
+    Run();
+});
 
 // New Functions
 function PrepareSlots(string) {
@@ -35,7 +28,29 @@ function Sample(arr, size) {
     return shuffled.slice(min);
 }
 
-// USER INPUT
+// Variable initialization
+let populationSize = 52;
+let generations = 100;
+let tournamentSize = 4;
+let mutationRate = 0.05;
+
+let slotsPerDay = 48
+let days = 30
+let totalSlots = slotsPerDay * days;
+
+let chronotype = 0; // placeholder chronotype
+
+let takenSlots = [];
+
+let favoredTimes;
+
+let sleepSlots_input;
+let sleepSlots;
+let workSlots_input;
+let workSlots;
+
+
+// User Input
 function GetSlotsFromUser(promptText) {
     while (true) {
         try {
@@ -53,107 +68,10 @@ function GetSlotsFromUser(promptText) {
     } 
 }
 
-// USER INPUT NA HARD CONSTRAINTS (penalty if task is sched here)
-let sleepSlots_input = GetSlotsFromUser("Enter sleep slots (0-" + slotsPerDay + "), e.g., 44,45,46,47 for 10pm-12am): ");
-let workSlots_input = GetSlotsFromUser("Enter work slots (0-" + slotsPerDay + "), e.g., 16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31 for 8am-4pm): ");
-
-// FORBIDDEN TIME SLOTS (Hard Constraints)
-let sleepSlots_set = new Set(sleepSlots_input);
-let sleepSlots = [...sleepSlots_set];
-sleepSlots.sort();
-let workSlots_set = new Set(workSlots_input);
-let workSlots = [...workSlots_set];
-workSlots.sort();
-let takenSlots = [];
-
-// CHRONOTYPE: higher = more productive
-let favoredTimes = new Array(slotsPerDay);
-for (let i = 0; i < favoredTimes.length; i++) {
-    if ((i / 2) < (slotsPerDay / 2)) {
-        if (chronotype == 0) { // Morning
-            favoredTimes[i] = 0.9;
-        } else { // Evening
-            favoredTimes[i] = 0.4;
-        }
-    } else {
-        if (chronotype == 0) { 
-            favoredTimes[i] = 0.4;
-        } else {
-            favoredTimes[i] = 0.9;
-        }
-    }
-}
-
-// TASKS (USER INPUT)
-// Number of Tasks
-numberOfTasks = 0;
-while (numberOfTasks <= 0) {
-    try {
-        numberOfTasks = Number(prompt("Enter the number of tasks: "));
-    } catch (error) {
-        console.log("Invalid input. Please enter a number.");
-    }
-}
-
-// Task Details - para sa fitness function
-let tasks = [];
-for (let i = 1; i <= numberOfTasks; i++) {
-    console.log("Enter details for task " + i + ": ");
-    let name = prompt("    Task Name: ");
-
-    let priority = -1;
-    while (priority > 10 || priority < 1) {
-        try {
-            let priority = prompt("    Priority (1-10): ");
-            if (priority > 10 || priority < 1) {
-                print("Priority must be between 1 and 10.");
-            }
-        } catch (error) {
-            console.log("Invalid input. Please enter a number.");
-        }
-    }
-
-    let tedium = -1;
-    while (tedium > 10 || tedium < 1) {
-        try {
-            let tedium = prompt("    Tedium (1-10): ");
-            if (tedium > 10 || tedium < 1) {
-                print("Tedium must be between 1 and 10.");
-            }
-        } catch (error) {
-            console.log("Invalid input. Please enter a number.");
-        }
-    }
-
-    let deadline = -1;
-    while (deadline > days || deadline < 1) {
-        try {
-            let deadline = prompt("    Deadline (days from now, 1-" + days + "): ");
-            if (deadline > days || deadline < 1) {
-                print("Deadline must be between 1 and " + days + ".");
-            }
-        } catch (error) {
-            console.log("Invalid input. Please enter a number.");
-        }
-    }
-
-    let task = {
-        name: name,
-        priority: priority,
-        tedium: tedium,
-        deadline: deadline
-    };
-    
-    tasks.push(task);
-}
-tasks.sort(function(a, b) {
-    return parseInt(b.deadline) - parseInt(a.deadline);
-});
-
 // INITIALIZATION
 function CreateIndividual() {
-    start = Math.floor(Math.random() * totalSlots);
-    end = Math.floor(Math.min(start + (Math.random() * 6, totalSlots - 1, start + 1)));
+    let start = Math.floor(Math.random() * totalSlots);
+    let end = Math.floor(Math.min(start + (Math.random() * 6, totalSlots - 1, start + 1)));
     const individual = {
         start: start, 
         end: end,
@@ -164,7 +82,7 @@ function CreateIndividual() {
 
 // Random scheds
 function CreatePopulation() {
-    population = new Array(populationSize);
+    let population = new Array(populationSize);
     for (let i = 0; i < population.length; i++) {
         population[i] = CreateIndividual();
     }
@@ -290,8 +208,106 @@ function AddTakenSlot(slot) {
     takenSlots.push(end);
 }
 
+function DisplaySchedule(schedule) {
+    console.log(schedule);
+}
+
 // MAIN PROGRAM LOOP
 function Run() {
+    sleepSlots_input = GetSlotsFromUser("Enter sleep slots (0-" + slotsPerDay + "), e.g., 44,45,46,47 for 10pm-12am): ");
+    workSlots_input = GetSlotsFromUser("Enter work slots (0-" + slotsPerDay + "), e.g., 16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31 for 8am-4pm): ");
+
+    sleepSlots_set = new Set(sleepSlots_input);
+    sleepSlots = [...sleepSlots_set];
+    sleepSlots.sort();
+    workSlots_set = new Set(workSlots_input);
+    workSlots = [...workSlots_set];
+    workSlots.sort();
+
+    favoredTimes = new Array(slotsPerDay);
+
+    for (let i = 0; i < favoredTimes.length; i++) {
+        if ((i / 2) < (slotsPerDay / 2)) {
+            if (chronotype == 0) { // Morning
+                favoredTimes[i] = 0.9;
+            } else { // Evening
+                favoredTimes[i] = 0.4;
+            }
+        } else {
+            if (chronotype == 0) { 
+                favoredTimes[i] = 0.4;
+            } else {
+                favoredTimes[i] = 0.9;
+            }
+        }
+    }
+
+    // TASKS (USER INPUT)
+    // Number of Tasks
+    let numberOfTasks = 0;
+    while (numberOfTasks <= 0) {
+        try {
+            numberOfTasks = Number(prompt("Enter the number of tasks: "));
+        } catch (error) {
+            console.log("Invalid input. Please enter a number.");
+        }
+    }
+
+    // Task Details - para sa fitness function
+    let tasks = [];
+    for (let i = 1; i <= numberOfTasks; i++) {
+        console.log("Enter details for task " + i + ": ");
+        let name = prompt("    Task Name: ");
+
+        let priority = -1;
+        while (priority > 10 || priority < 1) {
+            try {
+                let priority = prompt("    Priority (1-10): ");
+                if (priority > 10 || priority < 1) {
+                    print("Priority must be between 1 and 10.");
+                }
+            } catch (error) {
+                console.log("Invalid input. Please enter a number.");
+            }
+        }
+
+        let tedium = -1;
+        while (tedium > 10 || tedium < 1) {
+            try {
+                let tedium = prompt("    Tedium (1-10): ");
+                if (tedium > 10 || tedium < 1) {
+                    print("Tedium must be between 1 and 10.");
+                }
+            } catch (error) {
+                console.log("Invalid input. Please enter a number.");
+            }
+        }
+
+        let deadline = -1;
+        while (deadline > days || deadline < 1) {
+            try {
+                let deadline = prompt("    Deadline (days from now, 1-" + days + "): ");
+                if (deadline > days || deadline < 1) {
+                    print("Deadline must be between 1 and " + days + ".");
+                }
+            } catch (error) {
+                console.log("Invalid input. Please enter a number.");
+            }
+        }
+
+        let task = {
+            name: name,
+            priority: priority,
+            tedium: tedium,
+            deadline: deadline
+        };
+        
+        tasks.push(task);
+    }
+    tasks.sort(function(a, b) {
+        return parseInt(b.deadline) - parseInt(a.deadline);
+    });
+        
     schedule = [];
 
     for (let task of tasks) {
@@ -301,13 +317,21 @@ function Run() {
         AddTakenSlot(best);
     }
 
+    DisplaySchedule(schedule);
     return schedule;
 }
 
-function DisplaySchedule(schedule) {
-    console.log(schedule);
-}
-
-document.getElementById("testga").addEventListener("click", function() {
-    Run();
-});
+/*
+DEV NOTES
+Implement GA properly for week 9:
+- Reimplement all inputs (prompt methods) so that they rely on form data from First-Time Input and Task&Mood Input 
+    - Function GetSlotsFromUser
+    - Input for number of tasks
+    - Inputs for task details
+- Reimplement takenSlots: add to takenSlots the items from the saved user data when the user adds tasks or
+- Reimplement chronotype: take it from the saved user data after the user completes First-Time Input 
+- (Potentially) reimplement the slot system (which will require a lot of work)
+    - Change slot "lengths" from 30 minutes to 15 minutes
+        - Increase number of slots per day to 96
+    - Further increase number of slots from 30 (within one month) to 365 (within one year)
+*/
