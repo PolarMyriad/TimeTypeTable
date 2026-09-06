@@ -1,13 +1,6 @@
-let populationSize = 52;
-let generations = 100;
-let tournamentSize = 4;
-let mutationRate = 0.05;
-
-let slotsPerDay = 48
-let days = 30
-let totalSlots = slotsPerDay * days;
-
-let chronotype = 0; // placeholder chronotype
+document.getElementById("testga").addEventListener("click", function() {
+    Run();
+});
 
 // New Functions
 function PrepareSlots(string) {
@@ -35,7 +28,6 @@ function Sample(arr, size) {
     return shuffled.slice(min);
 }
 
-// USER INPUT
 function GetSlotsFromUser(promptText) {
     while (true) {
         try {
@@ -52,6 +44,24 @@ function GetSlotsFromUser(promptText) {
         }
     } 
 }
+
+function Run() {
+
+}
+
+let populationSize = 52;
+let generations = 100;
+let tournamentSize = 4;
+let mutationRate = 0.05;
+
+let slotsPerDay = 48
+let days = 30
+let totalSlots = slotsPerDay * days;
+
+let chronotype = 0; // placeholder chronotype
+
+
+
 
 // USER INPUT NA HARD CONSTRAINTS (penalty if task is sched here)
 let sleepSlots_input = GetSlotsFromUser("Enter sleep slots (0-" + slotsPerDay + "), e.g., 44,45,46,47 for 10pm-12am): ");
@@ -308,6 +318,3 @@ function DisplaySchedule(schedule) {
     console.log(schedule);
 }
 
-document.getElementById("testga").addEventListener("click", function() {
-    Run();
-});
