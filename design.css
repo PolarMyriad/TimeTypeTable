@@ -1,10 +1,8 @@
 /* general */
 
-
 * {
     box-sizing: border-box;
 }
-
 
 body {
     margin: 0;
@@ -12,209 +10,116 @@ body {
 }
 
 
-
-
 /* first time input */
-
 
 .first-time-screen {
     width: 100%;
     min-height: 100vh;
-
-
     display: flex;
     justify-content: center;
     align-items: center;
-
-
     background-color: #fff5f8;
 }
-
-
-
 
 .welcome-card {
     width: 500px;
     max-width: 90%;
-
-
     background-color: #ffffff;
-
-
     padding: 50px;
-
-
     border-radius: 25px;
-
-
     box-shadow:
         0 8px 30px rgba(0, 0, 0, 0.12);
-
-
     text-align: center;
 }
-
-
 
 
 .welcome-logo {
     width: 90px;
     height: 90px;
-
-
     object-fit: contain;
-
-
     margin-bottom: 10px;
 }
-
-
 
 
 .welcome-card h1 {
     padding: 0;
     margin: 10px 0 15px;
-
-
     text-align: center;
-
-
     font-family: 'Merriweather', serif;
-
-
     font-size: 32px;
 }
-
-
 
 
 .welcome-text {
     padding: 0;
     margin: 0 auto 35px;
-
-
     max-width: 400px;
-
-
     text-align: center;
-
-
     font-family:
         'Open Sans',
         'Montserrat',
         sans-serif;
-
-
     line-height: 1.6;
 }
 
 
-
-
 .welcome-buttons {
     display: flex;
-
-
     flex-direction: column;
-
-
     gap: 15px;
 }
-
-
-
 
 .proceed-button,
 .first-load-button {
     width: 100%;
-
-
     padding: 14px 20px;
-
-
     border: none;
-
-
     border-radius: 12px;
-
-
     font-family:
         'Open Sans',
         'Montserrat',
         sans-serif;
-
-
     font-size: 16px;
-
-
     font-weight: 600;
-
-
     cursor: pointer;
-
-
     transition: 0.2s;
 }
 
 
-
-
 .proceed-button {
     background-color: #ffb6c1;
-
-
     color: #000000;
 }
 
 
-
-
 .proceed-button:hover {
     background-color: #ff9fad;
-
-
     transform: translateY(-2px);
 }
-
 
 
 
 .first-load-button {
     background-color: #ade8f4;
-
-
     color: #000000;
 }
 
 
-
-
 .first-load-button:hover {
     background-color: #8ddbea;
-
-
     transform: translateY(-2px);
 }
 
 
-
-
 /* question emee  */
-
 
 .questionnaire-screen {
     width: 100%;
     min-height: 100vh;
-
-
     justify-content: center;
     align-items: center;
-
-
     background-color: #fff5f8;
 }
-
-
 
 
 .questionnaire-card {
@@ -222,73 +127,53 @@ body {
     max-width: 94%;
     max-height: 90vh;
     overflow-y: auto;
-
-
     background-color: #ffffff;
-
-
     padding: 50px 60px;
-
-
     border-radius: 25px;
-
-
     box-shadow:
         0 8px 30px rgba(0, 0, 0, 0.12);
 }
 
 
 
-
 .questionnaire-logo {
     display: block;
-
-
     width: 70px;
     height: 70px;
-
-
     object-fit: contain;
-
-
     margin: 0 auto 10px;
 }
-
-
 
 
 .questionnaire-card h1 {
     padding: 0;
     margin: 10px 0;
-
-
     text-align: center;
-
-
     font-family: 'Merriweather', serif;
-
-
     font-size: 30px;
 }
 
 
+.questionnaire-card h2 {
+    font-size: 20px;
+    font-weight: bolder;
+    font-family:
+        'Open Sans',
+        'Montserrat',
+        sans-serif;
+    text-decoration: underline;
+}
 
 
 .questionnaire-intro {
     padding: 0;
     margin: 0 0 30px;
-
-
     text-align: center;
-
-
     font-family:
         'Open Sans',
         'Montserrat',
         sans-serif;
 }
-
-
 
 
 .form-group {
@@ -296,45 +181,34 @@ body {
 }
 
 
-
-
 .form-group label {
     display: block;
-
-
     margin-bottom: 10px;
-
-
     font-family:
         'Open Sans',
         'Montserrat',
         sans-serif;
-
-
     font-size: 17px;
-
-
     line-height: 1.5;
-
-
     font-weight: 600;
 }
-
-
 
 
 .questionnaire-card::-webkit-scrollbar {
     width: 8px;
 }
 
+
 .questionnaire-card::-webkit-scrollbar-thumb {
     background-color: #f0b6c2;
     border-radius: 10px;
 }
 
+
 .questionnaire-card::-webkit-scrollbar-track {
     background-color: #fff5f8;
 }
+
 
 /* Section headings and instruction text */
 #questionnaireInstructions,
@@ -342,6 +216,7 @@ body {
 #workfreeSection {
     margin-bottom: 10px;
 }
+
 
 #questionnaireInstructions {
     font-size: 18px;
@@ -359,6 +234,7 @@ body {
     margin: 10px auto 25px;
 }
 
+
 #workdaysSection,
 #workfreeSection {
     margin-top: 8px;
@@ -370,143 +246,114 @@ body {
     border-radius: 10px;
 }
 
+
 .form-group input:hover,
 .form-group select:hover {
     border-color: #f0b6c2;
 }
 
+
 .form-group input::placeholder {
     color: #999999;
 }
+
 
 @media (max-width: 700px) {
     .questionnaire-card {
         width: 94%;
         padding: 35px 25px;
     }
-
     .questionnaire-card h1 {
         font-size: 25px;
     }
-
+    .questionnaire-card h2 {
+        font-size: 20px;
+        font-weight: bolder;
+    }
     .form-group label {
         font-size: 16px;
     }
 }
 
+
 .form-group input,
 .form-group select {
     width: 100%;
-
-
     padding: 15px 17px;
-
-
     border: 1px solid #dddddd;
-
-
     border-radius: 10px;
-
-
     background-color: #ffffff;
-
-
     font-family:
         'Open Sans',
         'Montserrat',
         sans-serif;
-
-
     font-size: 16px;
-
-
     outline: none;
 }
-
-
-
 
 .form-group input:focus,
 .form-group select:focus {
     border-color: #ffb6c1;
-
-
     box-shadow:
         0 0 0 3px rgba(255, 182, 193, 0.2);
 }
 
-
-
-
 .submit-button {
     width: 100%;
-
-
     padding: 14px;
-
-
     border: none;
-
-
     border-radius: 12px;
-
-
     background-color: #ffb6c1;
-
-
     color: #000000;
-
-
     font-family:
         'Open Sans',
         'Montserrat',
         sans-serif;
-
-
     font-size: 16px;
-
-
     font-weight: 600;
-
-
+    margin-bottom: 18px;
     cursor: pointer;
+    transition: 0.2s;
+}
 
-
+.back-button {
+    width: 100%;
+    padding: 14px;
+    border: none;
+    border-radius: 12px;
+    background-color: #ffdb58;
+    color: #000000;
+    font-family:
+        'Open Sans',
+        'Montserrat',
+        sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
     transition: 0.2s;
 }
 
 
-
-
 .submit-button:hover {
     background-color: #ff9fad;
+    transform: translateY(-2px);
+}
 
-
+.back-button:hover {
+    background-color: #ffbf00;
     transform: translateY(-2px);
 }
 
 
-
-
 /* homescreeenn*/
-
 
 h1 {
     font-family: 'Merriweather', serif;
-
-
     font-weight: bolder;
-
-
     text-align: left;
-
-
     padding-left: 70px;
     padding-right: 70px;
 }
-
-
-
 
 p {
     font-family:
@@ -514,405 +361,203 @@ p {
         'Montserrat',
         sans-serif;
 
-
     text-align: justify;
-
-
     padding-left: 85px;
     padding-right: 70px;
     padding-bottom: 30px;
-
-
     max-width: 500px;
-
-
     word-wrap: break-word;
 }
 
-
-
-
 .placeholderlogo {
     margin-left: 10px;
-
-
     width: 60px;
     height: 60px;
 }
 
-
-
-
 .main-container {
     display: flex;
-
-
     flex-direction: row;
-
-
     width: 100%;
-
-
     min-height: 100vh;
 }
-
-
-
 
 .left-content {
     width: 50%;
 }
 
-
-
-
 .right-content {
     width: 50%;
-
-
     display: flex;
-
-
     justify-content: center;
-
-
     align-items: flex-start;
-
-
     transform: translateX(-150px);
 }
 
 
 .topbuttons {
     display: block;
-
-
     justify-content: center;
-
-
     margin-top: 300px;
-
-
     margin-left: 210px;
 }
 
 
 .addtaskbutton {
     background-color: #ffc5d3;
-
-
     font-family:
         'Open Sans',
         'Montserrat',
         sans-serif;
-
-
     color: #000000;
-
-
     font-size: medium;
-
-
     font-weight: 600;
-
-
     text-align: center;
-
-
     padding: 10px 30px;
-
-
     border-radius: 10px;
-
-
     cursor: pointer;
 }
 
 
+
 .buttons {
     display: flex;
-
-
     justify-content: left;
-
-
     gap: 30px;
-
-
     margin-top: 20px;
-
-
     margin-bottom: 50px;
-
-
     margin-left: 120px;
 }
 
 
 
-
 .savebutton {
     background-color: #8bca84;
-
-
     font-family:
         'Open Sans',
         'Montserrat',
         sans-serif;
-
-
     color: #000000;
-
-
     font-size: medium;
-
-
     font-weight: 600;
-
-
     text-align: center;
-
-
     padding: 10px 30px;
-
-
     border-radius: 10px;
-
-
     cursor: pointer;
 }
-
-
 
 
 .loadbutton {
     background-color: #ade8f4;
-
-
     font-family:
         'Open Sans',
         'Montserrat',
         sans-serif;
-
-
     color: #000000;
-
-
     font-size: medium;
-
-
     font-weight: 600;
-
-
     text-align: center;
-
-
     padding: 10px 30px;
-
-
     border-radius: 10px;
-
-
     cursor: pointer;
 }
 
 
-
-
 .testbutton {
     background-color: #cccccc;
-
-
     font-family:
         'Open Sans',
         'Montserrat',
         sans-serif;
-
-
     color: #000000;
-
-
     font-size: medium;
-
-
     font-weight: 600;
-
-
     text-align: center;
-
-
     padding: 10px 30px;
-
-
     border-radius: 10px;
-
-
     cursor: pointer;
 }
 
 
 /* calendarrr */
 
-
 .calendar {
     width: 700px;
-
-
     margin-top: 40px;
-
-
     padding: 25px;
-
-
     background-color: #ffffff;
-
-
     border-radius: 20px;
-
-
     box-shadow:
         0 5px 20px rgba(0, 0, 0, 0.12);
 }
 
 
-
-
 .calendar-header {
     display: flex;
-
-
     justify-content: space-between;
-
-
     align-items: center;
-
-
     margin-bottom: 20px;
 }
 
-
-
-
 .calendar-header h2 {
     margin: 0;
-
-
     font-family: 'Merriweather', serif;
-
-
     font-size: 24px;
 }
 
 
-
-
 .calendar-header button {
     border: none;
-
-
     background-color: #f3f3f3;
-
-
     width: 40px;
-
-
     height: 40px;
-
-
     border-radius: 50%;
-
-
     font-size: 18px;
-
-
     cursor: pointer;
 }
 
 
-
-
 .weekdays {
     display: grid;
-
-
     grid-template-columns:
         repeat(7, 1fr);
-
-
     text-align: center;
-
-
     font-family:
         'Open Sans',
         'Montserrat',
         sans-serif;
-
-
     font-weight: bold;
-
-
     font-size: 13px;
-
-
     margin-bottom: 5px;
 }
 
 
-
-
 .days {
     display: grid;
-
-
     grid-template-columns:
         repeat(7, 1fr);
-
-
     gap: 5px;
 }
-
-
 
 
 .day,
 .empty {
     min-height: 100px;
-
-
     border: 1px solid #dddddd;
-
-
     border-radius: 8px;
-
-
     padding: 8px;
-
-
     box-sizing: border-box;
 }
-
-
 
 
 .day {
     height: 120px;
-
-
     overflow: hidden;
-
-
     position: relative;
-
-
     cursor: pointer;
-
-
     background-color: #ffffff;
-
-
     box-sizing: border-box;
 }
-
 
 
 
@@ -922,181 +567,372 @@ p {
 
 
 
-
 .date-number {
     display: block;
-
 
     font-family:
         'Open Sans',
         'Montserrat',
         sans-serif;
-
-
     font-size: 14px;
-
-
     font-weight: bold;
-
-
     margin-bottom: 8px;
 }
-
-
-
 
 .task {
     font-family:
         'Open Sans',
         'Montserrat',
         sans-serif;
-
-
     font-size: 12px;
-
-
     line-height: 1.4;
-
-
     white-space: nowrap;
-
-
     overflow: hidden;
-
-
     text-overflow: ellipsis;
-
-
     max-width: 100%;
-
-
     margin-bottom: 4px;
 }
 
 
-
-
 .day.today {
     border: 2px solid #ade8f4;
-
-
     background-color: #f5fcff;
 }
 
 
-
-
 .task-modal {
     display: none;
-
-
     position: fixed;
-
-
     top: 0;
     left: 0;
-
-
     width: 100%;
     height: 100%;
-
-
     background-color:
         rgba(0, 0, 0, 0.4);
-
-
     justify-content: center;
-
-
     align-items: center;
-
-
     z-index: 1000;
 }
 
 
-
-
 .task-modal-content {
     position: relative;
-
-
     background-color: white;
-
-
     width: 400px;
-
-
     max-width: 90%;
-
-
     max-height: 70vh;
-
-
     overflow-y: auto;
-
-
     padding: 25px;
-
-
     border-radius: 10px;
-
-
     box-sizing: border-box;
 }
 
 
-
-
 .close-modal {
     position: absolute;
-
-
     top: 10px;
     right: 15px;
-
-
     border: none;
-
-
     background: none;
-
-
     font-size: 28px;
-
-
     cursor: pointer;
 }
 
 
+
 #modalDate {
     margin-top: 0;
-
-
     margin-bottom: 20px;
 }
-
-
-
 
 .modal-task {
     margin-bottom: 15px;
 }
-
-
-
 
 .modal-task-name {
     font-weight: bold;
 }
 
 
-
-
 .modal-task-time {
     font-size: 14px;
-
-
     margin-left: 20px;
 }
 
+/*TASK INPUT SCREEN*/
+
+.task-screen {
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #fff5f8;
+}
+
+
+.task-card {
+    width: 760px;
+    max-width: 94%;
+    max-height: 90vh;
+    overflow-y: auto;
+    background-color: #ffffff;
+    padding: 50px 60px;
+    border-radius: 25px;
+    box-shadow:
+        0 8px 30px rgba(0, 0, 0, 0.12);
+}
+
+
+/* LOGO */
+.task-logo {
+    display: block;
+    width: 70px;
+    height: 70px;
+    object-fit: contain;
+    margin: 0 auto 10px;
+}
+
+/* TITLE */
+.task-card h1 {
+    margin: 10px 0;
+    text-align: center;
+    font-family: 'Merriweather', serif;
+    font-size: 30px;
+    font-weight: bolder;
+}
+
+
+/* INTRODUCTION */
+.task-intro {
+    width: 100%;
+    margin: 10px auto 30px;
+    padding: 0;
+    text-align: center;
+    font-family:
+        'Open Sans',
+        'Montserrat',
+        sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+
+/* TASK BLOCK */
+.task-block {
+    margin-bottom: 30px;
+    padding: 25px;
+    background-color: #fff5f8;
+    border-radius: 15px;
+    border: 1px solid #f5dce3;
+}
+
+
+/* TASK TITLE */
+.task-block h2 {
+    margin-top: 0;
+    margin-bottom: 20px;
+    font-family:
+        'Open Sans',
+        'Montserrat',
+        sans-serif;
+    font-size: 20px;
+    font-weight: 800;
+}
+
+
+/* TASK LABELS */
+.task-block label {
+    display: block;
+    margin-bottom: 10px;
+    font-family:
+        'Open Sans',
+        'Montserrat',
+        sans-serif;
+    font-size: 17px;
+    line-height: 1.5;
+    font-weight: 600;
+}
+
+/* TASK INPUTS */
+.task-block input,
+.task-block select {
+    width: 100%;
+    padding: 15px 17px;
+    margin-bottom: 18px;
+    border: 1px solid #dddddd;
+    border-radius: 10px;
+    background-color: #ffffff;
+    font-family:
+        'Open Sans',
+        'Montserrat',
+        sans-serif;
+    font-size: 16px;
+    outline: none;
+    box-sizing: border-box;
+}
+
+/* FOCUS */
+.task-block input:focus,
+.task-block select:focus {
+    border-color: #ffb6c1;
+    box-shadow:
+        0 0 0 3px rgba(255, 182, 193, 0.2);
+}
+
+
+/* HOVER */
+.task-block input:hover,
+.task-block select:hover {
+    border-color: #f0b6c2;
+}
+
+
+/* GENERATE TASK BUTTON */
+.generate-task-button {
+    width: 100%;
+    padding: 14px;
+    border: none;
+    border-radius: 12px;
+    background-color: #ffb6c1;
+    color: #000000;
+    font-family:
+        'Open Sans',
+        'Montserrat',
+        sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 18px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+
+.generate-task-button:hover {
+    background-color: #ff9fad;
+    transform: translateY(-2px);
+}
+
+/* MOBILE */
+@media (max-width: 700px) {
+    .task-card {
+        width: 94%;
+        padding: 35px 25px;
+    }
+    .task-card h1 {
+        font-size: 25px;
+    }
+    .task-block {
+        padding: 20px;
+    }
+    .task-block label {
+        font-size: 16px;
+    }
+}
+
+/*  NEW TASK FORM LAYOUT */
+
+.task-name-group {
+    width: 100%;
+    margin-bottom: 25px;
+}
+
+.task-name-group label {
+    display: block;
+    margin-bottom: 10px;
+
+    font-family: 'Open Sans',
+        'Montserrat',
+        sans-serif;
+
+    font-size: 17px;
+    font-weight: 600;
+}
+
+/* TASK NAME INPUT */
+.task-name-group input {
+    width: 100%;
+    padding: 15px 17px;
+    border: 1px solid #dddddd;
+    border-radius: 10px;
+    background-color: #ffffff;
+    font-family: 'Open Sans',
+        'Montserrat',
+        sans-serif;
+    font-size: 16px;
+    box-sizing: border-box;
+    outline: none;
+}
+
+/* PRIORITY / TEDIUM / DEADLINE ROW */
+
+.task-details-row {
+    display: grid;
+    grid-template-columns:
+        1fr 1fr 1.3fr;
+    gap: 18px;
+    width: 100%;
+}
+
+/* INDIVIDUAL DETAIL */
+
+.task-detail-group {
+    display: flex;
+    flex-direction: column;
+}
+.task-detail-group label {
+    display: block;
+    margin-bottom: 10px;
+    font-family: 'Open Sans',
+        'Montserrat',
+        sans-serif;
+    font-size: 17px;
+    font-weight: 600;
+}
+
+
+/* DROPDOWNS + DATE */
+.task-detail-group select,
+.task-detail-group input[type="date"] {
+    width: 100%;
+    padding: 14px 12px;
+    border: 1px solid #dddddd;
+    border-radius: 10px;
+    background-color: #ffffff;
+    font-family: 'Open Sans',
+        'Montserrat',
+        sans-serif;
+    font-size: 15px;
+    box-sizing: border-box;
+    outline: none;
+    cursor: pointer;
+}
+
+/* FOCUS */
+.task-name-group input:focus,
+.task-detail-group select:focus,
+.task-detail-group input[type="date"]:focus {
+
+    border-color: #ffb6c1;
+    box-shadow:
+        0 0 0 3px rgba(255, 182, 193, 0.2);
+}
+
+/* HOVER */
+.task-name-group input:hover,
+.task-detail-group select:hover,
+.task-detail-group input[type="date"]:hover {
+
+    border-color: #f0b6c2;
+}
+
+/* MOBILE */
+
+@media (max-width: 600px) {
+
+    .task-details-row {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+
+}
