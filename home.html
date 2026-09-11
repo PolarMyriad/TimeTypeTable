@@ -8,6 +8,9 @@
 
 
     <link rel="stylesheet" href="design.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fugaz+One&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
 
     <title>Chronotype</title>
 </head>
@@ -56,7 +59,7 @@
 
     </div>
 
-
+    
     <div id="questionnaireScreen"
          class="questionnaire-screen"
          style="display: none;">
@@ -71,18 +74,13 @@
 
             <h1>Munich Chronotype Questionnaire</h1>
 
-
-            <p class="questionnaire-intro">
-                Please answer the following questions for the system to determine your chronotype.
-            </p>
-
             <form id="questionnaireForm">
 
 
                 <div class="form-group">
 
                     <label for="nameInput">
-                        What is your name?
+                        Full Name
                     </label>
 
                     <input
@@ -105,7 +103,7 @@
                         required>
 
                         <option value="" disabled selected>
-                            Select your answer.
+                            Select your answer
                         </option>
 
                         <option value="Yes">
@@ -191,19 +189,21 @@
                         required>
                 </div>
 
+                <div class="questionnairebuttons">
+                <button
+                    type="back"
+                    class="back-button">
+                    Back
+                </button>
+                
                 <button
                     type="submit"
                     class="submit-button">
                     Submit
                 </button>
                
-                <!-- DI KO PA NACOCODE PARA BUMALIK SA FIRST TIME SCREEN -->
-                <button
-                    type="back"
-                    class="back-button">
-                    Back
-                </button>
-               
+                
+               </div>
 
 
             </form>
@@ -256,7 +256,14 @@
 
 
          
-
+            <div class="questionnairebuttons">
+            <button
+                type="button"
+                id="backToQuestionnaireButton"
+                class="back-button">
+                Back
+            </button>
+            
             <button
                 type="button"
                 id="generateTasksButton"
@@ -272,13 +279,7 @@
                 Generate Schedule
             </button>
 
-            <button
-                type="button"
-                id="backToQuestionnaireButton"
-                class="back-button">
-                Back
-            </button>
-
+            </div>
         </form>
 
     </div>
@@ -1030,27 +1031,14 @@ generateTasksButton.addEventListener(
                 Priority
             </label>
 
-            <select
-                id="taskPriority${i}"
-                name="taskPriority${i}"
-                required>
-
-                <option value="" disabled selected>
-                    1-10
-                </option>
-
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="5">5</option>
-                <option value="6">6</option>
-                <option value="7">7</option>
-                <option value="8">8</option>
-                <option value="9">9</option>
-                <option value="10">10</option>
-
-            </select>
+            <input
+                        type="number"
+                        id="taskPriority${i}"
+                        name="taskPriority${i}"
+                        min="1"
+                        max="10"
+                        placeholder="(1-10)"
+                        required>
 
         </div>
 
@@ -1061,27 +1049,14 @@ generateTasksButton.addEventListener(
                 Tedium
             </label>
 
-            <select
-                id="taskTedium${i}"
-                name="taskTedium${i}"
-                required>
-
-                <option value="" disabled selected>
-                    1-10
-                </option>
-
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="5">5</option>
-                <option value="6">6</option>
-                <option value="7">7</option>
-                <option value="8">8</option>
-                <option value="9">9</option>
-                <option value="10">10</option>
-
-            </select>
+            <input
+                        type="number"
+                        id="taskTedium${i}"
+                        name="taskTedium${i}"
+                        min="1"
+                        max="10"
+                        placeholder="(1-10)"
+                        required>
 
         </div>
 
