@@ -15,17 +15,28 @@ body {
 .first-time-screen {
     width: 100%;
     min-height: 100vh;
+
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #fff5f8;
+
+    background-image:
+        linear-gradient(
+            rgba(245, 222, 222, 0.75),
+            rgba(245, 222, 222, 0.75)
+        ),
+        url("landingbackground.png");
+
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 }
 
 .welcome-card {
     width: 600px;
     max-width: 90%;
     background-color: #ffffff;
-    padding: 50px;
+    padding: 40px;
     border-radius: 25px;
     box-shadow:
         0 8px 30px rgba(0, 0, 0, 0.12);
@@ -52,14 +63,15 @@ body {
 
 .welcome-text {
     padding: 0;
-    margin: 0 auto 35px;
-    max-width: 400px;
+    margin: 0 auto 30px;
+    max-width: 450px;
     text-align: center;
     font-family:
         'Open Sans',
         'Montserrat',
         sans-serif;
-    line-height: 1.6;
+    line-height: 1.3;
+    font-size: large;
 }
 
 
@@ -89,26 +101,26 @@ body {
 
 
 .proceed-button {
-    background-color: #ffb6c1;
-    color: #000000;
+    background-color: #8B2D3B;
+    color: #ffffff;
 }
 
 
 .proceed-button:hover {
-    background-color: #ff9fad;
+    background-color: #A33D4B;
     transform: translateY(-2px);
 }
 
 
 
 .first-load-button {
-    background-color: #ade8f4;
+    background-color: #DFA09D;
     color: #000000;
 }
 
 
 .first-load-button:hover {
-    background-color: #8ddbea;
+    background-color: #C97A78;
     transform: translateY(-2px);
 }
 
@@ -120,7 +132,7 @@ body {
     min-height: 100vh;
     justify-content: center;
     align-items: center;
-    background-color: #fff5f8;
+    background-color: #F5DEDE;
 }
 
 
@@ -140,8 +152,8 @@ body {
 
 .questionnaire-logo {
     display: block;
-    width: 70px;
-    height: 70px;
+    width: 100px;
+    height: 100px;
     object-fit: contain;
     margin: 0 auto 10px;
 }
@@ -152,7 +164,7 @@ body {
     margin: 10px 0;
     text-align: center;
     font-family: 'Roboto', serif;
-    font-size: 30px;
+    font-size: 32px;
 }
 
 
@@ -168,12 +180,13 @@ body {
 
 .questionnaire-intro {
     padding: 0;
-    margin: 0 0 30px;
+    margin: 0 auto 30px;
     text-align: center;
     font-family:
         'Open Sans',
         'Montserrat',
         sans-serif;
+    font-size: large;
 }
 
 
@@ -312,13 +325,13 @@ body {
     padding: 14px;
     border: none;
     border-radius: 12px;
-    background-color: #ffb6c1;
-    color: #000000;
+    background-color: #8B2D3B;
+    color: #ffffff;
     font-family:
         'Open Sans',
         'Montserrat',
         sans-serif;
-    font-size: 16px;
+    font-size: 18px;
     font-weight: 600;
     margin-bottom: 18px;
     cursor: pointer;
@@ -330,13 +343,13 @@ body {
     padding: 14px;
     border: none;
     border-radius: 12px;
-    background-color: #fdf7d3;
-    color: #000000;
+    background-color: #C4868C;
+    color: #ffffff;
     font-family:
         'Open Sans',
         'Montserrat',
         sans-serif;
-    font-size: 16px;
+    font-size: 18px;
     font-weight: 600;
     margin-bottom: 18px;
     cursor: pointer;
@@ -345,12 +358,12 @@ body {
 
 
 .submit-button:hover {
-    background-color: #ff9fad;
+    background-color: #A33D4B;
     transform: translateY(-2px);
 }
 
 .back-button:hover {
-    background-color: #fff9c4;
+    background-color: #B56D75;
     transform: translateY(-2px);
 }
 
@@ -363,6 +376,8 @@ h1 {
     text-align: left;
     padding-left: 70px;
     padding-right: 70px;
+    padding-top: 40px;
+    font-size: 40px;
 }
 
 p {
@@ -370,13 +385,13 @@ p {
         'Open Sans',
         'Montserrat',
         sans-serif;
-
     text-align: justify;
     padding-left: 85px;
     padding-right: 70px;
     padding-bottom: 30px;
-    max-width: 500px;
+    max-width: 600px;
     word-wrap: break-word;
+    font-size: large;
 }
 
 .placeholderlogo {
@@ -391,6 +406,7 @@ p {
     flex-direction: row;
     width: 100%;
     min-height: 100vh;
+    background-color: #F5DEDE
 }
 
 .left-content {
@@ -406,84 +422,91 @@ p {
 }
 
 
-.topbuttons {
-    display: block;
-    justify-content: center;
-    margin-top: 300px;
-    margin-left: 210px;
+/*.topbuttons {
+    display: flex;
+    flex-direction: column;
+    margin-top: 150px;
+    margin-left: 85px;
+}*/
+
+.buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: justify;
+    margin-left: 85px;
 }
 
 
 .addtaskbutton {
-    width: 80%;
+    width: 65%;
     padding: 14px;
     border: none;
     border-radius: 12px;
-    background-color: #ffb6c1;
-    color: #000000;
+    background-color: #8B2D3B;
+    color: #ffffff;
     font-family:
         'Open Sans',
         'Montserrat',
         sans-serif;
-    font-size: 16px;
+    font-size: 18px;
     font-weight: 600;
-    margin-bottom: 18px;
     cursor: pointer;
     transition: 0.2s;
 }
 
 
-
-.buttons {
-    display: flex;
-    justify-content: left;
-    gap: 20px;
-    margin-top: 10px;
-    margin-bottom: 50px;
-    margin-left: 120px;
-}
-
-
-
 .savebutton { 
-    width: 100%;
+    width: 65%;
     padding: 14px;
     border: none;
     border-radius: 12px;
-    background-color: #8bca84;
-    color: #000000;
+    background-color: #9B6672;
+    color: #ffffff;
     font-family:
         'Open Sans',
         'Montserrat',
         sans-serif;
-    font-size: 16px;
+    font-size: 18px;
     font-weight: 600;
-    margin-bottom: 18px;
     cursor: pointer;
     transition: 0.2s;
 }
 
 
 .loadbutton { 
-    width: 100%;
+    width: 65%;
     padding: 14px;
     border: none;
     border-radius: 12px;
-    background-color: #ade8f4;
-    color: #000000;
+    background-color: #A58A80;
+    color: #ffffff;
     font-family:
         'Open Sans',
         'Montserrat',
         sans-serif;
-    font-size: 16px;
+    font-size: 18px;
     font-weight: 600;
-    margin-bottom: 18px;
     cursor: pointer;
     transition: 0.2s;
 }
 
+.addtaskbutton:hover {
+    background-color: #A33D4B;
+    transform: translateY(-2px);
+}
 
-.testbutton {
+.savebutton:hover {
+    background-color: #80505C;
+    transform: translateY(-2px);
+}
+
+.loadbutton:hover {
+    background-color: #897068;
+    transform: translateY(-2px);
+}
+
+/*.testbutton {
     background-color: #cccccc;
     font-family:
         'Open Sans',
@@ -496,14 +519,15 @@ p {
     padding: 10px 30px;
     border-radius: 10px;
     cursor: pointer;
-}
+}*/
 
 
 /* calendarrr */
 
 .calendar {
     width: 700px;
-    margin-top: 40px;
+    margin-top: 50px;
+    margin-bottom: 30px;
     padding: 25px;
     background-color: #ffffff;
     border-radius: 20px;
@@ -615,8 +639,8 @@ p {
 
 
 .day.today {
-    border: 2px solid #ade8f4;
-    background-color: #f5fcff;
+    border: 2px solid #8B2D3B;
+    background-color: #ffffff;
 }
 
 
@@ -663,6 +687,7 @@ p {
 #modalDate {
     margin-top: 0;
     margin-bottom: 20px;
+    font-family: 'Roboto';
 }
 
 .modal-task {
@@ -687,7 +712,7 @@ p {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #fff5f8;
+    background-color: #F5DEDE;
 }
 
 
@@ -707,34 +732,34 @@ p {
 /* LOGO */
 .task-logo {
     display: block;
-    width: 70px;
-    height: 70px;
+    width: 100px;
+    height: 100px;
     object-fit: contain;
     margin: 0 auto 10px;
 }
 
 /* TITLE */
 .task-card h1 {
+    padding: 0;
     margin: 10px 0;
     text-align: center;
     font-family: 'Roboto', serif;
-    font-size: 30px;
-    font-weight: bolder;
+    font-size: 32px;
 }
 
 
 /* INTRODUCTION */
 .task-intro {
-    width: 100%;
-    margin: 10px auto 30px;
+    margin: 0 0 30px;
     padding: 0;
+    max-width: 700px;
     text-align: center;
     font-family:
         'Open Sans',
         'Montserrat',
         sans-serif;
-    font-size: 16px;
-    line-height: 1.6;
+    font-size: large;
+    line-height: 1.3;
 }
 
 
@@ -758,6 +783,7 @@ p {
         sans-serif;
     font-size: 20px;
     font-weight: 800;
+    text-align: center;
 }
 
 
@@ -814,13 +840,13 @@ p {
     padding: 14px;
     border: none;
     border-radius: 12px;
-    background-color: #ffb6c1;
-    color: #000000;
+    background-color: #8B2D3B;
+    color: #ffffff;
     font-family:
         'Open Sans',
         'Montserrat',
         sans-serif;
-    font-size: 16px;
+    font-size: 18px;
     font-weight: 600;
     margin-bottom: 18px;
     cursor: pointer;
@@ -829,7 +855,7 @@ p {
 
 
 .generate-task-button:hover {
-    background-color: #ff9fad;
+    background-color: #A33D4B;
     transform: translateY(-2px);
 }
 
@@ -955,3 +981,4 @@ p {
     }
 
 }
+
