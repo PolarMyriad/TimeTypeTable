@@ -54,6 +54,40 @@ let workSlots_input;
 let workSlots;
 
 // User Input
+async function GetMoodFromUser() {
+    let moodText = prompt("How are you feeling today?");
+
+    if (moodText === null || moodText.trim() === "") {
+        return null;
+    }
+    try {
+        const response = await fetch("http://127.0.0.1:5000/predict-mood", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                text: moodText
+            })
+        });
+
+        const data = await response.json();
+
+        if (!response.ok) {
+            console.log("Mood prediction error:", data.error);
+            return null;
+        }
+
+        console.log("Detected mood:", data.mood);
+        console.log("Confidence:", data.confidence);
+
+        return data.mood;
+    } catch (error) {
+        console.log("Could not connect to NLP server:", error);
+        return null;
+    }
+}
+
 function GetSlotsFromUser(promptText) {
     while (true) {
         try {
@@ -114,7 +148,7 @@ function CreatePopulation(task) {
 }
 
 // FITNESS FUNCTION
-function Fitness(individual, task) {
+function Fitness(individual, task, mood) {
     let startTime = individual.start;
     let endTime = individual.end;
     let duration = endTime - startTime;
@@ -152,6 +186,29 @@ function Fitness(individual, task) {
     let urgency = 1 / (D + 1);
     score += P * urgency * 10;
 
+    // MOOD + EARLY SCHEDULING
+    let scheduledDay = Math.floor(startTime / slotsPerDay);
+    let daysBeforeDeadline = Math.max(0, D - scheduledDay);
+
+    let preferredDaysBeforeDeadline = 0;
+
+    if (mood === 0) {
+        // negative, closer to deadline
+        preferredDaysBeforeDeadline = 2;
+    } else if (mood === 1) {
+        // neutral
+        preferredDaysBeforeDeadline = 4;
+    } else if (mood === 2) {
+        // positive, earlier work slots
+        preferredDaysBeforeDeadline = 6;
+    }
+
+    let moodTimingPenalty = Math.abs(
+        daysBeforeDeadline - preferredDaysBeforeDeadline
+    );
+
+    score -= moodTimingPenalty;
+
     // TEDIUM
     let idealDuration = Math.max(1, T / 2);
     score -= Math.abs(duration - idealDuration);
@@ -160,11 +217,11 @@ function Fitness(individual, task) {
 }
 
 // Tournament SELECTION
-function TournamentSelection(pop, task) {
+function TournamentSelection(pop, task, mood) {
     let selected = Sample(pop, tournamentSize);
 
     for (let individual of selected) {
-        individual.fitness = Fitness(individual, task);
+        individual.fitness = Fitness(individual, task, mood);
     }
 
     selected.sort(function(a, b) {
@@ -175,7 +232,7 @@ function TournamentSelection(pop, task) {
 }
 
 // CROSSOVER
-function Crossover(p1, p2, task) {
+function Crossover(p1, p2, task, mood) {
     let s1 = p1.start;
     let e1 = p1.end;
     let s2 = p2.start;
@@ -201,14 +258,14 @@ function Crossover(p1, p2, task) {
         child2.end = child2.start + 1;
     }
 
-    child1.fitness = Fitness(child1, task);
-    child2.fitness = Fitness(child2, task);
+    child1.fitness = Fitness(child1, task, mood);
+    child2.fitness = Fitness(child2, task, mood);
 
     return [child1, child2];
 }
 
 // MUTATION
-function Mutate(individual, task) {
+function Mutate(individual, task, mood) {
     if (Math.random() < mutationRate) {
         let deadlineSlot = Math.min(task.deadline * slotsPerDay, totalSlots);
         let maxStart = Math.max(0, deadlineSlot - 1);
@@ -224,14 +281,14 @@ function Mutate(individual, task) {
         let duration = Math.floor(Math.random() * maxDuration) + 1;
 
         individual.end = individual.start + duration;
-        individual.fitness = Fitness(individual, task);
+        individual.fitness = Fitness(individual, task, mood);
     }
 
     return individual;
 }
 
 // The GA itself per task (column)
-function EvolveTask(task) {
+function EvolveTask(task, mood) {
     let population = CreatePopulation(task);
 
     for (let x = 0; x < generations; x++) {
@@ -239,7 +296,7 @@ function EvolveTask(task) {
 
         // Evaluate population
         for (let individual of population) {
-            individual.fitness = Fitness(individual, task);
+            individual.fitness = Fitness(individual, task, mood);
         }
 
         // Elitism to preserve best indivs, before crossover & mutation
@@ -250,13 +307,13 @@ function EvolveTask(task) {
         newPop.push(best);
 
         while (newPop.length < populationSize) {
-            let p1 = TournamentSelection(population, task);
-            let p2 = TournamentSelection(population, task);
+            let p1 = TournamentSelection(population, task, mood);
+            let p2 = TournamentSelection(population, task, mood);
 
-            let children = Crossover(p1, p2, task);
+            let children = Crossover(p1, p2, task, mood);
 
-            let c1 = Mutate(children[0], task);
-            let c2 = Mutate(children[1], task);
+            let c1 = Mutate(children[0], task, mood);
+            let c2 = Mutate(children[1], task, mood);
 
             newPop.push(c1);
 
@@ -270,7 +327,7 @@ function EvolveTask(task) {
 
     // Return best individual from final generation
     for (let individual of population) {
-        individual.fitness = Fitness(individual, task);
+        individual.fitness = Fitness(individual, task, mood);
     }
 
     return population.reduce(function(prev, current) {
@@ -312,12 +369,24 @@ function DisplaySchedule(schedule) {
 }
 
 // MAIN PROGRAM LOOP
-function Run() {
+async function Run() {
     // Reset taken slots for every new schedule generation
     takenSlots = [];
 
-    sleepSlots_input = GetSlotsFromUser("Enter sleep slots (0-" + (slotsPerDay - 1) + "), e.g., 44,45,46,47 for 10pm-12am): ");
-    workSlots_input = GetSlotsFromUser("Enter work slots (0-" + (slotsPerDay - 1) + "), e.g., 16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31 for 8am-4pm): ");
+    sleepSlots_input = GetSlotsFromUser("Enter sleep slots (0-" + slotsPerDay + "), e.g., 44,45,46,47 for 10pm-12am): ");
+    workSlots_input = GetSlotsFromUser("Enter work slots (0-" + slotsPerDay + "), e.g., 16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31 for 8am-4pm): ");
+
+    let mood = await GetMoodFromUser();
+
+    if (mood === "negative") {
+        mood = 0;
+    } else if (mood === "neutral") {
+        mood = 1;
+    } else if (mood === "positive") {
+        mood = 2;
+    }
+
+    console.log("Mood received by GA:", mood);
 
     sleepSlots = [...new Set(sleepSlots_input)];
     sleepSlots.sort((a, b) => a - b);
@@ -432,7 +501,7 @@ function Run() {
     let schedule = [];
 
     for (let task of tasks) {
-        let best = EvolveTask(task);
+        let best = EvolveTask(task, mood);
 
         if (best.fitness === -Infinity) {
             console.log("No valid schedule found for task: " + task.name);
