@@ -6,13 +6,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-
     <link rel="stylesheet" href="design.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Fugaz+One&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
 
-    <title>Chronotype</title>
+    <title>DaySee</title>
+    <!-- FAVICON -->
+    <!--<link rel="icon" type="image/png" href="favicon.png">-->
+
 </head>
 
 
@@ -29,12 +31,12 @@
                  alt="Chronotype Logo">
 
 
-            <h1>Welcome to Chronotype!</h1>
+            <h1>Welcome to DaySee!</h1>
 
 
             <p class="welcome-text">
-                Get started by answering a few questions
-                or load your existing planner data.
+                Work with your rhythm, not against it. Discover a schedule that fits your natural energy and helps you make the most of your day. <br>
+                <br>Is this your first time using <b>DaySee</b>?
             </p>
 
             <div class="welcome-buttons">
@@ -42,13 +44,13 @@
                 <button
                     id="proceedButton"
                     class="proceed-button">
-                    Proceed to Questionnaire
+                    Yes, Proceed to Questionnaire
                 </button>
 
                 <button
                     id="firstLoadButton"
                     class="first-load-button">
-                    Load JSON
+                    No, I have a JSON File
                 </button>
 
 
@@ -74,13 +76,17 @@
 
             <h1>Munich Chronotype Questionnaire</h1>
 
+            <p class="questionnaire-intro">
+                Let's start by determining your <b>Chronotype</b> — your body's natural tendency toward being more alert and productive at certain times of day, like mornings or nights.
+            </p>
+
             <form id="questionnaireForm">
 
 
                 <div class="form-group">
 
                     <label for="nameInput">
-                        Full Name
+                        Name
                     </label>
 
                     <input
@@ -132,7 +138,7 @@
                
                 <div class="form-group">
                     <h2 for="questionnaireInstructions">
-                        <br>Please answer all the following questions even if you do not work or work 7days/week. Please don't forget to cite AM or PM.
+                        <br>Please answer all the following questions even if you do not work or work 7days/week. 
                     </h2>
                 </div>
 
@@ -143,7 +149,7 @@
                 </div>
                 <div class="form-group">
                     <label for="workdaysSleepTime">
-                        I normally fall asleep at __:__ AM/PM (this is NOT when you get into bed, but rather when you fall asleep)
+                        I normally fall asleep at __:__ AM/PM (this is <b>NOT</b> when you get into bed, but rather when you fall asleep)
                     </label>
                     <input
                         type="time"
@@ -152,7 +158,7 @@
                 </div>
                 <div class="form-group">
                     <label for="workdaysAwake">
-                        I normally wake up at __:__ AM/PM (this is NOT when you get out of bed, but rather when you wake up)
+                        I normally wake up at __:__ AM/PM (this is <b>NOT</b> when you get out of bed, but rather when you wake up)
                     </label>
 
                     <input
@@ -169,7 +175,7 @@
 
                 <div class="form-group">
                     <label for="workfreeSleepTime">
-                        I normally fall asleep at __:__ AM/PM (this is NOT when you get into bed, but rather when you fall asleep)
+                        I normally fall asleep at __:__ AM/PM (this is <b>NOT</b> when you get into bed, but rather when you fall asleep)
                     </label>
 
                     <input
@@ -180,7 +186,7 @@
 
                 <div class="form-group">
                     <label for="workfreeAwakeTime">
-                        I normally wake up at __:__ AM/PM (this is NOT when you get out of bed, but rather when you wake up)
+                        I normally wake up at __:__ AM/PM (this is <b>NOT</b> when you get out of bed, but rather when you wake up)
                     </label>
 
                     <input
@@ -191,7 +197,7 @@
 
                 <div class="questionnairebuttons">
                 <button
-                    type="back"
+                    type="button"
                     class="back-button">
                     Back
                 </button>
@@ -224,12 +230,12 @@
              class="task-logo"
              alt="Chronotype Logo">
 
-        <h1>Add Your Tasks</h1>
+        <h1>Add Your Tasks and Mood </h1>
 
         <p class="task-intro">
-            Enter the tasks you want the system to schedule.
-            For each task, provide its name, priority, tedium level,
-            and deadline.
+            Enter the tasks you want the system to schedule. 
+            For each task, provide its name, priority, tedium level, and deadline.
+            <br>Lastly, share how you are feeling so the system can tailor your schedule to your current mood.
         </p>
 
         <form id="taskForm">
@@ -254,8 +260,22 @@
 
             <div id="taskFields"></div>
 
+            <!-- MOOD INPUT -->
 
+            <div class="form-group mood-group" style="display: none;">
+
+                <label for="moodInput">
+                    How are you feeling today?
+                </label>
+
+                <textarea
+                    id="moodInput"
+                    name="mood"
+                    placeholder="Describe how you are feeling..."></textarea>
+
+            </div>
          
+        <!-- BUTTONS NG QUESTIONNAIRE -->
             <div class="questionnairebuttons">
             <button
                 type="button"
@@ -295,10 +315,10 @@
 
         <div class="left-content">
 
-            <img
+            <!--<img
                 src="temporarylogo.png"
                 class="placeholderlogo"
-                alt="Chronotype Logo">
+                alt="Chronotype Logo">-->
 
 
             <h1 id="homeHeading">
@@ -307,37 +327,54 @@
 
 
             <p id="homeDescription">
-                Some text. Lorem ipsum di ko kabisado ok na yan
-                pagod na ko di ko mahanap sa google dawg huhuhuhu
-                ok lorem ipsum ule testing ko lang tho ano ilalagay
-                sa ilalim neto?
+                Some text. Lorem ipsum di ko kabisado ok na yan pagod na ko di ko mahanap sa google dawg huhuhuhu
+                ok lorem ipsum ule testing ko lang tho ano ilalagay sa ilalim neto?
                 If may lalagay kayo edit nalang margin sa css
             </p>
-           
-            <div class="topbuttons">
-                <button
-                    id="addtaskButton"
-                    class="addtaskbutton">
-                    Add Task
-                </button>
-            </div>
 
 
             <div class="buttons">
-
+                <button
+                    id="addtaskButton"
+                    class="addtaskbutton">
+                <!-- FOR THE ICON NG ADD + -->
+                <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="20" height="20" aria-hidden="true">
+                    <line x1="12" y1="5" x2="12" y2="19"></line>
+                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                </svg>
+                <span class="btn-text">
+                    <span class="btn-label">Add Task</span>
+                    <span class="btn-caption">Schedule something new</span>
+                </span>    
+                </button>
 
                 <button
                     id="saveButton"
                     class="savebutton">
-                    Save Data
+                <!-- FOR THE ICON NG SAVE (parang card) -->
+                <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="20" height="20" aria-hidden="true">
+                    <path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"></path>
+                    <polyline points="17 21 17 13 7 13 7 21"></polyline>
+                    <polyline points="7 3 7 8 15 8"></polyline>
+                </svg>
+                <span class="btn-text">
+                    <span class="btn-label">Save Data</span>
+                    <span class="btn-caption">Download your schedule as a JSON file</span>
+                </span>    
                 </button>
-
 
                 <button
                     id="loadButton"
                     class="loadbutton"
                     onclick="document.getElementById('loadFunction').click();">
-                    Load Data (JSON)
+                    <!-- FOR THE ICON NG LOAD (parang folder) -->
+                    <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="20" height="20" aria-hidden="true">
+                        <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path>
+                    </svg>
+                    <span class="btn-text">
+                        <span class="btn-label">Load Data</span>
+                        <span class="btn-caption">Open a saved JSON file</span>
+                    </span>
                 </button>
 
 
@@ -357,22 +394,7 @@
                     accept=".json,application/json"
                     hidden
                 >
-
-
-
-
-                <!--
-                <button
-                    id="testga"
-                    class="testbutton">
-                    Test ga lol
-                </button>
-            -->
-
-
             </div>
-
-
         </div>
 
         <div class="right-content">
@@ -815,6 +837,9 @@
         const proceedButton =
             document.getElementById("proceedButton");
 
+        const questionnaireBackButton =
+            document.querySelector("#questionnaireForm .back-button");
+
         const firstLoadButton =
             document.getElementById("firstLoadButton");
         const questionnaireForm =
@@ -843,6 +868,8 @@
 
         const homeHeading =
             document.getElementById("homeHeading");
+        const addtaskButton =
+            document.getElementById("addtaskButton");
 
 
         
@@ -860,7 +887,35 @@
             }
         );
 
+        /* QUESTIONNAIRE BACK */
 
+        questionnaireBackButton.addEventListener(
+        "click",
+         function () {
+
+        questionnaireScreen.style.display =
+            "none";
+
+        firstTimeScreen.style.display =
+            "flex";
+
+            }
+        );
+
+        /* ADD TASK */
+
+        addtaskButton.addEventListener(
+            "click",
+             function () {
+
+                homeScreen.style.display =
+                    "none";
+
+                taskScreen.style.display =
+                    "flex";
+
+             }
+        );
         /* Submit */
 
         questionnaireForm.addEventListener(
@@ -922,9 +977,10 @@
                     "none";
 
 
-                taskScreen.style.display =
+                homeScreen.style.display =
                     "flex";
 
+                renderCalendar();
             }
         );
 
@@ -955,6 +1011,12 @@ const numTasks =
 
 const taskFields =
     document.getElementById("taskFields");
+
+const moodGroup =
+    document.querySelector(".mood-group");
+
+const moodInput =
+    document.getElementById("moodInput");
 
 const generateTasksButton =
     document.getElementById("generateTasksButton");
@@ -1005,7 +1067,7 @@ generateTasksButton.addEventListener(
 
            taskBlock.innerHTML = `
 
-             <h2>Task ${i}</h2>
+             <h2>TASK ${i}</h2>
 
               <div class="task-name-group">
 
@@ -1089,6 +1151,14 @@ generateTasksButton.addEventListener(
 
         submitTasksButton.style.display =
             "block";
+
+        /* Show mood input */
+
+        moodGroup.style.display =
+            "block";
+
+        moodInput.required =
+            true;
     }
 );
 
@@ -1210,7 +1280,7 @@ taskForm.addEventListener(
 );
 
 
-/* BACK TO QUESTIONNAIRE */
+/* BACK TO home */
 
 backToQuestionnaireButton.addEventListener(
     "click",
@@ -1219,7 +1289,7 @@ backToQuestionnaireButton.addEventListener(
         taskScreen.style.display =
             "none";
 
-        questionnaireScreen.style.display =
+        homeScreen.style.display =
             "flex";
 
     }
@@ -1230,4 +1300,5 @@ backToQuestionnaireButton.addEventListener(
 
 </body>
 </html>
+
 
