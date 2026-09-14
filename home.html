@@ -1169,6 +1169,10 @@ backToQuestionnaireButton.addEventListener(
     function () {
         taskForm.reset();
         taskFields.innerHTML = "";
+        generateTasksButton.style.display = "block";
+        submitTasksButton.style.display = "none";
+        moodGroup.style.display = "none";
+        moodInput.required = false;
     }
 )
 
