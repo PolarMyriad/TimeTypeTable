@@ -7,14 +7,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <link rel="stylesheet" href="design.css">
+    <link rel="stylesheet" href="responsive.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Fugaz+One&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
 
     <title>DaySee</title>
     <!-- FAVICON -->
-    <!--<link rel="icon" type="image/png" href="favicon.png">-->
-
+    <link rel="icon" type="image/png" href="https://i.imgur.com/03u3Qmj.png">
+    <script src="https://kit.fontawesome.com/0842b3e057.js" crossorigin="anonymous"></script>
 </head>
 
 
@@ -26,7 +27,7 @@
         <div class="welcome-card">
 
 
-            <img src="temporarylogo.png"
+            <img src="https://i.imgur.com/03u3Qmj.png"
                  class="welcome-logo"
                  alt="Chronotype Logo">
 
@@ -69,7 +70,7 @@
 
         <div class="questionnaire-card">
 
-            <img src="temporarylogo.png"
+            <img src="https://i.imgur.com/03u3Qmj.png"
                  class="questionnaire-logo"
                  alt="Chronotype Logo">
 
@@ -226,7 +227,7 @@
 
     <div class="task-card">
 
-        <img src="temporarylogo.png"
+        <img src="https://i.imgur.com/03u3Qmj.png"
              class="task-logo"
              alt="Chronotype Logo">
 
@@ -309,9 +310,13 @@
 
   <!-- HOME SCREEN -->
 
+    <div class="topbar">
+        <img class="placeholderlogo" src="https://i.imgur.com/03u3Qmj.png">
+        <h1>DaySee Home</h1>
+    </div>
     <div id="homeScreen"
-         class="main-container"
-         style="display: none;">
+        class="main-container"
+        style="display: none;">
 
         <div class="left-content">
 
@@ -327,10 +332,20 @@
 
 
             <p id="homeDescription">
-                Some text. Lorem ipsum di ko kabisado ok na yan pagod na ko di ko mahanap sa google dawg huhuhuhu
-                ok lorem ipsum ule testing ko lang tho ano ilalagay sa ilalim neto?
-                If may lalagay kayo edit nalang margin sa css
+                The calendar to the right contains all the tasks saved within the webapp.
+                <br>
+                Click "Add Task" to add new tasks, or "Save Data" to download a JSON copy of your data to your computer. Keep this JSON file if you want to "Load Data" later.
             </p>
+
+            <p id="homeDescriptionMobile">
+                Pull up the calendar by tapping the arrow button at the bottom middle. It contains all tasks within the webapp
+                <br>
+                Tap "Add Task" to add new tasks, or "Save Data" to download a JSON copy of your data to your phone. Keep this JSON file if you want to "Load Data" later.
+            </p>
+
+            <div id="currentTasks">
+                <p></p>
+            </div>
 
 
             <div class="buttons">
@@ -338,10 +353,7 @@
                     id="addtaskButton"
                     class="addtaskbutton">
                 <!-- FOR THE ICON NG ADD + -->
-                <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="20" height="20" aria-hidden="true">
-                    <line x1="12" y1="5" x2="12" y2="19"></line>
-                    <line x1="5" y1="12" x2="19" y2="12"></line>
-                </svg>
+                <i class="fa-solid fa-plus"></i>
                 <span class="btn-text">
                     <span class="btn-label">Add Task</span>
                     <span class="btn-caption">Schedule something new</span>
@@ -352,11 +364,7 @@
                     id="saveButton"
                     class="savebutton">
                 <!-- FOR THE ICON NG SAVE (parang card) -->
-                <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="20" height="20" aria-hidden="true">
-                    <path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"></path>
-                    <polyline points="17 21 17 13 7 13 7 21"></polyline>
-                    <polyline points="7 3 7 8 15 8"></polyline>
-                </svg>
+                <i class="fa-solid fa-floppy-disk"></i>
                 <span class="btn-text">
                     <span class="btn-label">Save Data</span>
                     <span class="btn-caption">Download your schedule as a JSON file</span>
@@ -368,9 +376,7 @@
                     class="loadbutton"
                     onclick="document.getElementById('loadFunction').click();">
                     <!-- FOR THE ICON NG LOAD (parang folder) -->
-                    <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="20" height="20" aria-hidden="true">
-                        <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path>
-                    </svg>
+                    <i class="fa-regular fa-folder"></i>
                     <span class="btn-text">
                         <span class="btn-label">Load Data</span>
                         <span class="btn-caption">Open a saved JSON file</span>
@@ -397,7 +403,7 @@
             </div>
         </div>
 
-        <div class="right-content">
+        <div class="right-content" id="right-content">
 
 
 
@@ -406,7 +412,9 @@
 
 
                 <div class="calendar-header">
-
+                    <button id="pullCalendar">
+                        &#9650;
+                    </button>
 
                     <button id="prevMonth">
                         &#10094;
@@ -441,27 +449,27 @@
         </div>
 
     </div>
+</div>
 
-    <div id="taskModal" class="task-modal">
+<div id="taskModal" class="task-modal">
 
-        <div class="task-modal-content">
+    <div class="task-modal-content">
 
-            <button
-                id="closeModal"
-                class="close-modal">
-                &times;
-            </button>
+        <button
+            id="closeModal"
+            class="close-modal">
+            &times;
+        </button>
 
-            <h2 id="modalDate">
-                Tasks
-            </h2>
+        <h2 id="modalDate">
+            Tasks
+        </h2>
 
-            <div id="modalTaskList">
-            </div>
-
+        <div id="modalTaskList">
         </div>
 
     </div>
+
 
 
     <p id="jsonDisplay" hidden></p>
@@ -469,7 +477,6 @@
 
     <script src="saveloadfeat.js"></script>
     <script src="ga.js"></script>
-
     <script>
 
         const monthYear =
@@ -490,6 +497,9 @@
         let currentDate = new Date();
 
         function renderCalendar() {
+
+            
+            let numberOfElements = 0;
 
             const year =
                 currentDate.getFullYear();
@@ -527,7 +537,6 @@
 
 
             daysContainer.innerHTML = "";
-
             for (
                 let i = 0;
                 i < firstDay;
@@ -542,7 +551,7 @@
                 daysContainer.appendChild(
                     emptyDay
                 );
-
+                numberOfElements++;
             }
 
 
@@ -695,7 +704,52 @@
                     dayElement
                 );
 
+
+            numberOfElements++;
             }
+            /* let daysElements = document.getElementById("days").children;
+            for (let i = 0; i < daysElements.length; i++) {
+                daysElements[i].style.
+            } */
+            if ((numberOfElements / 7) > 5) {
+                for (
+                let i = numberOfElements;
+                i < 42;
+                i++
+                    ) {
+
+                        const emptyDay =
+                            document.createElement("div");
+
+                        emptyDay.classList.add("empty");
+
+                        daysContainer.appendChild(
+                            emptyDay
+                        );
+                    }
+                daysContainer.style.gridTemplateRows = "repeat(6, 1fr)";
+            } else if ((numberOfElements / 7) > 4) {
+                for (
+                let i = numberOfElements;
+                i < 35;
+                i++
+                    ) {
+
+                        const emptyDay =
+                            document.createElement("div");
+
+                        emptyDay.classList.add("empty");
+
+                        daysContainer.appendChild(
+                            emptyDay
+                        );
+                    }
+                daysContainer.style.gridTemplateRows = "repeat(5, 1fr)";
+            } else if ((numberOfElements / 7) == 4) {
+                daysContainer.style.gridTemplateRows = "repeat(4, 1fr)";
+            }
+            console.log(numberOfElements);
+            console.log(numberOfElements / 7);
 
         }
 
@@ -1309,6 +1363,24 @@ backToQuestionnaireButton.addEventListener(
     }
 );
 
+    /* pull up the calendar in mobile mode */
+    const pullup = document.getElementById("pullCalendar");
+    const rightContent = document.getElementById("right-content");
+    let isPulledUp = false;
+    pullup.addEventListener(
+        "click",
+        function () {
+            if (!isPulledUp) {
+                isPulledUp = true;
+                pullup.innerHTML = "&#9660;";
+                rightContent.style.transform = "translateY(0%)";
+            } else {
+                isPulledUp = false;
+                pullup.innerHTML = "&#9650;";
+                rightContent.style.transform = "translateY(84%)";
+            }
+        }
+    )
     </script>
 
 

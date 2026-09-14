@@ -4,6 +4,30 @@
     box-sizing: border-box;
 }
 
+@media screen and (min-width: 3000px) {
+    html {
+        font-size: 19px;
+    }
+}
+
+@media screen and (min-width: 1300px) {
+    html {
+        font-size: 0.9vw;
+    }
+}
+
+@media screen and (max-width: 1299px) {
+    html {
+        font-size: 1.4vw;
+    }
+}
+
+@media screen and (max-width: 800px) {
+    html {
+        font-size: 15px;
+    }
+}
+
 body {
     margin: 0;
     background-color: #ffffff;
@@ -57,7 +81,7 @@ body {
     margin: 10px 0 15px;
     text-align: center;
     font-family: 'Roboto', serif;
-    font-size: 32px;
+    font-size: 2rem;
 }
 
 
@@ -71,7 +95,7 @@ body {
         'Montserrat',
         sans-serif;
     line-height: 1.3;
-    font-size: large;
+    font-size: 1.3rem;
 }
 
 
@@ -93,7 +117,7 @@ body {
         'Open Sans',
         'Montserrat',
         sans-serif;
-    font-size: 18px;
+    font-size: 1.2rem;
     font-weight: 600;
     cursor: pointer;
     transition: 0.2s;
@@ -176,12 +200,12 @@ body {
     margin: 10px 0;
     text-align: center;
     font-family: 'Roboto', serif;
-    font-size: 32px;
+    font-size: 2rem;
 }
 
 
 .questionnaire-card h2 {
-    font-size: 20px;
+    font-size: 1.6rem;
     font-weight: 1000;
     font-family:
         'Open Sans',
@@ -198,7 +222,7 @@ body {
         'Open Sans',
         'Montserrat',
         sans-serif;
-    font-size: large;
+    font-size: 1.2rem;
 }
 
 
@@ -214,7 +238,7 @@ body {
         'Open Sans',
         'Montserrat',
         sans-serif;
-    font-size: 17px;
+    font-size: 1.1rem;
     line-height: 1.5;
 }
 
@@ -243,7 +267,7 @@ body {
 
 
 #questionnaireInstructions {
-    font-size: 18px;
+    font-size: 1.2rem;
     line-height: 1.6;
     font-weight: 700;
     color: #333333;
@@ -263,7 +287,7 @@ body {
 #workdaysSection,
 #workfreeSection {
     margin-top: 8px;
-    font-size: 19px;
+    font-size: 1.3rem;
     font-weight: 800;
     color: #222222;
     padding: 12px 14px;
@@ -283,20 +307,20 @@ body {
 }
 
 
-@media (max-width: 700px) {
+@media (max-width: 800px) {
     .questionnaire-card {
         width: 94%;
         padding: 35px 25px;
     }
     .questionnaire-card h1 {
-        font-size: 25px;
+        font-size: 1.5rem;
     }
     .questionnaire-card h2 {
-        font-size: 20px;
+        font-size: 1.3rem;
         font-weight: bolder;
     }
     .form-group label {
-        font-size: 16px;
+        font-size: 1.3rem;
     }
 }
 
@@ -312,7 +336,7 @@ body {
         'Open Sans',
         'Montserrat',
         sans-serif;
-    font-size: 16px;
+    font-size: 1rem;
     outline: none;
 }
 
@@ -338,7 +362,7 @@ body {
         'Open Sans',
         'Montserrat',
         sans-serif;
-    font-size: 16px;
+    font-size: 1rem;
 
     border: 1px solid #dddddd;
     border-radius: 8px;
@@ -376,7 +400,7 @@ body {
         'Open Sans',
         'Montserrat',
         sans-serif;
-    font-size: 18px;
+    font-size: 1.2rem;
     font-weight: 600;
     margin-bottom: 18px;
     cursor: pointer;
@@ -394,7 +418,7 @@ body {
         'Open Sans',
         'Montserrat',
         sans-serif;
-    font-size: 18px;
+    font-size: 1.2rem;
     font-weight: 600;
     margin-bottom: 18px;
     cursor: pointer;
@@ -419,11 +443,15 @@ h1 {
     font-family: 'Roboto', serif;
     font-weight: bolder;
     text-align: left;
-    padding-left: 85px;
+    /* padding-left: 85px;
     padding-right: 70px;
-    padding-top: 40px;
-    font-size: 40px;
+    padding-top: 40px; */
+    font-size: 2.5rem;
     color: #1F4E8C;
+}
+
+#homeHeading {
+    padding: 0px 1vw 0px 0px;
 }
 
 p {
@@ -432,39 +460,78 @@ p {
         'Montserrat',
         sans-serif;
     text-align: justify;
-    padding-left: 85px;
+    /* padding-left: 85px;
     padding-right: 70px;
     padding-bottom: 30px;
-    max-width: 600px;
+    max-width: 600px; */
     word-wrap: break-word;
-    font-size: large;
+    font-size: 1.3rem;
     /*color: #4A5568;*/
 }
 
+#homeDescription {
+    display: block;
+    padding: 2vh 4vw 2vh 0px;
+}
+
+#homeDescriptionMobile {
+    display: none;
+    padding: 2vh 0px;
+}
+
+#currentTasks {
+    background-color: #c1dbf6;
+    margin: 2vh 4vw 5vh 0px;
+    padding: 0.1vh 1vw;
+    min-height: 20vh;
+    max-height: 20vh;
+    overflow: auto;
+}
+
+.topbar {
+    display: flex;
+    height: 8vh;
+    background-color: #3D7DD1;
+    padding: 1vh 6%;
+    align-items: center;
+}
+
+.topbar * {
+    margin: 0px 2vw 0px 0px; 
+}
+
+.topbar h1 {
+    color: #FFFFFF;
+    font-size: 1.6rem;
+}
+
 .placeholderlogo {
-    margin-top: 10px;
-    margin-left: 10px;
-    width: 60px;
-    height: 60px;
+    width: 40px;
+    height: 40px;
 }
 
 .main-container {
     display: flex;
     flex-direction: row;
     width: 100%;
-    min-height: 100vh;
+    min-height: 92vh;
     background-color: #EAF2FB;
-    padding: 20px 40px;
-    gap: 40px;
+    padding: 2vh 0px;
+    gap: 0px;
     box-sizing: border-box;
 }
 
 .left-content {
-    width: 40%;
+    width: 45%;
+    padding-left: 6%;
+    padding-right: 4%;
 }
 
 .right-content {
-    width: 60%;
+    transform: 0;
+    width: 55%;
+    padding-right: 6%;
+    padding-top: 3vh;
     display: flex;
     justify-content: flex-start;
     align-items: flex-start;
@@ -475,17 +542,19 @@ p {
     display: flex;
     flex-direction: column;
     gap: 10px;
-    align-items: justify;
-    padding-left: 85px;
+    /* padding-left: 85px;
     padding-right: 70px;
-    max-width: 600px;
+    max-width: 600px; */
+    padding: 0px 4vw 0px 0px;
     box-sizing: border-box;
 }
 
 
 .addtaskbutton {
+    min-height: 7vh;
+    max-height: 7vh;
     width: 100%;
-    padding: 14px;
+    padding: 1.5vh;
     border: none;
     border-radius: 12px;
     background-color: #3D7DD1;
@@ -494,7 +563,7 @@ p {
         'Open Sans',
         'Montserrat',
         sans-serif;
-    font-size: 18px;
+    font-size: 1.2rem;
     font-weight: 600;
     cursor: pointer;
     transition: 0.2s;
@@ -502,8 +571,10 @@ p {
 
 
 .savebutton { 
+    min-height: 7vh;
+    max-height: 7vh;
     width: 100%;
-    padding: 14px;
+    padding: 1.5vh;
     border: none;
     border-radius: 12px;
     background-color: #3E6BAE;
@@ -512,7 +583,7 @@ p {
         'Open Sans',
         'Montserrat',
         sans-serif;
-    font-size: 18px;
+    font-size: 1.2rem;
     font-weight: 600;
     cursor: pointer;
     transition: 0.2s;
@@ -520,8 +591,10 @@ p {
 
 
 .loadbutton { 
+    min-height: 7vh;
+    max-height: 7vh;
     width: 100%;
-    padding: 14px;
+    padding: 1.5vh;
     border: none;
     border-radius: 12px;
     background-color: #6E85B0;
@@ -530,7 +603,7 @@ p {
         'Open Sans',
         'Montserrat',
         sans-serif;
-    font-size: 18px;
+    font-size: 1.2rem;
     font-weight: 600;
     cursor: pointer;
     transition: 0.2s;
@@ -556,7 +629,7 @@ p {
 .loadbutton {
     display: flex;
     align-items: center;
-    gap: 14px;
+    gap: 1.5vh;
     text-align: left;
 }
 
@@ -574,12 +647,12 @@ p {
 }
 
 .btn-label {
-    font-size: 19px;
-    font-weight: 900;
+    font-size: 1.2rem;
+    font-weight: 700;
 }
 
 .btn-caption {
-    font-size: 14px;
+    font-size: 0.9rem;
     font-weight: 400;
     opacity: 0.85;
     margin-top: 2px;
@@ -590,8 +663,9 @@ p {
 
 .calendar {
     width: 100%;
-    max-width: 700px;
-    margin-top: 20px;
+    min-height: 82vh;
+    max-height: 82vh;
+    /* max-width: 700px; */
     margin-bottom: 30px;
     padding: 0;
     background-color: #ffffff;
@@ -603,19 +677,20 @@ p {
 
 
 .calendar-header {
+    height: 10vh;
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin-bottom: 0px;
-    padding: 24px 28px 20px;
+    padding: 2.22vh 2.6vw 1.85vh;
     /*gradient effect*/
-    background: linear-gradient(90deg, #EAF2FB 0%, #B5D4F4 55%, #378ADD 100%);
+    background: #72b9ff;
 }
 
 .calendar-header h2 {
     margin: 0;
     font-family: 'Roboto', serif;
-    font-size: 30px;
+    font-size: 2rem;
     font-weight:bolder;
     color: #1F4E8C;
 }
@@ -624,10 +699,10 @@ p {
 .calendar-header button {
     border: none;
     background-color: #f3f3f3;
-    width: 40px;
-    height: 40px;
+    width: 3vw;
+    height: 3vw;
     border-radius: 50%;
-    font-size: 18px;
+    font-size: 1.1rem;
     cursor: pointer;
 }
 
@@ -642,25 +717,27 @@ p {
         'Montserrat',
         sans-serif;
     font-weight: bold;
-    font-size: 13px;
-    padding: 16px 28px 0;
-    margin-bottom: 5px;
+    font-size: 0.8rem;
+    padding: 1.5vh 1.5vw 0;
+    margin-bottom: 0.5vh;
 }
 
 
 .days {
     display: grid;
+    height: 69vh;
     grid-template-columns:
         repeat(7, 1fr);
-    gap: 8px;
-    padding: 12px 28px 28px;
+    gap: 0.5vw;
+    padding: 1.11vh 1.46vw 2.6vh;
 }
 
 
 .day,
 .empty {
-    min-height: 100px;
-    border: 1px solid #dddddd;
+    background-color: #E0E0F0;
+    min-height: 1fr;
+    border: 1px solid #8080A0;
     border-radius: 8px;
     padding: 8px;
     box-sizing: border-box;
@@ -668,7 +745,7 @@ p {
 
 
 .day {
-    height: 120px;
+    height: 1fr;
     overflow: hidden;
     position: relative;
     cursor: pointer;
@@ -691,7 +768,7 @@ p {
         'Open Sans',
         'Montserrat',
         sans-serif;
-    font-size: 14px;
+    font-size: 0.8rem;
     font-weight: bold;
     margin-bottom: 8px;
 }
@@ -701,7 +778,7 @@ p {
         'Open Sans',
         'Montserrat',
         sans-serif;
-    font-size: 12px;
+    font-size: 0.7rem;
     line-height: 1.4;
     white-space: nowrap;
     overflow: hidden;
@@ -754,7 +831,7 @@ p {
     right: 15px;
     border: none;
     background: none;
-    font-size: 28px;
+    font-size: 1.75rem;
     cursor: pointer;
 }
 
@@ -776,7 +853,7 @@ p {
 
 
 .modal-task-time {
-    font-size: 14px;
+    font-size: 0.8rem;
     margin-left: 20px;
 }
 
@@ -831,7 +908,7 @@ p {
     margin: 10px 0;
     text-align: center;
     font-family: 'Roboto', serif;
-    font-size: 32px;
+    font-size: 2rem;
 }
 
 
@@ -845,7 +922,7 @@ p {
         'Open Sans',
         'Montserrat',
         sans-serif;
-    font-size: large;
+    font-size: 1.3rem;
     line-height: 1.3;
 }
 
@@ -868,7 +945,7 @@ p {
         'Open Sans',
         'Montserrat',
         sans-serif;
-    font-size: 20px;
+    font-size: 1.25rem;
     font-weight: 800;
     text-align: center;
 }
@@ -882,7 +959,7 @@ p {
         'Open Sans',
         'Montserrat',
         sans-serif;
-    font-size: 17px;
+    font-size: 1.1rem;
     line-height: 1.5;
 }
 
@@ -899,7 +976,7 @@ p {
         'Open Sans',
         'Montserrat',
         sans-serif;
-    font-size: 16px;
+    font-size: 1rem;
     outline: none;
     box-sizing: border-box;
 }
@@ -932,7 +1009,7 @@ p {
         'Open Sans',
         'Montserrat',
         sans-serif;
-    font-size: 18px;
+    font-size: 1.2rem;
     font-weight: 600;
     margin-bottom: 18px;
     cursor: pointer;
@@ -946,19 +1023,19 @@ p {
 }
 
 /* MOBILE */
-@media (max-width: 700px) {
+@media (max-width: 800px) {
     .task-card {
         width: 94%;
         padding: 35px 25px;
     }
     .task-card h1 {
-        font-size: 25px;
+        font-size: 1.6rem;
     }
     .task-block {
         padding: 20px;
     }
     .task-block label {
-        font-size: 16px;
+        font-size: 1rem;
     }
 }
 
@@ -977,7 +1054,7 @@ p {
         'Montserrat',
         sans-serif;
 
-    font-size: 17px;
+    font-size: 1.1rem;
 }
 
 /* TASK NAME INPUT */
@@ -990,7 +1067,7 @@ p {
     font-family: 'Open Sans',
         'Montserrat',
         sans-serif;
-    font-size: 16px;
+    font-size: 1rem;
     box-sizing: border-box;
     outline: none;
 }
@@ -1017,7 +1094,7 @@ p {
     font-family: 'Open Sans',
         'Montserrat',
         sans-serif;
-    font-size: 17px;
+    font-size: 1.1rem;
 }
 
 
@@ -1032,7 +1109,7 @@ p {
     font-family: 'Open Sans',
         'Montserrat',
         sans-serif;
-    font-size: 15px;
+    font-size: 0.9rem;
     box-sizing: border-box;
     outline: none;
     cursor: pointer;
@@ -1058,7 +1135,7 @@ p {
 
 /* MOBILE */
 
-@media (max-width: 600px) {
+@media (max-width: 800px) {
 
     .task-details-row {
         grid-template-columns: 1fr;
@@ -1067,3 +1144,16 @@ p {
 
 }
 
+#pullCalendar {
+    display: none;
+    width: 6vw;
+    height: 6vw;
+    background-color: #72b9ff;
+    border-radius: 50%;
+    border: 1px solid #3D7DD1;
+}
+
+#pullCalendar p {
+    font: 1.1rem 'Open Sans', sans-serif;
+    color: #1853a0
+}
