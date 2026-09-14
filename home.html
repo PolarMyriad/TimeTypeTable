@@ -1162,6 +1162,20 @@ generateTasksButton.addEventListener(
     }
 );
 
+/*  TASK BACK BUTTON */
+
+backToQuestionnaireButton.addEventListener(
+    "click",
+    function () {
+        taskForm.reset();
+        taskFields.innerHTML = "";
+        generateTasksButton.style.display = "block";
+        submitTasksButton.style.display = "none";
+        moodGroup.style.display = "none";
+        moodInput.required = false;
+    }
+)
+
 
 /* SUBMIT TASKS */
 
