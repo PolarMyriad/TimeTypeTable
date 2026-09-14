@@ -714,8 +714,9 @@ p {
 
 .day,
 .empty {
+    background-color: #E0E0F0;
     min-height: 1fr;
-    border: 1px solid #dddddd;
+    border: 1px solid #8080A0;
     border-radius: 8px;
     padding: 8px;
     box-sizing: border-box;

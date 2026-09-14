@@ -712,8 +712,38 @@
                 daysElements[i].style.
             } */
             if ((numberOfElements / 7) > 5) {
+                for (
+                let i = numberOfElements;
+                i < 42;
+                i++
+                    ) {
+
+                        const emptyDay =
+                            document.createElement("div");
+
+                        emptyDay.classList.add("empty");
+
+                        daysContainer.appendChild(
+                            emptyDay
+                        );
+                    }
                 daysContainer.style.gridTemplateRows = "repeat(6, 1fr)";
             } else if ((numberOfElements / 7) > 4) {
+                for (
+                let i = numberOfElements;
+                i < 35;
+                i++
+                    ) {
+
+                        const emptyDay =
+                            document.createElement("div");
+
+                        emptyDay.classList.add("empty");
+
+                        daysContainer.appendChild(
+                            emptyDay
+                        );
+                    }
                 daysContainer.style.gridTemplateRows = "repeat(5, 1fr)";
             } else if ((numberOfElements / 7) == 4) {
                 daysContainer.style.gridTemplateRows = "repeat(4, 1fr)";
