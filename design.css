@@ -487,9 +487,10 @@ p {
     flex-direction: column;
     gap: 10px;
     align-items: justify;
-    padding-left: 85px;
+    /* padding-left: 85px;
     padding-right: 70px;
-    max-width: 600px;
+    max-width: 600px; */
+    padding: 0px 4vw 0px 0px;
     box-sizing: border-box;
 }
 
