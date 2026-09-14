@@ -659,9 +659,9 @@ p {
     justify-content: space-between;
     align-items: center;
     margin-bottom: 0px;
-    padding: 24px 28px 20px;
+    padding: 2.22vh 2.6vw 1.85vh;
     /*gradient effect*/
-    background: linear-gradient(90deg, #EAF2FB 0%, #B5D4F4 55%, #378ADD 100%);
+    background: linear-gradient(90deg, #a4ceff 0%, #72b9ff 55%, #378ADD 100%);
 }
 
 .calendar-header h2 {
@@ -676,8 +676,8 @@ p {
 .calendar-header button {
     border: none;
     background-color: #f3f3f3;
-    width: 40px;
-    height: 40px;
+    width: 3vw;
+    height: 3vw;
     border-radius: 50%;
     font-size: 1.1rem;
     cursor: pointer;
@@ -695,8 +695,8 @@ p {
         sans-serif;
     font-weight: bold;
     font-size: 0.8rem;
-    padding: 16px 28px 0;
-    margin-bottom: 5px;
+    padding: 1.5vh 1.5vw 0;
+    margin-bottom: 0.5vh;
 }
 
 
