@@ -1380,10 +1380,27 @@ taskForm.addEventListener(
                 );
 
 
-           const deadline =
-             document
-                .getElementById(`taskDeadline${i}`)
-                .value;
+            const deadlineDate = 
+                document.getElementById(`taskDeadline${i}`).value;
+
+                if (deadlineDate === "") {
+                    alert("Please enter a deadline for Task " + i + ".");
+                    return;
+                }
+                const today = new Date();
+                today.setHours(0, 0, 0, 0);
+
+                const selectedDate = new Date(deadlineDate + "T00:00:00");
+                selectedDate.setHours(0, 0, 0, 0);
+
+                const deadlineDays = Math.round(
+                (selectedDate - today) / (1000 * 60 * 60 * 24)
+            );
+
+            if (deadlineDays < 1 || deadlineDays > 30) {
+                alert("Deadline must be between 1 and " + days + " days from today.");
+                return;
+            }
 
 
             if (
@@ -1408,7 +1425,8 @@ taskForm.addEventListener(
                 name: name,
                 priority: priority,
                 tedium: tedium,
-                deadline: deadline
+                deadline: deadlineDate,
+                deadlineDays: deadlineDays
             });
         }
 

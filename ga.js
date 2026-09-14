@@ -55,9 +55,9 @@ let workSlots;
 
 // User Input
 async function GetMoodFromUser() {
-    let moodText = prompt("How are you feeling today?");
+    let moodText = document.getElementById("moodInput").value.trim();
 
-    if (moodText === null || moodText.trim() === "") {
+    if (moodText === "") {
         return null;
     }
     try {
@@ -88,32 +88,46 @@ async function GetMoodFromUser() {
     }
 }
 
-function GetSlotsFromUser(promptText) {
-    while (true) {
-        try {
-            const slots_str = prompt(promptText);
-            
-            if (slots_str === null) {
-                console.log("Input cancelled.");
-                continue;
-            }
+function GetSlotsFromUser(beginId, endId) {
+    const beginTime = document.getElementById(beginId).value;
+    const endTime = document.getElementById(endId).value;
 
-            const slots = slots_str.split(",").map(PrepareSlots);
+    if (!beginTime || !endTime) {
+        return [];
+    }
+    function TimeToSlot(time) {
+        const parts = time.split(":");
+        const hours = Number(parts[0]);
+        const minutes = Number(parts[1]);
 
-            if (slots.length > 0 && slots.every(CheckSlots)) {
-                return slots;
-            } else {
-                console.log("Invalid slot. Please enter numbers between 0 and " + (slotsPerDay - 1) + ".");
-            }
-        } catch (error) {
-            console.log("Invalid input. Please enter a comma-separated list of numbers (e.g., 0,1,2,3,44,45,46,47).");
+        return hours * 2 + Math.floor(minutes / 30);
+    }
+
+    let startSlot = TimeToSlot(beginTime);
+    let endSlot = TimeToSlot(endTime);
+
+    let slots = [];
+
+    if (startSlot < endSlot) {
+        for (let i = startSlot; i < endSlot; i++) {
+            slots.push(i);
+        }
+    } else {
+        // crosses midnight
+        for (let i = startSlot; i < slotsPerDay; i++) {
+            slots.push(i);
+        }
+        for (let i = 0; i < endSlot; i++) {
+            slots.push(i);
         }
     }
+
+    return slots;
 }
 
 // INITIALIZATION
 function CreateIndividual(task) {
-    let deadlineSlot = Math.min(task.deadline * slotsPerDay, totalSlots);
+    let deadlineSlot = Math.min(task.deadlineDays * slotsPerDay, totalSlots);
     let maxStart = Math.max(0, deadlineSlot - 1);
 
     let start = Math.floor(Math.random() * (maxStart + 1));
@@ -157,7 +171,7 @@ function Fitness(individual, task, mood) {
 
     let P = Number(task.priority);
     let T = Number(task.tedium);
-    let D = Number(task.deadline);
+    let D = Number(task.deadlineDays);
     let score = 0;
 
     let avgEnergy = 0;
@@ -267,7 +281,7 @@ function Crossover(p1, p2, task, mood) {
 // MUTATION
 function Mutate(individual, task, mood) {
     if (Math.random() < mutationRate) {
-        let deadlineSlot = Math.min(task.deadline * slotsPerDay, totalSlots);
+        let deadlineSlot = Math.min(task.deadlineDays * slotsPerDay, totalSlots);
         let maxStart = Math.max(0, deadlineSlot - 1);
 
         individual.start = Math.floor(Math.random() * (maxStart + 1));
@@ -373,8 +387,8 @@ async function Run() {
     // Reset taken slots for every new schedule generation
     takenSlots = [];
 
-    sleepSlots_input = GetSlotsFromUser("Enter sleep slots (0-" + slotsPerDay + "), e.g., 44,45,46,47 for 10pm-12am): ");
-    workSlots_input = GetSlotsFromUser("Enter work slots (0-" + slotsPerDay + "), e.g., 16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31 for 8am-4pm): ");
+    sleepSlots_input = GetSlotsFromUser("sleepBeginTime", "sleepEndTime");
+    workSlots_input = GetSlotsFromUser("workBeginTime", "workEndTime");
 
     let mood = await GetMoodFromUser();
 
@@ -412,90 +426,17 @@ async function Run() {
         }
     }
 
-    // TASKS (USER INPUT)
-    // Number of Tasks
-    let numberOfTasks = 0;
+    // TASKS (FORM INPUT)
+    let tasks = plannerData.tasks;
 
-    while (numberOfTasks <= 0) {
-        try {
-            numberOfTasks = Number(prompt("Enter the number of tasks: "));
-
-            if (isNaN(numberOfTasks) || numberOfTasks <= 0) {
-                console.log("Invalid input. Please enter a number greater than 0.");
-                numberOfTasks = 0;
-            }
-        } catch (error) {
-            console.log("Invalid input. Please enter a number.");
-            numberOfTasks = 0;
-        }
-    }
-
-    // Task Details - para sa fitness function
-    let tasks = [];
-
-    for (let i = 1; i <= numberOfTasks; i++) {
-        console.log("Enter details for task " + i + ":");
-
-        let name = prompt("    Task Name: ");
-
-        let priority = -1;
-        while (priority > 10 || priority < 1) {
-            try {
-                priority = Number(prompt("    Priority (1-10): "));
-
-                if (priority > 10 || priority < 1 || isNaN(priority)) {
-                    console.log("Priority must be between 1 and 10.");
-                    priority = -1;
-                }
-            } catch (error) {
-                console.log("Invalid input. Please enter a number.");
-                priority = -1;
-            }
-        }
-
-        let tedium = -1;
-        while (tedium > 10 || tedium < 1) {
-            try {
-                tedium = Number(prompt("    Tedium (1-10): "));
-
-                if (tedium > 10 || tedium < 1 || isNaN(tedium)) {
-                    console.log("Tedium must be between 1 and 10.");
-                    tedium = -1;
-                }
-            } catch (error) {
-                console.log("Invalid input. Please enter a number.");
-                tedium = -1;
-            }
-        }
-
-        let deadline = -1;
-        while (deadline > days || deadline < 1) {
-            try {
-                deadline = Number(prompt("    Deadline (days from now, 1-" + days + "): "));
-
-                if (deadline > days || deadline < 1 || isNaN(deadline)) {
-                    console.log("Deadline must be between 1 and " + days + ".");
-                    deadline = -1;
-                }
-            } catch (error) {
-                console.log("Invalid input. Please enter a number.");
-                deadline = -1;
-            }
-        }
-
-        let task = {
-            name: name,
-            priority: priority,
-            tedium: tedium,
-            deadline: deadline
-        };
-
-        tasks.push(task);
+    if (!tasks || tasks.length === 0){
+        console.log("No tasks found.");
+        return [];
     }
 
     // Sort tasks by deadline so earlier deadlines are handled first
     tasks.sort(function(a, b) {
-        return Number(a.deadline) - Number(b.deadline);
+        return Number(a.deadlineDays) - Number(b.deadlineDays);
     });
 
     let schedule = [];
