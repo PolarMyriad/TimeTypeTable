@@ -328,12 +328,15 @@
 
 
             <p id="homeDescription">
-                Some text. Lorem ipsum di ko kabisado ok na yan pagod na ko di ko mahanap sa google dawg huhuhuhu
+                The calendar to the right contains all the tasks saved within the webapp.
                 <br>
-                You forgot greater than less than br
+                Click "Add Task" to add new tasks, or "Save Data" to download a JSON copy of your data to your computer. Keep this JSON file if you want to "Load Data" later.
+            </p>
+
+            <p id="homeDescriptionMobile">
+                Pull up the calendar by tapping the arrow button at the bottom middle. It contains all tasks within the webapp
                 <br>
-                ok lorem ipsum ule testing ko lang tho ano ilalagay sa ilalim neto?
-                If may lalagay kayo edit nalang margin sa css
+                Tap "Add Task" to add new tasks, or "Save Data" to download a JSON copy of your data to your phone. Keep this JSON file if you want to "Load Data" later.
             </p>
 
             <div id="currentTasks">
@@ -1363,9 +1366,13 @@ backToQuestionnaireButton.addEventListener(
     pullup.addEventListener(
         "click",
         function () {
-            if (isPulledUp) {
+            if (!isPulledUp) {
+                isPulledUp = true;
+                pullup.innerHTML = "&#9660;";
                 rightContent.style.transform = "translateY(0%)";
             } else {
+                isPulledUp = false;
+                pullup.innerHTML = "&#9650;";
                 rightContent.style.transform = "translateY(85%)";
             }
         }

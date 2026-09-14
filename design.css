@@ -24,7 +24,7 @@
 
 @media screen and (max-width: 800px) {
     html {
-        font-size: 13px;
+        font-size: 15px;
     }
 }
 
@@ -470,7 +470,13 @@ p {
 }
 
 #homeDescription {
+    display: block;
     padding: 2vh 4vw 2vh 0px;
+}
+
+#homeDescriptionMobile {
+    display: none;
+    padding: 2vh 0px;
 }
 
 #currentTasks {
@@ -508,6 +514,7 @@ p {
 }
 
 .right-content {
+    transform: 0;
     width: 55%;
     padding-right: 6%;
     padding-top: 7vh;
@@ -656,6 +663,7 @@ p {
 
 
 .calendar-header {
+    height: 10vh;
     display: flex;
     justify-content: space-between;
     align-items: center;
