@@ -505,6 +505,8 @@ p {
 
 
 .addtaskbutton {
+    min-height: 7vh;
+    max-height: 7vh;
     width: 100%;
     padding: 14px;
     border: none;
@@ -523,6 +525,8 @@ p {
 
 
 .savebutton { 
+    min-height: 7vh;
+    max-height: 7vh;
     width: 100%;
     padding: 14px;
     border: none;
@@ -541,6 +545,8 @@ p {
 
 
 .loadbutton { 
+    min-height: 7vh;
+    max-height: 7vh;
     width: 100%;
     padding: 14px;
     border: none;
