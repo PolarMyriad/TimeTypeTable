@@ -426,6 +426,10 @@ h1 {
     color: #1F4E8C;
 }
 
+#homeHeading {
+    padding: 40px 4vw 0px 0px;
+}
+
 p {
     font-family:
         'Open Sans',
@@ -439,6 +443,10 @@ p {
     word-wrap: break-word;
     font-size: large;
     /*color: #4A5568;*/
+}
+
+#homeDescription {
+    padding: 0px 4vw 40px 0px;
 }
 
 .placeholderlogo {
