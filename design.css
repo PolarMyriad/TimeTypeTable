@@ -4,6 +4,12 @@
     box-sizing: border-box;
 }
 
+@media screen and (min-width: 3000px) {
+    html {
+        font-size: 19px;
+    }
+}
+
 @media screen and (min-width: 1300px) {
     html {
         font-size: 0.9vw;
