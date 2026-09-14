@@ -99,6 +99,35 @@
                 </div>
 
                 <div class="form-group">
+                    <label for="sleepBeginTime">
+                        I begin to sleep at __:__ AM/PM (this is when you get into bed)
+                    </label>
+
+                    <input type="time" id="sleepBeginTime" required>
+                </div>
+                <div class="form-group">
+                    <label for="sleepEndTime">
+                        I end my sleep at __:__ AM/PM (this is when you get out of bed)
+                    </label>
+
+                    <input type="time" id="sleepEndTime" required>
+                </div>
+                <div class="form-group">
+                    <label for="workBeginTime">
+                        I begin to work/study at __:__ AM/PM (this is when you get into work/study)
+                    </label>
+
+                    <input type="time" id="workBeginTime" required>
+                </div>
+                <div class="form-group">
+                    <label for="workEndTime">
+                        I end my work/study at __:__ AM/PM (this is when you get out of work/study)
+                    </label>
+
+                    <input type="time" id="workEndTime" required>
+                </div>
+
+                <div class="form-group">
 
 
                     <label for="shiftInput">
@@ -902,6 +931,15 @@
         const nameInput =
             document.getElementById("nameInput");
 
+        const sleepBeginInput = 
+            document.getElementById("sleepBeginTime");
+        const sleepEndInput = 
+            document.getElementById("sleepEndTime");
+        const workBeginInput = 
+            document.getElementById("workBeginTime");
+        const workEndInput = 
+            document.getElementById("workEndTime");
+
         const shiftInput =
             document.getElementById("shiftInput");
 
@@ -980,6 +1018,15 @@
 
                 const name =
                     nameInput.value.trim();
+
+                const sleepBegin = 
+                    sleepBeginInput.value.trim();
+                const sleepEnd = 
+                    sleepEndInput.value.trim();
+                const workBegin = 
+                    workBeginInput.value.trim();
+                const workEnd = 
+                    workEndInput.value.trim();
                
                 //Changed this
                 const shift =
@@ -1004,6 +1051,10 @@
                 if (
                     name === "" ||
                     shift === "" ||
+                    sleepBegin === "" ||
+                    sleepEnd === "" ||
+                    workBegin === "" ||
+                    workEnd === "" ||
                     work === "" ||
                     workdaysleep === "" ||
                     workdaysawake === "" ||
@@ -1021,7 +1072,11 @@
 
                 initializePlannerData(
                     name,
-                    0
+                    0, /* chronotype calculation should have additional backend */
+                    sleepBegin,
+                    sleepEnd,
+                    workBegin,
+                    workEnd
                 );
 
                 homeHeading.textContent =
@@ -1330,6 +1385,9 @@ taskForm.addEventListener(
          */
 
         plannerData.tasks = tasks;
+
+        /* Run GA */
+        Run();
 
 
         /*
