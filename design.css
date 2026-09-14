@@ -533,7 +533,7 @@ p {
     min-height: 7vh;
     max-height: 7vh;
     width: 100%;
-    padding: 14px;
+    padding: 1.5vh;
     border: none;
     border-radius: 12px;
     background-color: #3D7DD1;
@@ -553,7 +553,7 @@ p {
     min-height: 7vh;
     max-height: 7vh;
     width: 100%;
-    padding: 14px;
+    padding: 1.5vh;
     border: none;
     border-radius: 12px;
     background-color: #3E6BAE;
@@ -573,7 +573,7 @@ p {
     min-height: 7vh;
     max-height: 7vh;
     width: 100%;
-    padding: 14px;
+    padding: 1.5vh;
     border: none;
     border-radius: 12px;
     background-color: #6E85B0;
@@ -608,7 +608,7 @@ p {
 .loadbutton {
     display: flex;
     align-items: center;
-    gap: 14px;
+    gap: 1.5vh;
     text-align: left;
 }
 
