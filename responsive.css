@@ -1,0 +1,18 @@
+@media screen and (max-width: 800px) {
+    .main-container {
+        flex-direction: column;
+    }
+
+    .left-content {
+        width: 100%;
+        padding: 8vw 5% 0px;
+    }
+
+    .right-content {
+        width: 100%;
+        padding: 0px;
+        position: absolute;
+        bottom: 0;
+        transform: translateY(85%);
+    }
+}
