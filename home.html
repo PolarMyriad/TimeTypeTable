@@ -1082,14 +1082,11 @@
 
                 let chronotype;
                 let wfs = parseInt(workfreesleep.slice(0,2)) * 60 + parseInt(workfreesleep.slice(3,5));
-                console.log("WFS: " + wfs);
                 let wfa = parseInt(workfreeawake.slice(0,2)) * 60 + parseInt(workfreeawake.slice(3,5));
                 if (wfs > wfa) {
                     wfa += 1440;
                 }
-                console.log("WFA: " + wfa);
                 let SDF = wfa - wfs;
-                console.log(SDF);
                 let MSF = wfs + (SDF/2);
 
                 let wds = parseInt(workdaysleep.slice(0,2)) * 60 + parseInt(workdaysleep.slice(3,5));
@@ -1102,7 +1099,6 @@
 
                 let workdays = parseInt(work);
                 let SDW = (sdd*workdays/7) + (SDF*(7-workdays)/7);
-                console.log(SDW);
                 
                 let MSFsc;
                 let MSFbig = MSF - 60;
@@ -1116,10 +1112,6 @@
                         chronotype = 0;
                     }
                 }
-                console.log("MSFsc: " + MSFsc);
-                console.log("MSF: " + MSF);
-                console.log("MSFbig: " + MSFbig);
-                console.log(chronotype);
                 
 
                 initializePlannerData(
