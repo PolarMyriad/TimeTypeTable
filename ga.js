@@ -458,7 +458,7 @@ async function Run() {
 
         AddTakenSlot([best.start, best.end]);
     }
-
+    console.log(schedule);
     DisplaySchedule(schedule);
 
     return schedule;
