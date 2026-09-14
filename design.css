@@ -521,7 +521,6 @@ p {
     display: flex;
     flex-direction: column;
     gap: 10px;
-    align-items: justify;
     /* padding-left: 85px;
     padding-right: 70px;
     max-width: 600px; */
