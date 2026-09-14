@@ -451,7 +451,7 @@ h1 {
 }
 
 #homeHeading {
-    padding: 0px 4vw 0px 0px;
+    padding: 0px 1vw 0px 0px;
 }
 
 p {
@@ -488,18 +488,33 @@ p {
     overflow: auto;
 }
 
+.topbar {
+    display: flex;
+    height: 8vh;
+    background-color: #3D7DD1;
+    padding: 1vh 6%;
+    align-items: center;
+}
+
+.topbar * {
+    margin: 0px 2vw 0px 0px; 
+}
+
+.topbar h1 {
+    color: #FFFFFF;
+    font-size: 1.6rem;
+}
+
 .placeholderlogo {
-    margin-top: 10px;
-    margin-left: 10px;
-    width: 60px;
-    height: 60px;
+    width: 40px;
+    height: 40px;
 }
 
 .main-container {
     display: flex;
     flex-direction: row;
     width: 100%;
-    min-height: 100vh;
+    min-height: 92vh;
     background-color: #EAF2FB;
     padding: 2vh 0px;
     gap: 0px;
@@ -510,14 +525,13 @@ p {
     width: 45%;
     padding-left: 6%;
     padding-right: 4%;
-    padding-top: 4vh;
 }
 
 .right-content {
     transform: 0;
     width: 55%;
     padding-right: 6%;
-    padding-top: 7vh;
+    padding-top: 3vh;
     display: flex;
     justify-content: flex-start;
     align-items: flex-start;
