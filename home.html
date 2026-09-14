@@ -621,14 +621,14 @@
 
 
 
-                const tasksForThisDay =
-                    plannerData.tasks.filter(
-                        function (task) {
+                const timeslotsForThisDay =
+                    plannerData.timeslots.filter(
+                        function (timeslots) {
 
 
 
 
-                            return task.date === dateString;
+                            return timeslots.do_date === dateString;
 
 
 
@@ -648,7 +648,7 @@
 
                         openTaskModal(
                             dateString,
-                            tasksForThisDay
+                            timeslotsForThisDay
                         );
 
 
@@ -688,10 +688,10 @@
                     );
 
                 const MAX_VISIBLE_TASKS = 3;
-                tasksForThisDay
+                timeslotsForThisDay
                     .slice(0, MAX_VISIBLE_TASKS)
                     .forEach(
-                        function (task, index) {
+                        function (timeslots, index) {
 
                             const taskElement =
                                 document.createElement("div");
@@ -701,10 +701,10 @@
                             );
 
                             taskElement.textContent =
-                                `• ${task.name}`;
+                                `• ${timeslots.name}`;
                             if (
                                 index === MAX_VISIBLE_TASKS - 1 &&
-                                tasksForThisDay.length > MAX_VISIBLE_TASKS
+                                timeslotsForThisDay.length > MAX_VISIBLE_TASKS
                             ) {
 
                                 taskElement.textContent += "...";
@@ -823,7 +823,7 @@
             document.getElementById("closeModal");
         function openTaskModal(
             dateString,
-            tasks
+            timeslots
         ) {
 
             const date =
@@ -846,15 +846,15 @@
 
             modalTaskList.innerHTML = "";
 
-            if (tasks.length === 0) {
+            if (timeslots.length === 0) {
 
                 modalTaskList.innerHTML =
                     "<p>No tasks scheduled.</p>";
 
             }
 
-            tasks.forEach(
-                function (task) {
+            timeslots.forEach(
+                function (timeslot) {
 
                     const taskElement =
                         document.createElement("div");
@@ -866,12 +866,16 @@
                     taskElement.innerHTML = `
 
                         <div class="modal-task-name">
-                            • ${task.name}
+                            • ${timeslot.name}
                         </div>
 
-                        <div class="modal-task-time">
-                            ${task.startTime} - ${task.endTime}
-                        </div>
+                     <div class="modal-task-time">
+                       Time: ${timeslot.do_time}
+                     </div>
+
+                    <div class="modal-task-deadline">
+                      Deadline: ${timeslot.deadline}
+                     </div>
                     `;
 
                     modalTaskList.appendChild(
@@ -1376,10 +1380,27 @@ taskForm.addEventListener(
                 );
 
 
-           const deadline =
-             document
-                .getElementById(`taskDeadline${i}`)
-                .value;
+            const deadlineDate = 
+                document.getElementById(`taskDeadline${i}`).value;
+
+                if (deadlineDate === "") {
+                    alert("Please enter a deadline for Task " + i + ".");
+                    return;
+                }
+                const today = new Date();
+                today.setHours(0, 0, 0, 0);
+
+                const selectedDate = new Date(deadlineDate + "T00:00:00");
+                selectedDate.setHours(0, 0, 0, 0);
+
+                const deadlineDays = Math.round(
+                (selectedDate - today) / (1000 * 60 * 60 * 24)
+            );
+
+            if (deadlineDays < 1 || deadlineDays > 30) {
+                alert("Deadline must be between 1 and " + days + " days from today.");
+                return;
+            }
 
 
             if (
@@ -1404,7 +1425,8 @@ taskForm.addEventListener(
                 name: name,
                 priority: priority,
                 tedium: tedium,
-                deadline: deadline
+                deadline: deadlineDate,
+                deadlineDays: deadlineDays
             });
         }
 
