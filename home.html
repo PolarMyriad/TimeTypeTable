@@ -99,6 +99,35 @@
                 </div>
 
                 <div class="form-group">
+                    <label for="sleepBeginTime">
+                        I begin to sleep at __:__ AM/PM (this is when you get into bed)
+                    </label>
+
+                    <input type="time" id="sleepBeginTime" required>
+                </div>
+                <div class="form-group">
+                    <label for="sleepEndTime">
+                        I end my sleep at __:__ AM/PM (this is when you get out of bed)
+                    </label>
+
+                    <input type="time" id="sleepEndTime" required>
+                </div>
+                <div class="form-group">
+                    <label for="workBeginTime">
+                        I begin to work/study at __:__ AM/PM (this is when you get into work/study)
+                    </label>
+
+                    <input type="time" id="workBeginTime" required>
+                </div>
+                <div class="form-group">
+                    <label for="workEndTime">
+                        I end my work/study at __:__ AM/PM (this is when you get out of work/study)
+                    </label>
+
+                    <input type="time" id="workEndTime" required>
+                </div>
+
+                <div class="form-group">
 
 
                     <label for="shiftInput">
@@ -477,6 +506,8 @@
 
     <script src="saveloadfeat.js"></script>
     <script src="ga.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.30.1/moment.min.js" integrity="sha512-QoJS4DOhdmG8kbbHkxmB/rtPdN62cGWXAdAFWWJPvUFF1/zxcPSdAnn4HhYZSIlVoLVEJ0LesfNlusgm2bPfnA==" crossorigin="anonymous"></script>
+    <script>moment().format();</script>
     <script>
 
         const monthYear =
@@ -902,6 +933,15 @@
         const nameInput =
             document.getElementById("nameInput");
 
+        const sleepBeginInput = 
+            document.getElementById("sleepBeginTime");
+        const sleepEndInput = 
+            document.getElementById("sleepEndTime");
+        const workBeginInput = 
+            document.getElementById("workBeginTime");
+        const workEndInput = 
+            document.getElementById("workEndTime");
+
         const shiftInput =
             document.getElementById("shiftInput");
 
@@ -980,6 +1020,15 @@
 
                 const name =
                     nameInput.value.trim();
+
+                const sleepBegin = 
+                    sleepBeginInput.value.trim();
+                const sleepEnd = 
+                    sleepEndInput.value.trim();
+                const workBegin = 
+                    workBeginInput.value.trim();
+                const workEnd = 
+                    workEndInput.value.trim();
                
                 //Changed this
                 const shift =
@@ -1004,6 +1053,10 @@
                 if (
                     name === "" ||
                     shift === "" ||
+                    sleepBegin === "" ||
+                    sleepEnd === "" ||
+                    workBegin === "" ||
+                    workEnd === "" ||
                     work === "" ||
                     workdaysleep === "" ||
                     workdaysawake === "" ||
@@ -1018,10 +1071,57 @@
                     return;
                 }
 
+                /* chronotype calculation */
+
+                let chronotype;
+                let wfs = parseInt(workfreesleep.slice(0,2)) * 60 + parseInt(workfreesleep.slice(3,5));
+                console.log("WFS: " + wfs);
+                let wfa = parseInt(workfreeawake.slice(0,2)) * 60 + parseInt(workfreeawake.slice(3,5));
+                if (wfs > wfa) {
+                    wfa += 1440;
+                }
+                console.log("WFA: " + wfa);
+                let SDF = wfa - wfs;
+                console.log(SDF);
+                let MSF = wfs + (SDF/2);
+
+                let wds = parseInt(workdaysleep.slice(0,2)) * 60 + parseInt(workdaysleep.slice(3,5));
+                let wda = parseInt(workdaysawake.slice(0,2)) * 60 + parseInt(workdaysawake.slice(3,5));
+                if (wds > wda) {
+                    wda += 1440;
+                }
+                let sdd = wda - wds;
+                let MSD = wds + (sdd/2);
+
+                let workdays = parseInt(work);
+                let SDW = (sdd*workdays/7) + (SDF*(7-workdays)/7);
+                console.log(SDW);
+                
+                let MSFsc;
+                let MSFbig = MSF - 60;
+                if (SDF <= SDW) {
+                    MSFsc = MSF;
+                } else {
+                    MSFsc = MSF - (SDF - SDW)/2;
+                    if (MSFsc < MSFbig) { // if overall weekly sleep duration is less than sleep duration on free days
+                        chronotype = 1;
+                    } else {
+                        chronotype = 0;
+                    }
+                }
+                console.log("MSFsc: " + MSFsc);
+                console.log("MSF: " + MSF);
+                console.log("MSFbig: " + MSFbig);
+                console.log(chronotype);
+                
 
                 initializePlannerData(
                     name,
-                    0
+                    chronotype, /* chronotype calculation should have additional backend */
+                    sleepBegin,
+                    sleepEnd,
+                    workBegin,
+                    workEnd
                 );
 
                 homeHeading.textContent =
@@ -1330,6 +1430,9 @@ taskForm.addEventListener(
          */
 
         plannerData.tasks = tasks;
+
+        /* Run GA */
+        Run();
 
 
         /*

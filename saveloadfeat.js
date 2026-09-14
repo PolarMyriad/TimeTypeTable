@@ -1,14 +1,22 @@
 let plannerData = {
     name: "",
     chronotype: "",
+    sleepBegin: "",
+    sleepEnd: "",
+    workBegin: "",
+    workEnd: "",
     tasks: []
 };
 
-function initializePlannerData(name, chronotype) {
+function initializePlannerData(name, chronotype, sleepBegin, sleepEnd, workBegin, workEnd) {
 
     plannerData = {
         name: name,
         chronotype: chronotype,
+        sleepBegin: sleepBegin,
+        sleepEnd: sleepEnd,
+        workBegin: workBegin,
+        workEnd: workEnd,
         tasks: []
     };
 
