@@ -5,7 +5,7 @@ let plannerData = {
     sleepEnd: "",
     workBegin: "",
     workEnd: "",
-    tasks: []
+    timeslots: []
 };
 
 function initializePlannerData(name, chronotype, sleepBegin, sleepEnd, workBegin, workEnd) {
@@ -17,7 +17,7 @@ function initializePlannerData(name, chronotype, sleepBegin, sleepEnd, workBegin
         sleepEnd: sleepEnd,
         workBegin: workBegin,
         workEnd: workEnd,
-        tasks: []
+        timeslots: []
     };
 
 }
@@ -58,10 +58,10 @@ function loadJSON(file) {
 
                 if (
                     !Array.isArray(
-                        plannerData.tasks
+                        plannerData.timeslots
                     )
                 ) {
-                    plannerData.tasks = [];
+                    plannerData.timeslots = [];
                 }
 
                 if (
