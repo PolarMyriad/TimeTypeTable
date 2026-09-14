@@ -643,6 +643,8 @@ p {
 
 .calendar {
     width: 100%;
+    min-height: 82vh;
+    max-height: 82vh;
     /* max-width: 700px; */
     margin-bottom: 30px;
     padding: 0;
@@ -702,16 +704,17 @@ p {
 
 .days {
     display: grid;
+    height: 69vh;
     grid-template-columns:
         repeat(7, 1fr);
-    gap: 8px;
-    padding: 12px 28px 28px;
+    gap: 0.5vw;
+    padding: 1.11vh 1.46vw 2.6vh;
 }
 
 
 .day,
 .empty {
-    min-height: 100px;
+    min-height: 1fr;
     border: 1px solid #dddddd;
     border-radius: 8px;
     padding: 8px;
@@ -720,7 +723,7 @@ p {
 
 
 .day {
-    height: 120px;
+    height: 1fr;
     overflow: hidden;
     position: relative;
     cursor: pointer;

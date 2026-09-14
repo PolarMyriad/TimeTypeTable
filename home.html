@@ -498,6 +498,9 @@
 
         function renderCalendar() {
 
+            
+            let numberOfElements = 0;
+
             const year =
                 currentDate.getFullYear();
 
@@ -534,7 +537,6 @@
 
 
             daysContainer.innerHTML = "";
-
             for (
                 let i = 0;
                 i < firstDay;
@@ -549,7 +551,7 @@
                 daysContainer.appendChild(
                     emptyDay
                 );
-
+                numberOfElements++;
             }
 
 
@@ -702,7 +704,22 @@
                     dayElement
                 );
 
+
+            numberOfElements++;
             }
+            /* let daysElements = document.getElementById("days").children;
+            for (let i = 0; i < daysElements.length; i++) {
+                daysElements[i].style.
+            } */
+            if ((numberOfElements / 7) > 5) {
+                daysContainer.style.gridTemplateRows = "repeat(6, 1fr)";
+            } else if ((numberOfElements / 7) > 4) {
+                daysContainer.style.gridTemplateRows = "repeat(5, 1fr)";
+            } else if ((numberOfElements / 7) == 4) {
+                daysContainer.style.gridTemplateRows = "repeat(4, 1fr)";
+            }
+            console.log(numberOfElements);
+            console.log(numberOfElements / 7);
 
         }
 
