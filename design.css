@@ -24,7 +24,7 @@
 
 @media screen and (max-width: 800px) {
     html {
-        font-size: 15px;
+        font-size: 13px;
     }
 }
 
@@ -662,7 +662,7 @@ p {
     margin-bottom: 0px;
     padding: 2.22vh 2.6vw 1.85vh;
     /*gradient effect*/
-    background: linear-gradient(90deg, #a4ceff 0%, #72b9ff 55%, #378ADD 100%);
+    background: #72b9ff;
 }
 
 .calendar-header h2 {
@@ -1113,7 +1113,7 @@ p {
 
 /* MOBILE */
 
-@media (max-width: 600px) {
+@media (max-width: 800px) {
 
     .task-details-row {
         grid-template-columns: 1fr;
@@ -1122,3 +1122,16 @@ p {
 
 }
 
+#pullCalendar {
+    display: none;
+    width: 6vw;
+    height: 6vw;
+    background-color: #72b9ff;
+    border-radius: 50%;
+    border: 1px solid #3D7DD1;
+}
+
+#pullCalendar p {
+    font: 1.1rem 'Open Sans', sans-serif;
+    color: #1853a0
+}

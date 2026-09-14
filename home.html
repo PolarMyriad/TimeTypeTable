@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <link rel="stylesheet" href="design.css">
+    <link rel="stylesheet" href="responsive.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
@@ -395,7 +396,7 @@
             </div>
         </div>
 
-        <div class="right-content">
+        <div class="right-content" id="right-content">
 
 
 
@@ -404,7 +405,9 @@
 
 
                 <div class="calendar-header">
-
+                    <button id="pullCalendar">
+                        &#9650;
+                    </button>
 
                     <button id="prevMonth">
                         &#10094;
@@ -1353,6 +1356,20 @@ backToQuestionnaireButton.addEventListener(
     }
 );
 
+    /* pull up the calendar in mobile mode */
+    const pullup = document.getElementById("pullCalendar");
+    const rightContent = document.getElementById("right-content");
+    let isPulledUp = false;
+    pullup.addEventListener(
+        "click",
+        function () {
+            if (isPulledUp) {
+                rightContent.style.transform = "translateY(0%)";
+            } else {
+                rightContent.style.transform = "translateY(85%)";
+            }
+        }
+    )
     </script>
 
 
