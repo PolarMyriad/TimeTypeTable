@@ -478,9 +478,10 @@ async function Run(tasks) {
 
         schedule.push(element);
 
-        AddTakenSlot([best.start, best.end]);
+        // AddTakenSlot([best.start, best.end]);
     }
     console.log(schedule);
+    console.log(typeof schedule);
     // DisplaySchedule(schedule);
 
     return schedule;

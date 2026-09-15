@@ -110,7 +110,7 @@ const monthYear =
 
 
                 const timeslotsForThisDay =
-                    plannerData.timeslots.filter(
+                    Object.values(plannerData.timeslots).filter(
                         function (timeslots) {
 
 
@@ -939,7 +939,11 @@ taskForm.addEventListener(
 
 
         /* Run GA */
-        plannerData.timeslots = Run(tasks);
+        let timeslotsArray = Run(tasks);
+        console.log("Type of timeslotsArray: " + typeof timeslotsArray);
+        plannerData.timeslots = timeslotsArray;
+        console.log("Type of plannerData timeslots: " + typeof plannerData.timeslots);
+        console.log(plannerData.timeslots);
 
 
         /*

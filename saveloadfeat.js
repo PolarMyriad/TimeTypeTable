@@ -5,7 +5,7 @@ let plannerData = {
     sleepEnd: "",
     workBegin: "",
     workEnd: "",
-    timeslots: []
+    timeslots: {}
 };
 
 function initializePlannerData(name, chronotype, sleepBegin, sleepEnd, workBegin, workEnd) {
@@ -17,7 +17,7 @@ function initializePlannerData(name, chronotype, sleepBegin, sleepEnd, workBegin
         sleepEnd: sleepEnd,
         workBegin: workBegin,
         workEnd: workEnd,
-        timeslots: []
+        timeslots: {}
     };
 
 }
