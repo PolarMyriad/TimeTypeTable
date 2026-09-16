@@ -108,11 +108,10 @@ const monthYear =
 
 
 
-
+                /*
                 const timeslotsForThisDay =
                     Object.values(plannerData.timeslots).filter(
                         function (timeslots) {
-
 
 
 
@@ -123,7 +122,7 @@ const monthYear =
 
                         }
                     );
-
+                */
 
 
 
@@ -267,8 +266,6 @@ const monthYear =
             } else if ((numberOfElements / 7) == 4) {
                 daysContainer.style.gridTemplateRows = "repeat(4, 1fr)";
             }
-            console.log(numberOfElements);
-            console.log(numberOfElements / 7);
 
         }
 
@@ -487,7 +484,6 @@ const monthYear =
         questionnaireScreen.style.display =
             "none";
 
-        topbar.style.display = "flex";
 
         firstTimeScreen.style.display =
             "flex";
@@ -939,11 +935,14 @@ taskForm.addEventListener(
 
 
         /* Run GA */
-        let timeslotsArray = Run(tasks);
-        console.log("Type of timeslotsArray: " + typeof timeslotsArray);
-        plannerData.timeslots = timeslotsArray;
-        console.log("Type of plannerData timeslots: " + typeof plannerData.timeslots);
-        console.log(plannerData.timeslots);
+        let timeslotsPromise = Run(tasks);
+        let timeslotsArray;
+        timeslotsPromise.then((value) => {
+            timeslotsArray = value;
+        })
+
+
+        plannerData.timeslots = plannerData.timeslots.concat(timeslotsArray);
 
 
         /*
@@ -952,6 +951,9 @@ taskForm.addEventListener(
 
         taskScreen.style.display =
             "none";
+
+
+        topbar.style.display = "flex";
 
         homeScreen.style.display =
             "flex";
@@ -973,6 +975,8 @@ backToQuestionnaireButton.addEventListener(
 
         homeScreen.style.display =
             "flex";
+
+        topbar.style.display = "flex";
 
     }
 );
