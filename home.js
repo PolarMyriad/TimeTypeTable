@@ -105,10 +105,10 @@ const monthYear =
 
                 const dateString =
                     `${year}-${monthNumber}-${dayNumber}`;
+                console.log(dateString); //2026-09-16
 
 
-
-                /*
+                
                 const timeslotsForThisDay =
                     Object.values(plannerData.timeslots).filter(
                         function (timeslots) {
@@ -122,7 +122,7 @@ const monthYear =
 
                         }
                     );
-                */
+
 
 
 

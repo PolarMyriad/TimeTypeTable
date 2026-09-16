@@ -413,6 +413,8 @@ async function Run(tasks) {
         counter++;
     }
 
+    let mood = 0;
+    /*
     let mood = await GetMoodFromUser();
 
     if (mood === "negative") {
@@ -422,6 +424,7 @@ async function Run(tasks) {
     } else if (mood === "positive") {
         mood = 2;
     }
+        */
 
     console.log("Mood received by GA: ", mood);
 
@@ -486,13 +489,14 @@ async function Run(tasks) {
     const dateTodayMidnight = new Date(dateToday.getFullYear(), dateToday.getMonth(), dateToday.getDate(), 0, 0, 0, 0);
     const dateTodayMidnightUnix = Date.parse(dateTodayMidnight);
     console.log("Unix date today at midnight: " + dateTodayMidnightUnix);
-    for (let timeslot in schedule) {
-        timeslot.individual.start
+    console.log(schedule);
+    for (let timeslot of schedule) {
+        let unixStart = new Date(dateTodayMidnightUnix + (timeslot.individual.start * 60000));
+        let unixEnd = new Date(dateTodayMidnightUnix + (timeslot.individual.end * 60000));
+        timeslot.individual.start = unixStart.toISOString();
+        timeslot.individual.end = unixEnd.toISOString();
     }
 
-
-    console.log(schedule);
-    console.log(typeof schedule);
     // DisplaySchedule(schedule);
 
     return schedule;
