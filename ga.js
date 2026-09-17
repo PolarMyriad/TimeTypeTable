@@ -29,8 +29,8 @@ function Sample(arr, size) {
 }
 
 // Variable initialization
-let populationSize = 100;
-let generations = 200;
+let populationSize = 52;
+let generations = 100;
 let tournamentSize = 4;
 let mutationRate = 0.05;
 
@@ -486,10 +486,12 @@ async function Run(tasks) {
 
     /* Convert minutes to actual date&time */
     const dateToday = new Date();
-    const dateTodayMidnight = new Date(dateToday.getFullYear(), dateToday.getMonth(), dateToday.getDate(), 0, 0, 0, 0);
-    const dateTodayMidnightUnix = Date.parse(dateTodayMidnight);
-    console.log("Unix date today at midnight: " + dateTodayMidnightUnix);
-    console.log(schedule);
+    console.log(dateToday.toISOString());
+    // const dateTodayMidnight = new Date(dateToday.getFullYear(), dateToday.getMonth(), dateToday.getDate(), 0, 0, 0, 0);
+    // console.log(dateTodayMidnight.toISOString());
+    const dateTodayMidnightUnix = Date.parse(dateToday);
+    // console.log("Unix date today at midnight: " + dateTodayMidnightUnix);
+    // console.log(schedule);
     for (let timeslot of schedule) {
         let unixStart = new Date(dateTodayMidnightUnix + (timeslot.individual.start * 60000));
         let unixEnd = new Date(dateTodayMidnightUnix + (timeslot.individual.end * 60000));

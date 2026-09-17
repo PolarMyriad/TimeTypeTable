@@ -187,7 +187,7 @@ const monthYear =
                             );
 
                             taskElement.textContent =
-                                `• ${timeslots.name}`;
+                                `• ${timeslots.task.name}`;
                             if (
                                 index === MAX_VISIBLE_TASKS - 1 &&
                                 timeslotsForThisDay.length > MAX_VISIBLE_TASKS
@@ -350,15 +350,18 @@ const monthYear =
                     taskElement.innerHTML = `
 
                         <div class="modal-task-name">
-                            • ${timeslot.name}
+                            • ${timeslot.task.name}
                         </div>
 
                      <div class="modal-task-time">
-                       Time: ${timeslot.do_time}
+                       Do this from: ${timeslot.individual.start.slice(0,10)} at ${timeslot.individual.start.slice(11,19)}
+                     </div>
+                     <div class="modal-task-time">
+                       to: ${timeslot.individual.end.slice(0,10)} at ${timeslot.individual.end.slice(11,19)}
                      </div>
 
                     <div class="modal-task-deadline">
-                      Deadline: ${timeslot.deadline}
+                      Deadline: ${timeslot.task.deadline}
                      </div>
                     `;
 
@@ -495,7 +498,7 @@ const monthYear =
         addtaskButton.addEventListener(
             "click",
              function () {
-
+                taskForm.reset();
                 homeScreen.style.display =
                     "none";
 
@@ -882,7 +885,7 @@ taskForm.addEventListener(
                 (selectedDate - today) / (1000 * 60 * 60 * 24)
             );
 
-            if (deadlineDays < 1 || deadlineDays > 30) {
+            if (deadlineDays < 1 || deadlineDays > 365) {
                 alert("Deadline must be between 1 and " + days + " days from today.");
                 return;
             }
@@ -938,13 +941,8 @@ taskForm.addEventListener(
         console.log(timeslotsPromise);
         let timeslotsArray;
         timeslotsPromise.then((value) => {
-            console.log("Value of promise: " + value);
-            console.log("value")
             timeslotsArray = value;
             plannerData.timeslots = plannerData.timeslots.concat(timeslotsArray);
-            console.log(timeslotsArray);
-            console.log("Type of timeslots array: " + typeof timeslotsArray);
-            console.log(plannerData.timeslots);
             /*
             * Go to home page
             */
@@ -959,6 +957,7 @@ taskForm.addEventListener(
                 "flex";
 
             renderCalendar();
+            taskForm.reset();
         });
     }
 );
