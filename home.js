@@ -105,22 +105,21 @@ const monthYear =
 
                 const dateString =
                     `${year}-${monthNumber}-${dayNumber}`;
-                console.log(dateString); //2026-09-16
 
 
                 
                 const timeslotsForThisDay =
                     Object.values(plannerData.timeslots).filter(
-                        function (timeslots) {
+                        (timeslots) => 
 
 
 
-                            return timeslots.do_date === dateString;
+                            timeslots.individual.start.slice(0,10) === dateString
 
 
 
 
-                        }
+                        
                     );
 
 
@@ -936,30 +935,31 @@ taskForm.addEventListener(
 
         /* Run GA */
         let timeslotsPromise = Run(tasks);
+        console.log(timeslotsPromise);
         let timeslotsArray;
         timeslotsPromise.then((value) => {
+            console.log("Value of promise: " + value);
+            console.log("value")
             timeslotsArray = value;
-        })
+            plannerData.timeslots = plannerData.timeslots.concat(timeslotsArray);
+            console.log(timeslotsArray);
+            console.log("Type of timeslots array: " + typeof timeslotsArray);
+            console.log(plannerData.timeslots);
+            /*
+            * Go to home page
+            */
+
+            taskScreen.style.display =
+                "none";
 
 
-        plannerData.timeslots = plannerData.timeslots.concat(timeslotsArray);
+            topbar.style.display = "flex";
 
+            homeScreen.style.display =
+                "flex";
 
-        /*
-         * Go to home page
-         */
-
-        taskScreen.style.display =
-            "none";
-
-
-        topbar.style.display = "flex";
-
-        homeScreen.style.display =
-            "flex";
-
-        renderCalendar();
-
+            renderCalendar();
+        });
     }
 );
 
