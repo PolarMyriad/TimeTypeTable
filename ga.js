@@ -1,7 +1,3 @@
-document.getElementById("testga").addEventListener("click", function() {
-    Run();
-});
-
 // New Functions
 function PrepareSlots(string) {
     if (string.trim()) {
@@ -38,13 +34,13 @@ let generations = 100;
 let tournamentSize = 4;
 let mutationRate = 0.05;
 
-let slotsPerDay = 48;
+let slotsPerDay = 1440;
 let days = 30;
 let totalSlots = slotsPerDay * days;
 
-let chronotype = 0; // placeholder chronotype
+let chronotype = plannerData.chronotype;
 
-let takenSlots = [];
+let takenSlots = []; 
 
 let favoredTimes;
 
@@ -88,6 +84,7 @@ async function GetMoodFromUser() {
     }
 }
 
+/* Deprecated
 function GetSlotsFromUser(beginId, endId) {
     const beginTime = document.getElementById(beginId).value;
     const endTime = document.getElementById(endId).value;
@@ -124,6 +121,7 @@ function GetSlotsFromUser(beginId, endId) {
 
     return slots;
 }
+*/
 
 // INITIALIZATION
 function CreateIndividual(task) {
@@ -132,7 +130,7 @@ function CreateIndividual(task) {
 
     let start = Math.floor(Math.random() * (maxStart + 1));
 
-    let maxDuration = Math.min(6, deadlineSlot - start);
+    let maxDuration = Math.min(180, deadlineSlot - start);
 
     if (maxDuration < 1) {
         maxDuration = 1;
@@ -224,7 +222,7 @@ function Fitness(individual, task, mood) {
     score -= moodTimingPenalty;
 
     // TEDIUM
-    let idealDuration = Math.max(1, T / 2);
+    let idealDuration = Math.max(1, T / 2) * 30;
     score -= Math.abs(duration - idealDuration);
 
     return score;
@@ -286,7 +284,7 @@ function Mutate(individual, task, mood) {
 
         individual.start = Math.floor(Math.random() * (maxStart + 1));
 
-        let maxDuration = Math.min(6, deadlineSlot - individual.start);
+        let maxDuration = Math.min(180, deadlineSlot - individual.start);
 
         if (maxDuration < 1) {
             maxDuration = 1;
@@ -361,6 +359,7 @@ function AddTakenSlot(slot) {
     }
 }
 
+/* Deprecated
 function DisplaySchedule(schedule) {
     console.log("Generated Schedule:");
 
@@ -381,15 +380,41 @@ function DisplaySchedule(schedule) {
         );
     }
 }
+    */
 
 // MAIN PROGRAM LOOP
-async function Run() {
-    // Reset taken slots for every new schedule generation
+async function Run(tasks) {
+    // There should be functionality to scan all already-created tasks from the plannerData, and add them to takenSlots here
     takenSlots = [];
 
-    sleepSlots_input = GetSlotsFromUser("sleepBeginTime", "sleepEndTime");
-    workSlots_input = GetSlotsFromUser("workBeginTime", "workEndTime");
+    let sb = parseInt(plannerData.sleepBegin.slice(0,2)) * 60 + parseInt(plannerData.sleepBegin.slice(3,5));
+    let se = parseInt(plannerData.sleepEnd.slice(0,2)) * 60 + parseInt(plannerData.sleepEnd.slice(3,5));
+    if (sb > se) {
+        se += 1440;
+    }
+    let wb = parseInt(plannerData.workBegin.slice(0,2)) * 60 + parseInt(plannerData.workBegin.slice(3,5));
+    let we = parseInt(plannerData.workEnd.slice(0,2)) * 60 + parseInt(plannerData.workEnd.slice(3,5));
+    if (wb > we) {
+        we += 1440;
+    }
+    let sd = se - sb;
+    let wd = we - wb;
 
+    let counter = 0;
+    sleepSlots_input = new Array(sd);
+    for (let i = sb; i < se; i++) {
+        sleepSlots_input[counter] = i;
+        counter++;
+    }
+    counter = 0;
+    workSlots_input = new Array(wd);
+    for (let i = wb; i < we; i++) {
+        workSlots_input[counter] = i;
+        counter++;
+    }
+
+    let mood = 0;
+    /*
     let mood = await GetMoodFromUser();
 
     if (mood === "negative") {
@@ -399,8 +424,9 @@ async function Run() {
     } else if (mood === "positive") {
         mood = 2;
     }
+        */
 
-    console.log("Mood received by GA:", mood);
+    console.log("Mood received by GA: ", mood);
 
     sleepSlots = [...new Set(sleepSlots_input)];
     sleepSlots.sort((a, b) => a - b);
@@ -411,7 +437,7 @@ async function Run() {
     favoredTimes = new Array(slotsPerDay);
 
     for (let i = 0; i < favoredTimes.length; i++) {
-        if (i < 24) {
+        if (i < 720) {
             if (chronotype == 0) { // Morning
                 favoredTimes[i] = 0.9;
             } else { // Evening
@@ -427,7 +453,6 @@ async function Run() {
     }
 
     // TASKS (FORM INPUT)
-    let tasks = plannerData.tasks;
 
     if (!tasks || tasks.length === 0){
         console.log("No tasks found.");
@@ -456,10 +481,25 @@ async function Run() {
 
         schedule.push(element);
 
-        AddTakenSlot([best.start, best.end]);
+        // AddTakenSlot([best.start, best.end]);
     }
 
-    DisplaySchedule(schedule);
+    /* Convert minutes to actual date&time */
+    const dateToday = new Date();
+    console.log(dateToday.toISOString());
+    // const dateTodayMidnight = new Date(dateToday.getFullYear(), dateToday.getMonth(), dateToday.getDate(), 0, 0, 0, 0);
+    // console.log(dateTodayMidnight.toISOString());
+    const dateTodayMidnightUnix = Date.parse(dateToday);
+    // console.log("Unix date today at midnight: " + dateTodayMidnightUnix);
+    // console.log(schedule);
+    for (let timeslot of schedule) {
+        let unixStart = new Date(dateTodayMidnightUnix + (timeslot.individual.start * 60000));
+        let unixEnd = new Date(dateTodayMidnightUnix + (timeslot.individual.end * 60000));
+        timeslot.individual.start = unixStart.toISOString();
+        timeslot.individual.end = unixEnd.toISOString();
+    }
+
+    // DisplaySchedule(schedule);
 
     return schedule;
 }

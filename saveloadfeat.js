@@ -88,6 +88,8 @@ function loadJSON(file) {
                     )
                     .style.display = "flex";
 
+                document.getElementById("topbar").style.display = "flex";
+
                 renderCalendar();
 
             } catch (error) {

@@ -849,12 +849,27 @@ p {
 
 .modal-task-name {
     font-weight: bold;
+    margin-bottom: 5px;
 }
 
 
 .modal-task-time {
-    font-size: 0.8rem;
+    font-size: 1rem;
     margin-left: 20px;
+}
+
+.modal-task-deadline {
+    font-size: 1rem;
+    font-weight: bold;
+    margin-top: 20px;
+    margin-left: 20px;
+}
+
+.modal-task-name, .modal-task-time, .modal-task-deadline {
+    font-family: 
+        'Open Sans',
+        'Montserrat',
+        sans-serif;
 }
 
 /*TASK INPUT SCREEN*/
