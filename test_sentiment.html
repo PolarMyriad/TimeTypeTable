@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Sentiment Analysis Test</title>
+</head>
+<body>
+    <textarea id="moodText" placeholder="How are you feeling today?"></textarea>
+    <button id="analyzeButton">Analyze Mood</button>
+
+    <p id="result"></p>
+
+<script src="sentiment.js"></script>
+
+<script>
+    async function startApp() {
+        const result = document.getElementById("result");
+        const button = document.getElementById("analyzeButton");
+
+        button.disabled = true;
+        result.textContent = "Loading sentiment model...";
+
+        const loaded = await loadSentimentModel();
+
+        if (loaded) {
+            result.textContent = "Sentiment model ready!";
+            button.disabled = false;
+        } else {
+            result.textContent = "Failed to load sentiment model. Check the file path.";
+        }
+    }
+
+    startApp();
+
+    document.getElementById("analyzeButton").addEventListener("click", () => {
+        try {
+            const text = document.getElementById("moodText").value;
+            const prediction = predictSentiment(text);
+
+            document.getElementById("result").textContent =
+                `Mood: ${prediction.mood} | Confidence: ${(prediction.confidence * 100).toFixed(2)}%`;
+
+        } catch (error) {
+            document.getElementById("result").textContent = error.message;
+        }
+    });
+</script>
+
+</body>
+</html>
