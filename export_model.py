@@ -29,7 +29,7 @@ json_text = json.dumps(
     separators=(",", ":")
 )
 
-# Validate JSON before saving
+# validate
 json.loads(json_text)
 
 temp_file = "sentiment_model_temp.json"
@@ -37,7 +37,7 @@ temp_file = "sentiment_model_temp.json"
 with open(temp_file, "w", encoding="utf-8") as file:
     file.write(json_text)
 
-# Verify saved JSON
+# verify json
 with open(temp_file, "r", encoding="utf-8") as file:
     json.load(file)
 
