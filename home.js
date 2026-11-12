@@ -943,21 +943,15 @@ taskForm.addEventListener(
         timeslotsPromise.then((value) => {
             timeslotsArray = value;
             plannerData.timeslots = plannerData.timeslots.concat(timeslotsArray);
-            /*
-            * Go to home page
-            */
-
-            taskScreen.style.display =
-                "none";
-
-
+            taskScreen.style.display = "none";
             topbar.style.display = "flex";
-
-            homeScreen.style.display =
-                "flex";
-
+            homeScreen.style.display = "flex";
             renderCalendar();
             taskForm.reset();
+        })
+        .catch((error) => {
+            console.error("Schedule generation failed:", error);
+            alert("Could not generate your schedule. Please ensure sentiment model has loaded before retrying.");
         });
     }
 );
