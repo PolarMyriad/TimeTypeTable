@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>sentiment analysis test</title>
+</head>
+<body>
+    <h1>test</h1>
+
+    <textarea id="moodInput" placeholder="how are you feeling today?"></textarea>
+
+    <br><br>
+
+    <button id="analyzeButton" disabled>Loading model...</button>
+
+    <p id="result"></p>
+
+    <script src="sentiment.js"></script>
+
+    <script>
+        const button = document.getElementById("analyzeButton");
+        const result = document.getElementById("result");
+
+        async function initialize() {
+            const loaded = await loadSentimentModel();
+
+            if (loaded) {
+                button.disabled = false;
+                button.textContent = "analyse";
+            } else {
+                button.textContent = "model failed to load";
+            }
+        }
+
+        button.addEventListener("click", function () {
+            try {
+                const text = document.getElementById("moodInput").value;
+                const prediction = predictSentiment(text);
+
+                result.textContent =
+                    "Mood: " + prediction.mood +
+                    " | Confidence: " +
+                    (prediction.confidence * 100).toFixed(2) + "%";
+
+                console.log(prediction);
+
+            } catch (error) {
+                result.textContent = error.message;
+            }
+        });
+
+        initialize();
+    </script>
+</body>
+</html>
