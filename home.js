@@ -942,24 +942,23 @@ taskForm.addEventListener(
         let timeslotsArray;
         timeslotsPromise.then((value) => {
             timeslotsArray = value;
-            plannerData.timeslots = plannerData.timeslots.concat(timeslotsArray);
+            plannerData.timeslots = plannerData.timeslots.concat(timeslotsArray[0]);
+            plannerData.timeslots.losers = plannerData.timeslots.losers.concat(timeslotsArray[1]);
             taskScreen.style.display = "none";
             topbar.style.display = "flex";
             homeScreen.style.display = "flex";
             renderCalendar();
             taskForm.reset();
+            taskFields.innerHTML = "";
+            generateTasksButton.style.display = "block";
+            submitTasksButton.style.display = "none";
+            moodGroup.style.display = "none";
+            moodInput.required = false;
         })
         .catch((error) => {
             console.error("Schedule generation failed:", error);
             alert("Could not generate your schedule. Please ensure sentiment model has loaded before retrying.");
         });
-
-        taskForm.reset();
-        taskFields.innerHTML = "";
-        generateTasksButton.style.display = "block";
-        submitTasksButton.style.display = "none";
-        moodGroup.style.display = "none";
-        moodInput.required = false;
     }
 );
 
