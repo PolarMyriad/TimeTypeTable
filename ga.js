@@ -561,14 +561,10 @@ async function Run(tasks) {
 
     // DisplaySchedule(schedule);
 
-    let schedule_and_losers = [];
-    schedule_and_losers.push(schedule);
-    schedule_and_losers.push(allIndividuals);
-    console.log("Type of schedule_and_losers: " + typeof(schedule_and_losers));
-    console.log("schedule_and_losers is array?: " + Array.isArray(schedule_and_losers));
-    console.log("schedule_and_losers: " + schedule_and_losers);
-
-    return schedule_and_losers;
+    return {
+        schedule: schedule,
+        losers: allIndividuals
+    }
 }
 
 /*
