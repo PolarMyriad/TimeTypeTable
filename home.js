@@ -953,6 +953,13 @@ taskForm.addEventListener(
             console.error("Schedule generation failed:", error);
             alert("Could not generate your schedule. Please ensure sentiment model has loaded before retrying.");
         });
+
+        taskForm.reset();
+        taskFields.innerHTML = "";
+        generateTasksButton.style.display = "block";
+        submitTasksButton.style.display = "none";
+        moodGroup.style.display = "none";
+        moodInput.required = false;
     }
 );
 
