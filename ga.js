@@ -346,6 +346,11 @@ function EvolveTask(task, mood) {
         individual.fitness = Fitness(individual, task, mood);
     }
 
+    allIndividuals = population;
+    console.log("Type of allIndividuals: " + typeof(allIndividuals));
+    console.log("allIndividuals is array?: " + Array.isArray(allIndividuals));
+    console.log("allIndividuals: " + allIndividuals);
+
     return population.reduce(function(prev, current) {
         return (prev.fitness > current.fitness) ? prev : current;
     });
