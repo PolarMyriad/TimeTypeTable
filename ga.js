@@ -30,7 +30,7 @@ function Sample(arr, size) {
 
 // Variable initialization
 let populationSize = 52;
-let generations = 100;
+let generations = 10;
 let tournamentSize = 4;
 let mutationRate = 0.05;
 
@@ -49,7 +49,7 @@ let sleepSlots;
 let workSlots_input;
 let workSlots;
 
-let allIndividuals = [];
+let allIndividuals;
 
 // User Input
 async function GetMoodFromUser() {
@@ -346,14 +346,13 @@ function EvolveTask(task, mood) {
         individual.fitness = Fitness(individual, task, mood);
     }
 
-    allIndividuals = population;
-    console.log("Type of allIndividuals: " + typeof(allIndividuals));
-    console.log("allIndividuals is array?: " + Array.isArray(allIndividuals));
-    console.log("allIndividuals: " + allIndividuals);
+    // allIndividuals.push(population);
+    // console.log("allIndividuals: " + allIndividuals);
 
-    return population.reduce(function(prev, current) {
+    return population;
+    /* .reduce(function(prev, current) {
         return (prev.fitness > current.fitness) ? prev : current;
-    });
+    }); */
 }
 
 // Add timeslots taken by previously finalized tasks; these taken timeslots will become hard constraints
@@ -366,7 +365,7 @@ function AddTakenSlot(slot) {
             takenSlots.push(i);
         }
     }
-}
+}   
 
 /* Deprecated
 function DisplaySchedule(schedule) {
@@ -393,6 +392,8 @@ function DisplaySchedule(schedule) {
 
 // MAIN PROGRAM LOOP
 async function Run(tasks) {
+    allIndividuals = {};
+
     // There should be functionality to scan all already-created tasks from the plannerData, and add them to takenSlots here
     const dateToday = new Date();
 
@@ -521,8 +522,12 @@ async function Run(tasks) {
 
     let schedule = [];
 
+    let individualNum;
     for (let task of tasks) {
-        let best = EvolveTask(task, mood);
+        allIndividuals['task' + individualNum] = EvolveTask(task, mood);
+        let best = allIndividuals['task' + individualNum].reduce(function(prev, current) {
+        return (prev.fitness > current.fitness) ? prev : current;
+        });
 
         if (best.fitness === -Infinity) {
             console.log("No valid schedule found for task: " + task.name);
@@ -531,7 +536,8 @@ async function Run(tasks) {
 
         let element = {
             task: task,
-            individual: best
+            individual: best,
+            losers: allIndividuals['task' + individualNum]
         };
 
         schedule.push(element);
@@ -547,25 +553,32 @@ async function Run(tasks) {
     // console.log(dateTodayMidnight.toISOString());
 
     const dateTodayMidnightUnix = Date.parse(dateToday);
-
-    // console.log("Unix date today at midnight: " + dateTodayMidnightUnix);
-    // console.log(schedule);
+    console.log("Unix date today at midnight: " + dateTodayMidnightUnix);
+    console.log("schedule:" + schedule);
 
     for (let timeslot of schedule) {
-        let unixStart = new Date(dateTodayMidnightUnix + (timeslot.individual.start * 60000));
-        let unixEnd = new Date(dateTodayMidnightUnix + (timeslot.individual.end * 60000));
+        timeslot.losers.forEach((loser) => {
+            let loserUnixStart = new Date(dateTodayMidnightUnix + (loser.start * 60000));
+            let loserUnixEnd = new Date(dateTodayMidnightUnix + (loser.end * 60000));
+            loser.start = loserUnixStart.toISOString();
+            loser.end = loserUnixEnd.toISOString();
+        })
+        /*
+        let unixStart = new Date(dateTodayMidnightUnix + (Date.parse(timeslot.individual.start) * 60000));
+        console.log("timeslot.individual.start: " + timeslot.individual.start);
+        console.log("unixStart in number form: " + (timeslot.individual.start + dateTodayMidnightUnix));
+        console.log("unixStart in date form: " + unixStart);
+        let unixEnd = new Date(dateTodayMidnightUnix + (Date.parse(timeslot.individual.end) * 60000));
 
         timeslot.individual.start = unixStart.toISOString();
         timeslot.individual.end = unixEnd.toISOString();
+        */
     }
 
     // DisplaySchedule(schedule);
 
-    return {
-        schedule: schedule,
-        losers: allIndividuals
-    }
-}
+    return schedule;
+} 
 
 /*
 DEV NOTES

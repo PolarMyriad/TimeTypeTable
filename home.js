@@ -942,8 +942,7 @@ taskForm.addEventListener(
         let timeslotsArray;
         timeslotsPromise.then((value) => {
             timeslotsArray = value;
-            plannerData.timeslots = plannerData.timeslots.concat(timeslotsArray.schedule);
-            plannerData.timeslots[0].losers = timeslotsArray.losers;
+            plannerData.timeslots = plannerData.timeslots.concat(timeslotsArray);
             taskScreen.style.display = "none";
             topbar.style.display = "flex";
             homeScreen.style.display = "flex";
