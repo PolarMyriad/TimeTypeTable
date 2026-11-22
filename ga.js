@@ -49,6 +49,8 @@ let sleepSlots;
 let workSlots_input;
 let workSlots;
 
+let allIndividuals = [];
+
 // User Input
 async function GetMoodFromUser() {
     const loaded = await sentimentReady;
