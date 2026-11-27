@@ -948,6 +948,11 @@ taskForm.addEventListener(
             homeScreen.style.display = "flex";
             renderCalendar();
             taskForm.reset();
+            taskFields.innerHTML = "";
+            generateTasksButton.style.display = "block";
+            submitTasksButton.style.display = "none";
+            moodGroup.style.display = "none";
+            moodInput.required = false;
         })
         .catch((error) => {
             console.error("Schedule generation failed:", error);
