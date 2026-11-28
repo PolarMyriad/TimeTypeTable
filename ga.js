@@ -67,6 +67,7 @@ async function GetMoodFromUser() {
 
     const prediction = predictSentiment(moodText);
 
+    console.log("User's mood statement:", moodText);
     console.log("Detected mood:", prediction.mood);
     console.log("Confidence:", prediction.confidence);
 
